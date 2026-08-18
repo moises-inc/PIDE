@@ -1,0 +1,2952 @@
+[
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 0.62,
+      "alpha_deg": 90.0,
+      "b_angstrom": 0.62,
+      "beta_deg": 90.0,
+      "c_angstrom": 1.01246,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "H",
+    "z": 1
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 0.56,
+      "alpha_deg": 90.0,
+      "b_angstrom": 0.56,
+      "beta_deg": 90.0,
+      "c_angstrom": 0.91448,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "He",
+    "z": 2
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.956033,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.956033,
+      "beta_deg": 90.0,
+      "c_angstrom": 2.956033,
+      "gamma_deg": 90.0
+    },
+    "lattice": "BCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Li",
+    "z": 3
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 1.92,
+      "alpha_deg": 90.0,
+      "b_angstrom": 1.92,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.13536,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Be",
+    "z": 4
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 1.68,
+      "alpha_deg": 90.0,
+      "b_angstrom": 1.68,
+      "beta_deg": 90.0,
+      "c_angstrom": 1.68,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Rhombohedral",
+    "lattice_system": "trigonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "B",
+    "z": 5
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 1.52,
+      "alpha_deg": 90.0,
+      "b_angstrom": 1.52,
+      "beta_deg": 90.0,
+      "c_angstrom": 1.52,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Hexagonal",
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "C",
+    "z": 6
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 1.42,
+      "alpha_deg": 90.0,
+      "b_angstrom": 1.42,
+      "beta_deg": 90.0,
+      "c_angstrom": 2.31886,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "N",
+    "z": 7
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 1.32,
+      "alpha_deg": 90.0,
+      "b_angstrom": 1.32,
+      "beta_deg": 90.0,
+      "c_angstrom": 1.32,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Cubic",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "O",
+    "z": 8
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 1.14,
+      "alpha_deg": 90.0,
+      "b_angstrom": 1.14,
+      "beta_deg": 90.0,
+      "c_angstrom": 1.14,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Cubic",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "F",
+    "z": 9
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 1.640488,
+      "alpha_deg": 90.0,
+      "b_angstrom": 1.640488,
+      "beta_deg": 90.0,
+      "c_angstrom": 1.640488,
+      "gamma_deg": 90.0
+    },
+    "lattice": "FCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Ne",
+    "z": 10
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.833606,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.833606,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.833606,
+      "gamma_deg": 90.0
+    },
+    "lattice": "BCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Na",
+    "z": 11
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.82,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.82,
+      "beta_deg": 90.0,
+      "c_angstrom": 4.60506,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Mg",
+    "z": 12
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.422397,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.422397,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.422397,
+      "gamma_deg": 90.0
+    },
+    "lattice": "FCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Al",
+    "z": 13
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.22,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.22,
+      "beta_deg": 90.0,
+      "c_angstrom": 2.22,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Diamond cubic",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Si",
+    "z": 14
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.14,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.14,
+      "beta_deg": 90.0,
+      "c_angstrom": 2.14,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Orthorhombic",
+    "lattice_system": "orthorhombic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "P",
+    "z": 15
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.1,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.1,
+      "beta_deg": 90.0,
+      "c_angstrom": 2.1,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Orthorhombic",
+    "lattice_system": "orthorhombic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "S",
+    "z": 16
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.04,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.04,
+      "beta_deg": 90.0,
+      "c_angstrom": 2.04,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Orthorhombic",
+    "lattice_system": "orthorhombic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Cl",
+    "z": 17
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.998133,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.998133,
+      "beta_deg": 90.0,
+      "c_angstrom": 2.998133,
+      "gamma_deg": 90.0
+    },
+    "lattice": "FCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Ar",
+    "z": 18
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 4.688084,
+      "alpha_deg": 90.0,
+      "b_angstrom": 4.688084,
+      "beta_deg": 90.0,
+      "c_angstrom": 4.688084,
+      "gamma_deg": 90.0
+    },
+    "lattice": "BCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "K",
+    "z": 19
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 4.978032,
+      "alpha_deg": 90.0,
+      "b_angstrom": 4.978032,
+      "beta_deg": 90.0,
+      "c_angstrom": 4.978032,
+      "gamma_deg": 90.0
+    },
+    "lattice": "FCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Ca",
+    "z": 20
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.4,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.4,
+      "beta_deg": 90.0,
+      "c_angstrom": 5.5522,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Sc",
+    "z": 21
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.2,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.2,
+      "beta_deg": 90.0,
+      "c_angstrom": 5.2256,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Ti",
+    "z": 22
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.533384,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.533384,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.533384,
+      "gamma_deg": 90.0
+    },
+    "lattice": "BCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "V",
+    "z": 23
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.210067,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.210067,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.210067,
+      "gamma_deg": 90.0
+    },
+    "lattice": "BCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Cr",
+    "z": 24
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.210067,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.210067,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.210067,
+      "gamma_deg": 90.0
+    },
+    "lattice": "BCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Mn",
+    "z": 25
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.048409,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.048409,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.048409,
+      "gamma_deg": 90.0
+    },
+    "lattice": "BCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Fe",
+    "z": 26
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.52,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.52,
+      "beta_deg": 90.0,
+      "c_angstrom": 4.11516,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Co",
+    "z": 27
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.50725,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.50725,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.50725,
+      "gamma_deg": 90.0
+    },
+    "lattice": "FCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Ni",
+    "z": 28
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.733524,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.733524,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.733524,
+      "gamma_deg": 90.0
+    },
+    "lattice": "FCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Cu",
+    "z": 29
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.44,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.44,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.98452,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Zn",
+    "z": 30
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.44,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.44,
+      "beta_deg": 90.0,
+      "c_angstrom": 2.44,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Orthorhombic",
+    "lattice_system": "orthorhombic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Ga",
+    "z": 31
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.4,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.4,
+      "beta_deg": 90.0,
+      "c_angstrom": 2.4,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Diamond cubic",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Ge",
+    "z": 32
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.38,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.38,
+      "beta_deg": 90.0,
+      "c_angstrom": 2.38,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Rhombohedral",
+    "lattice_system": "trigonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "As",
+    "z": 33
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.4,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.4,
+      "beta_deg": 90.0,
+      "c_angstrom": 2.4,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Hexagonal",
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Se",
+    "z": 34
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.4,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.4,
+      "beta_deg": 90.0,
+      "c_angstrom": 2.4,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Orthorhombic",
+    "lattice_system": "orthorhombic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Br",
+    "z": 35
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.280975,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.280975,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.280975,
+      "gamma_deg": 90.0
+    },
+    "lattice": "FCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Kr",
+    "z": 36
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 5.080682,
+      "alpha_deg": 90.0,
+      "b_angstrom": 5.080682,
+      "beta_deg": 90.0,
+      "c_angstrom": 5.080682,
+      "gamma_deg": 90.0
+    },
+    "lattice": "BCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Rb",
+    "z": 37
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 5.515433,
+      "alpha_deg": 90.0,
+      "b_angstrom": 5.515433,
+      "beta_deg": 90.0,
+      "c_angstrom": 5.515433,
+      "gamma_deg": 90.0
+    },
+    "lattice": "FCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Sr",
+    "z": 38
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.8,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.8,
+      "beta_deg": 90.0,
+      "c_angstrom": 6.2054,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Y",
+    "z": 39
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.5,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.5,
+      "beta_deg": 90.0,
+      "c_angstrom": 5.7155,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Zr",
+    "z": 40
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.787418,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.787418,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.787418,
+      "gamma_deg": 90.0
+    },
+    "lattice": "BCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Nb",
+    "z": 41
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.556478,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.556478,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.556478,
+      "gamma_deg": 90.0
+    },
+    "lattice": "BCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Mo",
+    "z": 42
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.94,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.94,
+      "beta_deg": 90.0,
+      "c_angstrom": 4.80102,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Tc",
+    "z": 43
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.92,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.92,
+      "beta_deg": 90.0,
+      "c_angstrom": 4.76836,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Ru",
+    "z": 44
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 4.016367,
+      "alpha_deg": 90.0,
+      "b_angstrom": 4.016367,
+      "beta_deg": 90.0,
+      "c_angstrom": 4.016367,
+      "gamma_deg": 90.0
+    },
+    "lattice": "FCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Rh",
+    "z": 45
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.931514,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.931514,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.931514,
+      "gamma_deg": 90.0
+    },
+    "lattice": "FCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Pd",
+    "z": 46
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 4.101219,
+      "alpha_deg": 90.0,
+      "b_angstrom": 4.101219,
+      "beta_deg": 90.0,
+      "c_angstrom": 4.101219,
+      "gamma_deg": 90.0
+    },
+    "lattice": "FCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Ag",
+    "z": 47
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.88,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.88,
+      "beta_deg": 90.0,
+      "c_angstrom": 4.70304,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Cd",
+    "z": 48
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.84,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.84,
+      "beta_deg": 90.0,
+      "c_angstrom": 2.84,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Tetragonal",
+    "lattice_system": "tetragonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "In",
+    "z": 49
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.78,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.78,
+      "beta_deg": 90.0,
+      "c_angstrom": 2.78,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Tetragonal",
+    "lattice_system": "tetragonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Sn",
+    "z": 50
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.78,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.78,
+      "beta_deg": 90.0,
+      "c_angstrom": 2.78,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Rhombohedral",
+    "lattice_system": "trigonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Sb",
+    "z": 51
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.76,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.76,
+      "beta_deg": 90.0,
+      "c_angstrom": 2.76,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Hexagonal",
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Te",
+    "z": 52
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.78,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.78,
+      "beta_deg": 90.0,
+      "c_angstrom": 2.78,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Orthorhombic",
+    "lattice_system": "orthorhombic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "I",
+    "z": 53
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.959798,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.959798,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.959798,
+      "gamma_deg": 90.0
+    },
+    "lattice": "FCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Xe",
+    "z": 54
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 5.634939,
+      "alpha_deg": 90.0,
+      "b_angstrom": 5.634939,
+      "beta_deg": 90.0,
+      "c_angstrom": 5.634939,
+      "gamma_deg": 90.0
+    },
+    "lattice": "BCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Cs",
+    "z": 55
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 4.965212,
+      "alpha_deg": 90.0,
+      "b_angstrom": 4.965212,
+      "beta_deg": 90.0,
+      "c_angstrom": 4.965212,
+      "gamma_deg": 90.0
+    },
+    "lattice": "BCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Ba",
+    "z": 56
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 4.14,
+      "alpha_deg": 90.0,
+      "b_angstrom": 4.14,
+      "beta_deg": 90.0,
+      "c_angstrom": 6.76062,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "La",
+    "z": 57
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 5.769991,
+      "alpha_deg": 90.0,
+      "b_angstrom": 5.769991,
+      "beta_deg": 90.0,
+      "c_angstrom": 5.769991,
+      "gamma_deg": 90.0
+    },
+    "lattice": "FCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Ce",
+    "z": 58
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 4.06,
+      "alpha_deg": 90.0,
+      "b_angstrom": 4.06,
+      "beta_deg": 90.0,
+      "c_angstrom": 6.62998,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Pr",
+    "z": 59
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 4.02,
+      "alpha_deg": 90.0,
+      "b_angstrom": 4.02,
+      "beta_deg": 90.0,
+      "c_angstrom": 6.56466,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Nd",
+    "z": 60
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Pm",
+    "z": 61
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Sm",
+    "z": 62
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 4.572614,
+      "alpha_deg": 90.0,
+      "b_angstrom": 4.572614,
+      "beta_deg": 90.0,
+      "c_angstrom": 4.572614,
+      "gamma_deg": 90.0
+    },
+    "lattice": "BCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Eu",
+    "z": 63
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.92,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.92,
+      "beta_deg": 90.0,
+      "c_angstrom": 6.40136,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Gd",
+    "z": 64
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.88,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.88,
+      "beta_deg": 90.0,
+      "c_angstrom": 6.33604,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Tb",
+    "z": 65
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.84,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.84,
+      "beta_deg": 90.0,
+      "c_angstrom": 6.27072,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Dy",
+    "z": 66
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.84,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.84,
+      "beta_deg": 90.0,
+      "c_angstrom": 6.27072,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Ho",
+    "z": 67
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.78,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.78,
+      "beta_deg": 90.0,
+      "c_angstrom": 6.17274,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Er",
+    "z": 68
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.8,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.8,
+      "beta_deg": 90.0,
+      "c_angstrom": 6.2054,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Tm",
+    "z": 69
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 5.289159,
+      "alpha_deg": 90.0,
+      "b_angstrom": 5.289159,
+      "beta_deg": 90.0,
+      "c_angstrom": 5.289159,
+      "gamma_deg": 90.0
+    },
+    "lattice": "FCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Yb",
+    "z": 70
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.74,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.74,
+      "beta_deg": 90.0,
+      "c_angstrom": 6.10742,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Lu",
+    "z": 71
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.5,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.5,
+      "beta_deg": 90.0,
+      "c_angstrom": 5.7155,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Hf",
+    "z": 72
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.925982,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.925982,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.925982,
+      "gamma_deg": 90.0
+    },
+    "lattice": "BCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Ta",
+    "z": 73
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.74123,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.74123,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.74123,
+      "gamma_deg": 90.0
+    },
+    "lattice": "BCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "W",
+    "z": 74
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.02,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.02,
+      "beta_deg": 90.0,
+      "c_angstrom": 4.93166,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Re",
+    "z": 75
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.88,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.88,
+      "beta_deg": 90.0,
+      "c_angstrom": 4.70304,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Os",
+    "z": 76
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.988082,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.988082,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.988082,
+      "gamma_deg": 90.0
+    },
+    "lattice": "FCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Ir",
+    "z": 77
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.846661,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.846661,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.846661,
+      "gamma_deg": 90.0
+    },
+    "lattice": "FCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Pt",
+    "z": 78
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.846661,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.846661,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.846661,
+      "gamma_deg": 90.0
+    },
+    "lattice": "FCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Au",
+    "z": 79
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.64,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.64,
+      "beta_deg": 90.0,
+      "c_angstrom": 2.64,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Rhombohedral",
+    "lattice_system": "trigonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Hg",
+    "z": 80
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.9,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.9,
+      "beta_deg": 90.0,
+      "c_angstrom": 4.7357,
+      "gamma_deg": 120.0
+    },
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Tl",
+    "z": 81
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 4.129504,
+      "alpha_deg": 90.0,
+      "b_angstrom": 4.129504,
+      "beta_deg": 90.0,
+      "c_angstrom": 4.129504,
+      "gamma_deg": 90.0
+    },
+    "lattice": "FCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Pb",
+    "z": 82
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 2.96,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.96,
+      "beta_deg": 90.0,
+      "c_angstrom": 2.96,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Rhombohedral",
+    "lattice_system": "trigonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Bi",
+    "z": 83
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Po",
+    "z": 84
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "At",
+    "z": 85
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Rn",
+    "z": 86
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Fr",
+    "z": 87
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Ra",
+    "z": 88
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 6.081118,
+      "alpha_deg": 90.0,
+      "b_angstrom": 6.081118,
+      "beta_deg": 90.0,
+      "c_angstrom": 6.081118,
+      "gamma_deg": 90.0
+    },
+    "lattice": "FCC",
+    "lattice_system": "cubic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Ac",
+    "z": 89
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 4.12,
+      "alpha_deg": 90.0,
+      "b_angstrom": 4.12,
+      "beta_deg": 90.0,
+      "c_angstrom": 4.12,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Orthorhombic",
+    "lattice_system": "orthorhombic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Th",
+    "z": 90
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 4.0,
+      "alpha_deg": 90.0,
+      "b_angstrom": 4.0,
+      "beta_deg": 90.0,
+      "c_angstrom": 4.0,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Tetragonal",
+    "lattice_system": "tetragonal",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Pa",
+    "z": 91
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.92,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.92,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.92,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Orthorhombic",
+    "lattice_system": "orthorhombic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "U",
+    "z": 92
+  },
+  {
+    "available": true,
+    "basis": [],
+    "cell": {
+      "a_angstrom": 3.8,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.8,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.8,
+      "gamma_deg": 90.0
+    },
+    "lattice": "Orthorhombic",
+    "lattice_system": "orthorhombic",
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Np",
+    "z": 93
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Pu",
+    "z": 94
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Am",
+    "z": 95
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Cm",
+    "z": 96
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Bk",
+    "z": 97
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Cf",
+    "z": 98
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Es",
+    "z": 99
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Fm",
+    "z": 100
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Md",
+    "z": 101
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "No",
+    "z": 102
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Lr",
+    "z": 103
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Rf",
+    "z": 104
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Db",
+    "z": 105
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Sg",
+    "z": 106
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Bh",
+    "z": 107
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Hs",
+    "z": 108
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Mt",
+    "z": 109
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Ds",
+    "z": 110
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Rg",
+    "z": 111
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Cn",
+    "z": 112
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Nh",
+    "z": 113
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Fl",
+    "z": 114
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Mc",
+    "z": 115
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Lv",
+    "z": 116
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Ts",
+    "z": 117
+  },
+  {
+    "available": false,
+    "basis": [],
+    "cell": {
+      "a_angstrom": null,
+      "alpha_deg": null,
+      "b_angstrom": null,
+      "beta_deg": null,
+      "c_angstrom": null,
+      "gamma_deg": null
+    },
+    "lattice": null,
+    "lattice_system": null,
+    "source": {
+      "primary": "IUPAC",
+      "secondary": [
+        "CIAAW",
+        "NIST ASD",
+        "CRC Handbook"
+      ],
+      "snapshot": "offline-seed-1"
+    },
+    "symbol": "Og",
+    "z": 118
+  }
+]
