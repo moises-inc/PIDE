@@ -1,6 +1,35 @@
+# Python
 .venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Frontend & Node
 frontend/node_modules/
 frontend/dist/
-backend/**/__pycache__/
-backend/.pytest_cache/
-*.pyc
+frontend/.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Orchestration & Internal Prompts
+prompt_*.md
+prompt_opencode_*.md
+tasks/
+scratch/
+
+# IDE & OS
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
