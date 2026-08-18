@@ -14,7 +14,7 @@ Construir una suite científica local, interactiva y de código abierto para la 
 
 ## 🛠️ Descubrimiento de Habilidades (Agent Skills)
 El sistema cuenta con el paquete de habilidades de desarrollo de software `agent-skills` instalado globalmente en:
-`/home/moises/.gemini/config/plugins/agent-skills/skills/`
+`~/.gemini/config/plugins/agent-skills/skills/`
 
 ### Reglas Críticas de Selección:
 1. **Analizar la Intención:** Antes de realizar cualquier acción, comprueba si la solicitud mapea con alguna de las 24 habilidades (e.g. `frontend-ui-engineering`, `api-and-interface-design`, `test-driven-development`, `observability-and-instrumentation`).
@@ -32,5 +32,6 @@ El sistema cuenta con el paquete de habilidades de desarrollo de software `agent
 
 ---
 
-## 📋 Sincronización con Antigravity 2.0
-* Al completar cualquier hito o tarea táctica, genera una bitácora en `/mnt/9b846436-0407-4e80-b8af-5417ffbdee8e/ObsidianVault/90_System/Agent_Sync/Task_Logs/log_pide_<fase>.md` con `requires_orchestration: true` y el enlace `🔗 [[Task_Board]]`.
+## 📋 Sincronización y Registro
+* Al completar cualquier hito o tarea táctica, documenta los cambios y verifica con `pytest` y `npm run build` antes de realizar commit.
+
