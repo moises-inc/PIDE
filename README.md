@@ -4,7 +4,7 @@
 [![FastAPI](https://img.shields.io/badge/API-FastAPI-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=111827)](https://react.dev/learn)
 [![Offline deterministic](https://img.shields.io/badge/Runtime-offline%20%7C%20deterministic-111827)](docs/architecture.md)
-[![License MIT](https://img.shields.io/badge/License-MIT-2ea44f.svg)](LICENSE)
+[![License AGPLv3](https://img.shields.io/badge/License-AGPLv3-00e676.svg)](LICENSE)
 
 **Periodic Information and Data Explorer** es una aplicación local para
 explorar los 118 elementos, consultar líneas espectrales, inspeccionar modelos
@@ -200,7 +200,9 @@ los pasos de compilación están en [`docs/data_pipeline.md`](docs/data_pipeline
 - [CRC Handbook of Chemistry and Physics, CHEMnetBASE](https://hbcp.chemnetbase.com/), secciones de propiedades elementales, espectroscopía y estructuras cristalinas.
 - [NIDE, Andrés Sabogal](https://github.com/AndresSabogal00/NIDE), repositorio inspirador atribuido explícitamente.
 
-## Licencia
+## Licencia y Derechos de Autor
 
-PIDE se distribuye bajo [MIT](LICENSE). Las dependencias y las fuentes
-externas conservan sus propias licencias y condiciones de uso.
+PIDE es software libre distribuido bajo la licencia [GNU Affero General Public License v3.0 (AGPLv3)](LICENSE). Consulte el archivo [NOTICE](NOTICE) para ver las notas formales de atribución y derechos de autor, incluyendo la atribución histórica al proyecto inspirador [NIDE de Andrés Sabogal](https://github.com/AndresSabogal00/NIDE) (licenciado bajo MIT).
+
+El uso de la marca, nombre e identidad de PIDE y de la Universidad San Sebastián se rige por la política descrita en [TRADEMARK.md](TRADEMARK.md). Las dependencias y fuentes externas conservan sus respectivas licencias.
+

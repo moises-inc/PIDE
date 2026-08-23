@@ -1,0 +1,48 @@
+========================================================================
+Periodic Information and Data Explorer (PIDE)
+Copyright (c) 2026 Moisés Amundarain Romero / Universidad San Sebastián (USS)
+========================================================================
+
+Este programa es software libre: puedes redistribuirlo y/o modificarlo
+bajo los términos de la Licencia Pública General Affero de GNU (GNU AGPLv3)
+tal como fue publicada por la Free Software Foundation, ya sea la versión 3
+de la Licencia o (a tu elección) cualquier versión posterior.
+
+Este programa se distribuye con la esperanza de que sea útil, pero SIN NINGUNA
+GARANTÍA; ni siquiera la garantía implícita de MERCANTILIDAD o APTITUD PARA UN
+PROPÓSITO DETERMINADO. Consulte la Licencia Pública General Affero de GNU para
+más detalles.
+
+Deberías haber recibido una copia de la Licencia Pública General Affero de GNU
+junto con este programa. En caso contrario, consulta <https://www.gnu.org/licenses/>.
+
+------------------------------------------------------------------------
+ATRIBUCIÓN HISTÓRICA Y RECONOCIMIENTO DE PROYECTO INSPIRADOR
+------------------------------------------------------------------------
+
+PIDE es un proyecto independiente desarrollado por Moisés Amundarain Romero
+en el contexto académico de la Universidad San Sebastián (USS).
+
+El proyecto inspirador declarado formalmente es NIDE, creado por Andrés Sabogal:
+  - Repositorio Oficial: https://github.com/AndresSabogal00/NIDE
+  - Licencia de NIDE: Licencia MIT (Copyright (c) Andrés Sabogal)
+
+NIDE es un explorador local de datos nucleares evaluados; PIDE aplica la filosofía
+de exploración reproducible y arquitectura offline-first a datos periódicos,
+cuánticos y cristalinos. 
+
+De acuerdo con los términos de la licencia MIT original de NIDE, la inclusión
+de conceptos o derivados respeta y conserva plenamente el copyright original de
+Andrés Sabogal en esta declaración de atribución.
+
+------------------------------------------------------------------------
+FUENTES CIENTÍFICAS DE DATOS
+------------------------------------------------------------------------
+
+PIDE recopila y procesa datos públicos de las siguientes organizaciones:
+  - IUPAC (International Union of Pure and Applied Chemistry)
+  - CIAAW (Commission on Isotopic Abundances and Atomic Weights)
+  - NIST ASD (National Institute of Standards and Technology Atomic Spectra Database)
+  - CRC Handbook of Chemistry and Physics
+
+Dichas entidades conservan la autoría de las mediciones y datos experimentales.
