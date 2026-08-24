@@ -136,7 +136,7 @@
       "gamma_deg": 90.0
     },
     "lattice": "Hexagonal",
-    "lattice_system": null,
+    "lattice_system": "hexagonal",
     "source": {
       "primary": "IUPAC",
       "secondary": [
@@ -836,7 +836,7 @@
       "gamma_deg": 90.0
     },
     "lattice": "Hexagonal",
-    "lattice_system": null,
+    "lattice_system": "hexagonal",
     "source": {
       "primary": "IUPAC",
       "secondary": [
@@ -903,11 +903,11 @@
     "available": true,
     "basis": [],
     "cell": {
-      "a_angstrom": 5.080682,
+      "a_angstrom": 4.965212,
       "alpha_deg": 90.0,
-      "b_angstrom": 5.080682,
+      "b_angstrom": 4.965212,
       "beta_deg": 90.0,
-      "c_angstrom": 5.080682,
+      "c_angstrom": 4.965212,
       "gamma_deg": 90.0
     },
     "lattice": "BCC",
@@ -1286,7 +1286,7 @@
       "gamma_deg": 90.0
     },
     "lattice": "Hexagonal",
-    "lattice_system": null,
+    "lattice_system": "hexagonal",
     "source": {
       "primary": "IUPAC",
       "secondary": [
@@ -1500,18 +1500,18 @@
     "z": 60
   },
   {
-    "available": false,
+    "available": true,
     "basis": [],
     "cell": {
-      "a_angstrom": null,
-      "alpha_deg": null,
-      "b_angstrom": null,
-      "beta_deg": null,
-      "c_angstrom": null,
-      "gamma_deg": null
+      "a_angstrom": 3.98,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.98,
+      "beta_deg": 90.0,
+      "c_angstrom": 6.49934,
+      "gamma_deg": 120.0
     },
-    "lattice": null,
-    "lattice_system": null,
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
     "source": {
       "primary": "IUPAC",
       "secondary": [
@@ -1525,18 +1525,18 @@
     "z": 61
   },
   {
-    "available": false,
+    "available": true,
     "basis": [],
     "cell": {
-      "a_angstrom": null,
-      "alpha_deg": null,
-      "b_angstrom": null,
-      "beta_deg": null,
-      "c_angstrom": null,
-      "gamma_deg": null
+      "a_angstrom": 3.96,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.96,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.96,
+      "gamma_deg": 90.0
     },
-    "lattice": null,
-    "lattice_system": null,
+    "lattice": "Rhombohedral",
+    "lattice_system": "trigonal",
     "source": {
       "primary": "IUPAC",
       "secondary": [
@@ -2075,18 +2075,18 @@
     "z": 83
   },
   {
-    "available": false,
+    "available": true,
     "basis": [],
     "cell": {
-      "a_angstrom": null,
-      "alpha_deg": null,
-      "b_angstrom": null,
-      "beta_deg": null,
-      "c_angstrom": null,
-      "gamma_deg": null
+      "a_angstrom": 2.8,
+      "alpha_deg": 90.0,
+      "b_angstrom": 2.8,
+      "beta_deg": 90.0,
+      "c_angstrom": 2.8,
+      "gamma_deg": 90.0
     },
-    "lattice": null,
-    "lattice_system": null,
+    "lattice": "SC",
+    "lattice_system": "cubic",
     "source": {
       "primary": "IUPAC",
       "secondary": [
@@ -2100,18 +2100,18 @@
     "z": 84
   },
   {
-    "available": false,
+    "available": true,
     "basis": [],
     "cell": {
-      "a_angstrom": null,
-      "alpha_deg": null,
-      "b_angstrom": null,
-      "beta_deg": null,
-      "c_angstrom": null,
-      "gamma_deg": null
+      "a_angstrom": 4.242641,
+      "alpha_deg": 90.0,
+      "b_angstrom": 4.242641,
+      "beta_deg": 90.0,
+      "c_angstrom": 4.242641,
+      "gamma_deg": 90.0
     },
-    "lattice": null,
-    "lattice_system": null,
+    "lattice": "FCC",
+    "lattice_system": "cubic",
     "source": {
       "primary": "IUPAC",
       "secondary": [
@@ -2125,18 +2125,18 @@
     "z": 85
   },
   {
-    "available": false,
+    "available": true,
     "basis": [],
     "cell": {
-      "a_angstrom": null,
-      "alpha_deg": null,
-      "b_angstrom": null,
-      "beta_deg": null,
-      "c_angstrom": null,
-      "gamma_deg": null
+      "a_angstrom": 4.242641,
+      "alpha_deg": 90.0,
+      "b_angstrom": 4.242641,
+      "beta_deg": 90.0,
+      "c_angstrom": 4.242641,
+      "gamma_deg": 90.0
     },
-    "lattice": null,
-    "lattice_system": null,
+    "lattice": "FCC",
+    "lattice_system": "cubic",
     "source": {
       "primary": "IUPAC",
       "secondary": [
@@ -2150,18 +2150,18 @@
     "z": 86
   },
   {
-    "available": false,
+    "available": true,
     "basis": [],
     "cell": {
-      "a_angstrom": null,
-      "alpha_deg": null,
-      "b_angstrom": null,
-      "beta_deg": null,
-      "c_angstrom": null,
-      "gamma_deg": null
+      "a_angstrom": 6.004443,
+      "alpha_deg": 90.0,
+      "b_angstrom": 6.004443,
+      "beta_deg": 90.0,
+      "c_angstrom": 6.004443,
+      "gamma_deg": 90.0
     },
-    "lattice": null,
-    "lattice_system": null,
+    "lattice": "BCC",
+    "lattice_system": "cubic",
     "source": {
       "primary": "IUPAC",
       "secondary": [
@@ -2175,18 +2175,18 @@
     "z": 87
   },
   {
-    "available": false,
+    "available": true,
     "basis": [],
     "cell": {
-      "a_angstrom": null,
-      "alpha_deg": null,
-      "b_angstrom": null,
-      "beta_deg": null,
-      "c_angstrom": null,
-      "gamma_deg": null
+      "a_angstrom": 5.103776,
+      "alpha_deg": 90.0,
+      "b_angstrom": 5.103776,
+      "beta_deg": 90.0,
+      "c_angstrom": 5.103776,
+      "gamma_deg": 90.0
     },
-    "lattice": null,
-    "lattice_system": null,
+    "lattice": "BCC",
+    "lattice_system": "cubic",
     "source": {
       "primary": "IUPAC",
       "secondary": [
@@ -2228,15 +2228,15 @@
     "available": true,
     "basis": [],
     "cell": {
-      "a_angstrom": 4.12,
+      "a_angstrom": 5.82656,
       "alpha_deg": 90.0,
-      "b_angstrom": 4.12,
+      "b_angstrom": 5.82656,
       "beta_deg": 90.0,
-      "c_angstrom": 4.12,
+      "c_angstrom": 5.82656,
       "gamma_deg": 90.0
     },
-    "lattice": "Orthorhombic",
-    "lattice_system": "orthorhombic",
+    "lattice": "FCC",
+    "lattice_system": "cubic",
     "source": {
       "primary": "IUPAC",
       "secondary": [
@@ -2260,8 +2260,8 @@
       "c_angstrom": 4.0,
       "gamma_deg": 90.0
     },
-    "lattice": "Tetragonal",
-    "lattice_system": "tetragonal",
+    "lattice": "Orthorhombic",
+    "lattice_system": "orthorhombic",
     "source": {
       "primary": "IUPAC",
       "secondary": [
@@ -2325,18 +2325,18 @@
     "z": 93
   },
   {
-    "available": false,
+    "available": true,
     "basis": [],
     "cell": {
-      "a_angstrom": null,
-      "alpha_deg": null,
-      "b_angstrom": null,
-      "beta_deg": null,
-      "c_angstrom": null,
-      "gamma_deg": null
+      "a_angstrom": 3.74,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.74,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.74,
+      "gamma_deg": 90.0
     },
-    "lattice": null,
-    "lattice_system": null,
+    "lattice": "Monoclinic",
+    "lattice_system": "monoclinic",
     "source": {
       "primary": "IUPAC",
       "secondary": [
@@ -2350,18 +2350,18 @@
     "z": 94
   },
   {
-    "available": false,
+    "available": true,
     "basis": [],
     "cell": {
-      "a_angstrom": null,
-      "alpha_deg": null,
-      "b_angstrom": null,
-      "beta_deg": null,
-      "c_angstrom": null,
-      "gamma_deg": null
+      "a_angstrom": 3.6,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.6,
+      "beta_deg": 90.0,
+      "c_angstrom": 3.6,
+      "gamma_deg": 90.0
     },
-    "lattice": null,
-    "lattice_system": null,
+    "lattice": "Orthorhombic",
+    "lattice_system": "orthorhombic",
     "source": {
       "primary": "IUPAC",
       "secondary": [
@@ -2375,18 +2375,18 @@
     "z": 95
   },
   {
-    "available": false,
+    "available": true,
     "basis": [],
     "cell": {
-      "a_angstrom": null,
-      "alpha_deg": null,
-      "b_angstrom": null,
-      "beta_deg": null,
-      "c_angstrom": null,
-      "gamma_deg": null
+      "a_angstrom": 3.38,
+      "alpha_deg": 90.0,
+      "b_angstrom": 3.38,
+      "beta_deg": 90.0,
+      "c_angstrom": 5.51954,
+      "gamma_deg": 120.0
     },
-    "lattice": null,
-    "lattice_system": null,
+    "lattice": "HCP",
+    "lattice_system": "hexagonal",
     "source": {
       "primary": "IUPAC",
       "secondary": [

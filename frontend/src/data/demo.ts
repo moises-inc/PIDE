@@ -215,8 +215,8 @@ const SPECIALS: Record<number, Partial<ElementRecord>> = {
 
 function positionFor(z: number): { period: number; group: number | null } {
   if (z <= 2) return { period: 1, group: z === 1 ? 1 : 18 };
-  if (z <= 10) return { period: 2, group: z === 3 ? 1 : z === 4 ? 2 : z + 3 };
-  if (z <= 18) return { period: 3, group: z === 11 ? 1 : z === 12 ? 2 : z + 3 };
+  if (z <= 10) return { period: 2, group: z === 3 ? 1 : z === 4 ? 2 : z + 8 };
+  if (z <= 18) return { period: 3, group: z === 11 ? 1 : z === 12 ? 2 : z };
   if (z <= 36) return { period: 4, group: z - 18 };
   if (z <= 54) return { period: 5, group: z - 36 };
   if (z <= 71) return { period: 6, group: z <= 56 ? z - 54 : z === 57 ? 3 : null };

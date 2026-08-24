@@ -11,6 +11,51 @@ from pathlib import Path
 from typing import Any
 
 try:
+    from enrich_database import (
+        APPEARANCE_ES,
+        ATOMIC_RADIUS,
+        BOILING_K,
+        COVALENT_RADIUS,
+        DENSITY,
+        DISCOVERERS,
+        DISCOVERY_YEARS,
+        ELECTRON_AFFINITY,
+        ELECTRONEGATIVITY,
+        IONIZATION,
+        ISOTOPE_OVERRIDES,
+        LATTICE_SYSTEMS,
+        LATTICE_TYPES,
+        MELTING_K,
+        NAME_ES_OVERRIDES,
+        OXIDATION_STATES,
+        SPECTRAL_OVERRIDES,
+        USES_ES,
+        VAN_DER_WAALS_RADIUS,
+    )
+except ImportError:
+    from backend.scripts.enrich_database import (
+        APPEARANCE_ES,
+        ATOMIC_RADIUS,
+        BOILING_K,
+        COVALENT_RADIUS,
+        DENSITY,
+        DISCOVERERS,
+        DISCOVERY_YEARS,
+        ELECTRON_AFFINITY,
+        ELECTRONEGATIVITY,
+        IONIZATION,
+        ISOTOPE_OVERRIDES,
+        LATTICE_SYSTEMS,
+        LATTICE_TYPES,
+        MELTING_K,
+        NAME_ES_OVERRIDES,
+        OXIDATION_STATES,
+        SPECTRAL_OVERRIDES,
+        USES_ES,
+        VAN_DER_WAALS_RADIUS,
+    )
+
+try:
     import periodictable as periodic_table
 except ImportError:  # pragma: no cover - supported for minimal compiler installs
     periodic_table = None
@@ -82,156 +127,7 @@ NONMETAL_Z = {1, 6, 7, 8, 15, 16, 34}
 POST_TRANSITION_Z = {13, 31, 49, 50, 81, 82, 83, 113, 114, 115, 116}
 TRANSITION_Z = (set(range(21, 31)) | set(range(39, 49)) | set(range(72, 81)) | set(range(104, 113)))
 
-MELTING_K = {
-    1: 14.01, 2: 0.95, 3: 453.69, 4: 1560.0, 5: 2349.0, 6: 3823.0,
-    7: 63.15, 8: 54.36, 9: 53.53, 10: 24.56, 11: 370.87, 12: 923.0,
-    13: 933.47, 14: 1687.0, 15: 317.30, 16: 388.36, 17: 171.6, 18: 83.80,
-    19: 336.53, 20: 1115.0, 21: 1814.0, 22: 1941.0, 23: 2183.0, 24: 2180.0,
-    25: 1519.0, 26: 1811.0, 27: 1768.0, 28: 1728.0, 29: 1357.77, 30: 692.68,
-    31: 302.91, 32: 1211.4, 33: 1090.0, 34: 494.0, 35: 265.8, 36: 115.79,
-    47: 1234.93, 79: 1337.33, 80: 234.32, 92: 1405.3,
-}
-BOILING_K = {
-    1: 20.28, 2: 4.22, 3: 1603.0, 4: 2742.0, 5: 4200.0, 6: 4098.0,
-    7: 77.36, 8: 90.20, 9: 85.03, 10: 27.07, 11: 1156.0, 12: 1363.0,
-    13: 2792.0, 14: 3538.0, 15: 553.65, 16: 717.87, 17: 239.11, 18: 87.30,
-    19: 1032.0, 20: 1757.0, 21: 3109.0, 22: 3560.0, 23: 3680.0, 24: 2944.0,
-    25: 2334.0, 26: 3134.0, 27: 3200.0, 28: 3186.0, 29: 2835.0, 30: 1180.0,
-    31: 2477.0, 32: 3106.0, 33: 887.0, 34: 958.0, 35: 332.0, 36: 119.93,
-    47: 2435.0, 79: 3129.0, 80: 629.88, 92: 4404.0,
-}
-DENSITY = {
-    1: 0.00008988, 2: 0.0001785, 3: 0.534, 4: 1.85, 5: 2.34, 6: 2.267,
-    7: 0.0012506, 8: 0.001429, 9: 0.001696, 10: 0.0009002, 11: 0.968,
-    12: 1.738, 13: 2.70, 14: 2.329, 15: 1.823, 16: 2.07, 17: 0.003214,
-    18: 0.0017837, 19: 0.862, 20: 1.54, 21: 2.985, 22: 4.506, 23: 6.11,
-    24: 7.15, 25: 7.44, 26: 7.874, 27: 8.86, 28: 8.912, 29: 8.96,
-    30: 7.14, 31: 5.91, 32: 5.323, 33: 5.776, 34: 4.809, 35: 3.122,
-    36: 0.003733, 47: 10.49, 79: 19.30, 80: 13.534, 92: 19.1,
-}
-IONIZATION = {1: 13.598, 2: 24.587, 3: 5.392, 6: 11.260, 7: 14.534, 8: 13.618, 9: 17.423, 10: 21.565, 11: 5.139, 17: 12.968, 18: 15.760, 26: 7.902, 29: 7.726, 47: 7.576, 79: 9.225, 80: 10.437, 92: 6.194}
-ELECTRON_AFFINITY = {1: 0.754, 3: 0.618, 5: 0.280, 6: 1.262, 7: -0.070, 8: 1.461, 9: 3.401, 11: 0.548, 13: 0.433, 14: 1.385, 15: 0.746, 16: 2.077, 17: 3.613, 19: 0.501, 20: 0.025, 26: 0.151, 27: 0.661, 28: 1.156, 29: 1.228, 35: 3.364, 47: 1.302, 79: 2.309}
-ELECTRONEGATIVITY = {1: 2.20, 3: 0.98, 4: 1.57, 5: 2.04, 6: 2.55, 7: 3.04, 8: 3.44, 9: 3.98, 11: 0.93, 12: 1.31, 13: 1.61, 14: 1.90, 15: 2.19, 16: 2.58, 17: 3.16, 19: 0.82, 20: 1.00, 26: 1.83, 29: 1.90, 35: 2.96, 47: 1.93, 79: 2.54, 80: 2.00}
-COVALENT_RADIUS = {1: 31, 2: 28, 3: 128, 4: 96, 5: 84, 6: 76, 7: 71, 8: 66, 9: 57, 10: 58, 11: 166, 12: 141, 13: 121, 14: 111, 15: 107, 16: 105, 17: 102, 18: 106, 19: 203, 20: 176, 26: 132, 29: 132, 35: 120, 47: 145, 79: 136, 80: 132, 92: 196}
-ATOMIC_RADIUS = {1: 53, 2: 31, 3: 167, 4: 112, 5: 87, 6: 67, 7: 56, 8: 48, 9: 42, 10: 38, 11: 190, 12: 145, 13: 118, 14: 111, 15: 98, 16: 88, 17: 79, 18: 71, 19: 243, 20: 194, 26: 156, 29: 145, 35: 94, 47: 165, 79: 174, 80: 171, 92: 196}
-VAN_DER_WAALS_RADIUS = {1: 120, 2: 140, 3: 182, 4: 153, 5: 192, 6: 170, 7: 155, 8: 152, 9: 147, 10: 154, 11: 227, 12: 173, 13: 184, 14: 210, 15: 180, 16: 180, 17: 175, 18: 188, 26: 204, 29: 196, 35: 185, 47: 172, 79: 166, 80: 155}
-
-LATTICE_TYPES = {
-    1: "HCP", 2: "HCP", 3: "BCC", 4: "HCP", 5: "Rhombohedral", 6: "Hexagonal",
-    7: "HCP", 8: "Cubic", 9: "Cubic", 10: "FCC", 11: "BCC", 12: "HCP",
-    13: "FCC", 14: "Diamond cubic", 15: "Orthorhombic", 16: "Orthorhombic",
-    17: "Orthorhombic", 18: "FCC", 19: "BCC", 20: "FCC", 21: "HCP", 22: "HCP",
-    23: "BCC", 24: "BCC", 25: "BCC", 26: "BCC", 27: "HCP", 28: "FCC",
-    29: "FCC", 30: "HCP", 31: "Orthorhombic", 32: "Diamond cubic", 33: "Rhombohedral",
-    34: "Hexagonal", 35: "Orthorhombic", 36: "FCC", 37: "BCC", 38: "FCC",
-    39: "HCP", 40: "HCP", 41: "BCC", 42: "BCC", 43: "HCP", 44: "HCP",
-    45: "FCC", 46: "FCC", 47: "FCC", 48: "HCP", 49: "Tetragonal", 50: "Tetragonal",
-    51: "Rhombohedral", 52: "Hexagonal", 53: "Orthorhombic", 54: "FCC", 55: "BCC",
-    56: "BCC", 74: "BCC", 75: "HCP", 76: "HCP", 77: "FCC", 78: "FCC",
-    79: "FCC", 80: "Rhombohedral", 81: "HCP", 82: "FCC", 83: "Rhombohedral",
-    90: "Orthorhombic", 92: "Orthorhombic",
-}
-
-LATTICE_SYSTEMS = {
-    "SC": "cubic", "BCC": "cubic", "FCC": "cubic", "HCP": "hexagonal",
-    "Rhombohedral": "trigonal", "Diamond cubic": "cubic", "Cubic": "cubic",
-    "Orthorhombic": "orthorhombic", "Tetragonal": "tetragonal",
-}
-
-SPECTRAL_OVERRIDES = {
-    1: [(656.281, 100.0, "H-alpha"), (486.133, 72.0, "H-beta"), (434.047, 42.0, "H-gamma")],
-    2: [(447.148, 85.0, "He I"), (501.568, 64.0, "He I"), (587.562, 100.0, "He I")],
-    8: [(615.598, 35.0, "O I"), (777.194, 100.0, "O I")],
-    26: [(438.354, 55.0, "Fe I"), (495.759, 78.0, "Fe I"), (526.953, 100.0, "Fe I")],
-}
-
-ISOTOPE_OVERRIDES = {
-    1: [
-        {"mass_number": 1, "isotopic_mass": 1.00782503223, "abundance_percent": 99.9885, "stable": True},
-        {"mass_number": 2, "isotopic_mass": 2.01410177812, "abundance_percent": 0.0115, "stable": True},
-        {"mass_number": 3, "isotopic_mass": 3.01604928199, "abundance_percent": None, "stable": False},
-    ],
-    6: [
-        {"mass_number": 12, "isotopic_mass": 12.0, "abundance_percent": 98.93, "stable": True},
-        {"mass_number": 13, "isotopic_mass": 13.00335483507, "abundance_percent": 1.07, "stable": True},
-        {"mass_number": 14, "isotopic_mass": 14.0032419884, "abundance_percent": None, "stable": False},
-    ],
-    8: [
-        {"mass_number": 16, "isotopic_mass": 15.99491461957, "abundance_percent": 99.757, "stable": True},
-        {"mass_number": 17, "isotopic_mass": 16.9991317565, "abundance_percent": 0.038, "stable": True},
-        {"mass_number": 18, "isotopic_mass": 17.99915961286, "abundance_percent": 0.205, "stable": True},
-    ],
-    26: [
-        {"mass_number": 54, "isotopic_mass": 53.93960899, "abundance_percent": 5.845, "stable": True},
-        {"mass_number": 56, "isotopic_mass": 55.93493633, "abundance_percent": 91.754, "stable": True},
-        {"mass_number": 57, "isotopic_mass": 56.93539284, "abundance_percent": 2.119, "stable": True},
-        {"mass_number": 58, "isotopic_mass": 57.93327443, "abundance_percent": 0.282, "stable": True},
-    ],
-    92: [
-        {"mass_number": 234, "isotopic_mass": 234.0409523, "abundance_percent": 0.0054, "stable": False},
-        {"mass_number": 235, "isotopic_mass": 235.0439299, "abundance_percent": 0.7204, "stable": False},
-        {"mass_number": 238, "isotopic_mass": 238.0507884, "abundance_percent": 99.2742, "stable": False},
-    ],
-}
-
-NAME_ES_OVERRIDES = {
-    1: "Hidrogeno", 2: "Helio", 3: "Litio", 4: "Berilio", 5: "Boro", 6: "Carbono",
-    7: "Nitrogeno", 8: "Oxigeno", 9: "Fluor", 10: "Neon", 11: "Sodio", 12: "Magnesio",
-    13: "Aluminio", 14: "Silicio", 15: "Fosforo", 16: "Azufre", 17: "Cloro", 18: "Argon",
-    19: "Potasio", 20: "Calcio", 26: "Hierro", 29: "Cobre", 35: "Bromo", 47: "Plata",
-    79: "Oro", 80: "Mercurio", 92: "Uranio", 118: "Oganeson",
-}
-NAME_ES_OVERRIDES.update({
-    37: "Rubidio", 38: "Estroncio", 39: "Itrio", 40: "Circonio", 41: "Niobio", 42: "Molibdeno",
-    43: "Tecnecio", 44: "Rutenio", 45: "Rodio", 46: "Paladio", 48: "Cadmio", 49: "Indio",
-    50: "Estano", 51: "Antimonio", 52: "Telurio", 53: "Yodo", 54: "Xenon", 55: "Cesio",
-    56: "Bario", 57: "Lantano", 58: "Cerio", 59: "Praseodimio", 60: "Neodimio", 61: "Prometio",
-    62: "Samario", 63: "Europio", 64: "Gadolinio", 65: "Terbio", 66: "Disprosio", 67: "Holmio",
-    68: "Erbio", 69: "Tulio", 70: "Iterbio", 71: "Lutecio", 72: "Hafnio", 73: "Tantalo",
-    74: "Wolframio", 75: "Renio", 76: "Osmio", 77: "Iridio", 78: "Platino", 81: "Talio",
-    82: "Plomo", 83: "Bismuto", 84: "Polonio", 85: "Astato", 86: "Radon", 87: "Francio",
-    88: "Radio", 89: "Actinio", 90: "Torio", 91: "Protactinio", 93: "Neptunio", 94: "Plutonio",
-    95: "Americio", 96: "Curio", 97: "Berkelio", 98: "Californio", 99: "Einstenio", 100: "Fermio",
-    101: "Mendelevio", 102: "Nobelio", 103: "Lawrencio", 104: "Rutherfordio", 105: "Dubnio",
-    106: "Seaborgio", 107: "Bohrio", 108: "Hassio", 109: "Meitnerio", 110: "Darmstadtio",
-    111: "Roentgenio", 112: "Copernicio", 113: "Nihonio", 114: "Flerovio", 115: "Moscovio",
-    116: "Livermorio", 117: "Tenesino",
-})
-
-OXIDATION_STATES = {
-    1: [-1, 1], 2: [0], 3: [1], 4: [2], 5: [3], 6: [-4, -2, 2, 4],
-    7: [-3, -2, -1, 1, 2, 3, 4, 5], 8: [-2, -1, 1, 2], 9: [-1], 10: [0],
-    11: [1], 12: [2], 13: [3], 14: [-4, 2, 4], 15: [-3, 3, 5], 16: [-2, 2, 4, 6],
-    17: [-1, 1, 3, 5, 7], 18: [0], 19: [1], 20: [2], 26: [2, 3], 29: [1, 2],
-    35: [-1, 1, 3, 5], 47: [1], 79: [1, 3], 80: [1, 2], 92: [3, 4, 5, 6],
-}
-
-USES = {
-    1: ["fuel cells", "ammonia production"], 2: ["cryogenics", "leak detection"],
-    3: ["rechargeable batteries", "ceramics"], 5: ["borosilicate glass"],
-    6: ["steelmaking", "organic chemistry"], 7: ["fertilizers", "inert atmospheres"],
-    8: ["medicine", "steelmaking", "water treatment"], 9: ["fluoropolymers"],
-    11: ["heat transfer", "street lighting"], 13: ["aircraft alloys", "packaging"],
-    14: ["semiconductors", "glass"], 17: ["water disinfection"], 26: ["steel", "construction"],
-    29: ["electrical wiring", "heat exchangers"], 47: ["photography", "electronics"],
-    79: ["electronics", "catalysis", "jewelry"], 80: ["sensors", "laboratory instruments"],
-    92: ["nuclear fuel", "research"],
-}
-
-DISCOVERERS = {
-    1: "Henry Cavendish", 2: "Pierre Janssen and Norman Lockyer", 3: "Johan August Arfwedson",
-    6: "Known since antiquity", 8: "Joseph Priestley and Carl Wilhelm Scheele", 26: "Known since antiquity",
-    29: "Known since antiquity", 47: "Known since antiquity", 79: "Known since antiquity",
-    80: "Known since antiquity", 92: "Martin Heinrich Klaproth",
-}
-DISCOVERY_YEARS = {
-    1: 1766, 2: 1868, 3: 1817, 4: 1798, 5: 1808, 6: "Antiquity", 7: 1772, 8: 1774,
-    9: 1886, 10: 1898, 11: 1807, 12: 1755, 13: 1825, 14: 1824, 15: 1669, 16: "Antiquity",
-    17: 1774, 18: 1894, 19: 1807, 20: 1808, 21: 1879, 22: 1791, 23: 1801, 24: 1797,
-    25: 1774, 26: "Antiquity", 27: 1735, 28: 1751, 29: "Antiquity", 30: 1746,
-    31: 1875, 32: 1886, 33: 1250, 34: 1817, 35: 1826, 36: 1898, 47: "Antiquity",
-    79: "Antiquity", 80: "Antiquity", 92: 1789,
-}
+# Sparse dictionaries are now imported from enrich_database covering all 118 elements
 
 
 def library_element(z: int) -> Any | None:
@@ -459,8 +355,8 @@ def element_record(z: int) -> dict[str, Any]:
         "half_life": None,
         "year_discovered": DISCOVERY_YEARS.get(z),
         "discoverer": DISCOVERERS.get(z),
-        "uses": USES.get(z, []),
-        "description": f"{name} ({SYMBOLS[z - 1]}) is atomic number {z} in the periodic table.",
+        "uses": USES_ES.get(z, []),
+        "description": f"{name} ({SYMBOLS[z - 1]}) es el elemento de número atómico {z} en la tabla periódica.",
         "abundance_earth_crust_ppm": None,
         "abundance_universe_ppm": None,
         "thermal_expansion_1_k": None,
@@ -468,7 +364,7 @@ def element_record(z: int) -> dict[str, Any]:
         "electronic_conductivity_s_m": None,
         "critical_temperature_k": None,
         "critical_pressure_mpa": None,
-        "appearance": None,
+        "appearance": APPEARANCE_ES.get(z),
         "source": dict(SOURCE_METADATA),
         "derived_fields": derived,
     }

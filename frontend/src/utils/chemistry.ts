@@ -107,8 +107,8 @@ export function periodicRow(element: ElementRecord): number {
 }
 
 export function periodicColumn(element: ElementRecord): number {
-  if (element.z >= 57 && element.z <= 71) return element.z - 56;
-  if (element.z >= 89 && element.z <= 103) return element.z - 88;
+  if (element.z >= 58 && element.z <= 71) return element.z - 56;
+  if (element.z >= 90 && element.z <= 103) return element.z - 88;
   return element.group ?? 1;
 }
 
