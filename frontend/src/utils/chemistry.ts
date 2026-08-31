@@ -24,21 +24,43 @@ export function phaseLabel(phase: string): string {
   return 'Sin dato';
 }
 
+export function metalClassLabel(metalClass: string | null | undefined, category?: string | null): string {
+  if (metalClass === 'metal') return 'Metal';
+  if (metalClass === 'metalloid') return 'Metaloide';
+  if (metalClass === 'nonmetal') return 'No metal';
+
+  if (!category) return 'Sin clasificar';
+  const cat = category.replaceAll(' ', '_').toLowerCase();
+  if (['alkali_metal', 'alkaline_earth', 'transition_metal', 'post_transition_metal', 'lanthanide', 'actinide'].includes(cat)) {
+    return 'Metal';
+  }
+  if (cat === 'metalloid') return 'Metaloide';
+  if (['nonmetal', 'halogen', 'noble_gas'].includes(cat)) return 'No metal';
+  return 'Sin clasificar';
+}
+
 export function categoryLabel(category: string | null): string {
   const labels: Record<string, string> = {
     'alkali metal': 'Metal alcalino',
-    'alkaline earth metal': 'Alcalinotérreo',
+    'alkali_metal': 'Metal alcalino',
+    'alkaline earth metal': 'Metal alcalinotérreo',
+    'alkaline earth': 'Metal alcalinotérreo',
+    'alkaline_earth': 'Metal alcalinotérreo',
     'transition metal': 'Metal de transición',
+    'transition_metal': 'Metal de transición',
     'post-transition metal': 'Metal post-transición',
-    nonmetal: 'No metal',
-    metalloid: 'Metaloide',
-    halogen: 'Halógeno',
+    'post_transition_metal': 'Metal post-transición',
+    'nonmetal': 'No metal reactivo',
+    'metalloid': 'Metaloide',
+    'halogen': 'Halógeno',
     'noble gas': 'Gas noble',
-    lanthanide: 'Lantánido',
-    actinide: 'Actínido',
+    'noble_gas': 'Gas noble',
+    'lanthanide': 'Lantánido',
+    'actinide': 'Actínido',
   };
-  const normalized = category?.replaceAll('_', ' ');
-  return normalized ? labels[normalized] ?? normalized : 'Categoría no disponible';
+  const normalized = category?.trim().toLowerCase();
+  if (!normalized) return 'Categoría no disponible';
+  return labels[normalized] ?? labels[normalized.replaceAll('_', ' ')] ?? normalized.replaceAll('_', ' ');
 }
 
 export function propertyLabel(property: string): string {

@@ -31,7 +31,16 @@ def test_elements_endpoint_returns_118_elements():
 
 @pytest.mark.parametrize(
     ("query", "expected"),
-    [("?block=f", "f"), ("?group=18", "noble_gas"), ("?period=1", "gas"), ("?category=halogen", "halogen")],
+    [
+        ("?block=f", "f"),
+        ("?group=18", "noble_gas"),
+        ("?period=1", "gas"),
+        ("?category=halogen", "halogen"),
+        ("?category=metal", "metal"),
+        ("?category=nonmetal", "nonmetal"),
+        ("?metalClass=metal", "metal"),
+        ("?category=alkali metal", "alkali_metal"),
+    ],
 )
 def test_elements_endpoint_filters(query, expected):
     response = client.get("/api/elements" + query)
@@ -41,6 +50,8 @@ def test_elements_endpoint_filters(query, expected):
         assert all(item["block"] == expected for item in response.json())
     elif query.startswith("?period"):
         assert all(item["phase"] == expected for item in response.json())
+    elif "metal" in query or "Class" in query:
+        assert all(item["metalClass"] == expected or item["category"] == expected for item in response.json())
     else:
         assert all(item["category"] == expected for item in response.json())
 
@@ -57,6 +68,7 @@ def test_element_detail_endpoint_returns_camel_case_properties():
     payload = response.json()
     assert payload["symbol"] == "Fe"
     assert payload["atomicMass"] == pytest.approx(55.845)
+    assert payload["metalClass"] == "metal"
     assert "electronConfiguration" in payload
     assert payload["yearDiscovered"] == "Antiquity"
 

@@ -45,9 +45,10 @@ PROPERTY_ALIASES = {
     "firstIonizationEnergyEv": "first_ionization_energy_ev",
 }
 VALID_BLOCKS = {"s", "p", "d", "f"}
+VALID_METAL_CLASSES = {"metal", "metalloid", "nonmetal"}
 VALID_CATEGORIES = {
     "alkali_metal", "alkaline_earth", "transition_metal", "post_transition_metal",
-    "metalloid", "nonmetal", "halogen", "noble_gas", "lanthanide", "actinide", "unknown",
+    "metalloid", "nonmetal", "halogen", "noble_gas", "lanthanide", "actinide", "metal", "unknown",
 }
 
 
@@ -125,16 +126,28 @@ class ElementRegistry:
         group: int | None = None,
         period: int | None = None,
         category: str | None = None,
+        metal_class: str | None = None,
         query: str | None = None,
     ) -> list[Element]:
         if block is not None and block not in VALID_BLOCKS:
             raise PideValidationError("block must be one of s, p, d, or f")
-        if category is not None and category not in VALID_CATEGORIES:
-            raise PideValidationError("category is not recognized")
         if group is not None and not 1 <= group <= 18:
             raise PideValidationError("group must be in [1, 18]")
         if period is not None and not 1 <= period <= 7:
             raise PideValidationError("period must be in [1, 7]")
+
+        norm_metal_class = metal_class.strip().lower() if metal_class else None
+        if norm_metal_class and norm_metal_class not in VALID_METAL_CLASSES:
+            raise PideValidationError("metal_class must be one of metal, metalloid, or nonmetal")
+
+        cat_norm = category.strip().replace(" ", "_").replace("-", "_").lower() if category else None
+        if cat_norm in VALID_METAL_CLASSES and not norm_metal_class:
+            norm_metal_class = cat_norm
+            cat_norm = None
+
+        if cat_norm is not None and cat_norm not in VALID_CATEGORIES:
+            raise PideValidationError("category is not recognized")
+
         normalized_query = query.strip().lower() if query else None
         candidates = list(self.by_z.values())
         if normalized_query:
@@ -152,7 +165,9 @@ class ElementRegistry:
                 continue
             if period is not None and element.period != period:
                 continue
-            if category is not None and element.category != category:
+            if norm_metal_class is not None and element.metal_class != norm_metal_class:
+                continue
+            if cat_norm is not None and element.category != cat_norm:
                 continue
             if normalized_query and not any(
                 normalized_query in (value or "").lower()

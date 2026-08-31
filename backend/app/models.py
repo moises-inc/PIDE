@@ -43,6 +43,7 @@ class Element(PideModel):
     group: int | None = Field(default=None, ge=1, le=18)
     block: str | None = Field(default=None, max_length=1)
     category: str | None = Field(default=None, max_length=48)
+    metal_class: str | None = Field(default=None, max_length=24)
     electron_configuration: str | None = Field(
         default=None,
         validation_alias=AliasChoices("electron_configuration", "config"),
@@ -142,6 +143,15 @@ class Element(PideModel):
         for old, new in aliases.items():
             if new not in mapped and old in mapped:
                 mapped[new] = mapped[old]
+
+        if not mapped.get("metal_class") and mapped.get("category"):
+            cat = str(mapped["category"]).replace(" ", "_").lower()
+            if cat in ("alkali_metal", "alkaline_earth", "transition_metal", "post_transition_metal", "lanthanide", "actinide"):
+                mapped["metal_class"] = "metal"
+            elif cat == "metalloid":
+                mapped["metal_class"] = "metalloid"
+            elif cat in ("nonmetal", "halogen", "noble_gas"):
+                mapped["metal_class"] = "nonmetal"
         return mapped
 
     @field_validator("symbol")

@@ -2186,6 +2186,41 @@ button:disabled {
   min-width: 0;
 }
 
+.badge-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.metal-pill {
+  display: inline-block;
+  padding: 4px 6px;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-radius: 2px;
+}
+
+.metal-pill.metal-metal {
+  color: #38bdf8;
+  background: #082f49;
+  border: 1px solid #0284c7;
+}
+
+.metal-pill.metal-metalloid {
+  color: #facc15;
+  background: #422006;
+  border: 1px solid #ca8a04;
+}
+
+.metal-pill.metal-nonmetal {
+  color: #4ade80;
+  background: #052e16;
+  border: 1px solid #16a34a;
+}
+
 .category-pill {
   display: inline-block;
   padding: 4px 6px;
@@ -2194,6 +2229,85 @@ button:disabled {
   border: 1px solid #713f12;
   font-size: 9px;
 }
+
+.category-legend-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  background: #09090b;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+
+.legend-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--cyan-bright);
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.legend-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  color: var(--muted);
+  background: #18181b;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 120ms ease;
+}
+
+.legend-chip.is-class {
+  font-weight: 600;
+}
+
+.legend-chip:hover {
+  color: var(--text);
+  border-color: var(--cyan-dim);
+}
+
+.legend-chip.is-active {
+  color: #ffffff;
+  background: #27272a;
+  border-color: var(--cyan);
+  box-shadow: 0 0 8px rgba(93, 225, 229, 0.2);
+}
+
+.chip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.chip-dot.dot-all { background: var(--cyan-bright); }
+.chip-dot.dot-metal { background: #38bdf8; }
+.chip-dot.dot-metalloid { background: #facc15; }
+.chip-dot.dot-nonmetal { background: #4ade80; }
+
+.chip-dot.cat-alkali-metal { background: #ef4444; }
+.chip-dot.cat-alkaline-earth { background: #f97316; }
+.chip-dot.cat-transition-metal { background: #38bdf8; }
+.chip-dot.cat-post-transition-metal { background: #818cf8; }
+.chip-dot.cat-lanthanide { background: #c084fc; }
+.chip-dot.cat-actinide { background: #f43f5e; }
+.chip-dot.cat-halogen { background: #a855f7; }
+.chip-dot.cat-noble-gas { background: #ec4899; }
 
 .hero-copy p {
   margin: 9px 0 10px;

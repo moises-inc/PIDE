@@ -1,6 +1,7 @@
 import { SearchX } from 'lucide-react';
 import type { ElementProperty, ElementRecord } from '../../types/element';
 import { elementProperty, isFBlock, periodicColumn, periodicRow, phaseAtTemperature } from '../../utils/chemistry';
+import { CategoryFilterKey, CategoryLegend } from './CategoryLegend';
 import { ElementCell } from './ElementCell';
 
 interface PeriodicGridProps {
@@ -10,21 +11,60 @@ interface PeriodicGridProps {
   heatmapProperty: ElementProperty;
   temperature: number;
   query: string;
+  categoryFilter: CategoryFilterKey;
+  onSelectCategory: (key: CategoryFilterKey) => void;
   onSelect: (z: number) => void;
 }
 
-export function PeriodicGrid({ elements, selectedZ, comparedZs, heatmapProperty, temperature, query, onSelect }: PeriodicGridProps) {
+function getMetalClass(element: ElementRecord): 'metal' | 'metalloid' | 'nonmetal' | 'unknown' {
+  if (element.metalClass) return element.metalClass;
+  if (!element.category) return 'unknown';
+  const cat = element.category.replaceAll(' ', '_').replaceAll('-', '_').toLowerCase();
+  if (['alkali_metal', 'alkaline_earth', 'transition_metal', 'post_transition_metal', 'lanthanide', 'actinide'].includes(cat)) {
+    return 'metal';
+  }
+  if (cat === 'metalloid') return 'metalloid';
+  if (['nonmetal', 'halogen', 'noble_gas'].includes(cat)) return 'nonmetal';
+  return 'unknown';
+}
+
+export function PeriodicGrid({
+  elements,
+  selectedZ,
+  comparedZs,
+  heatmapProperty,
+  temperature,
+  query,
+  categoryFilter,
+  onSelectCategory,
+  onSelect,
+}: PeriodicGridProps) {
   const values = elements.map((element) => elementProperty(element, heatmapProperty)).filter((value): value is number => value !== null);
   const heatMin = Math.min(...values, 0);
   const heatMax = Math.max(...values, 1);
   const normalizedQuery = query.trim().toLocaleLowerCase();
-  const matches = (element: ElementRecord) => !normalizedQuery || [element.symbol, element.nameEn, element.nameEs, String(element.z)].some((value) => value.toLocaleLowerCase().includes(normalizedQuery));
+
+  const matchesCategory = (element: ElementRecord) => {
+    if (categoryFilter === 'all') return true;
+    if (categoryFilter === 'metal' || categoryFilter === 'metalloid' || categoryFilter === 'nonmetal') {
+      return getMetalClass(element) === categoryFilter;
+    }
+    const cat = element.category?.replaceAll(' ', '_').replaceAll('-', '_').toLowerCase();
+    return cat === categoryFilter;
+  };
+
+  const matches = (element: ElementRecord) => {
+    const textMatch = !normalizedQuery || [element.symbol, element.nameEn, element.nameEs, String(element.z)].some((value) => value.toLocaleLowerCase().includes(normalizedQuery));
+    return textMatch && matchesCategory(element);
+  };
+
   const mainElements = elements.filter((element) => !isFBlock(element));
   const fElements = elements.filter(isFBlock);
   const filteredCount = elements.filter(matches).length;
 
   return (
     <div className="periodic-board" aria-live="polite">
+      <CategoryLegend selectedCategory={categoryFilter} onSelectCategory={onSelectCategory} />
       <div className="periodic-overflow">
         <div className="periodic-axis" aria-hidden="true">
           <span />
@@ -66,7 +106,7 @@ export function PeriodicGrid({ elements, selectedZ, comparedZs, heatmapProperty,
           ))}
         </div>
       </div>
-      {filteredCount === 0 ? <div className="empty-state compact"><SearchX size={18} /><strong>Sin coincidencias</strong><span>Prueba con símbolo, nombre o Z.</span></div> : null}
+      {filteredCount === 0 ? <div className="empty-state compact"><SearchX size={18} /><strong>Sin coincidencias</strong><span>Prueba con símbolo, nombre, Z o elimina el filtro de categoría.</span></div> : null}
       <div className="periodic-footnote"><span><i className="legend-swatch selection" /> selección</span><span><i className="legend-swatch compare" /> comparador</span><span><i className="legend-swatch heat" /> intensidad relativa</span><span>{filteredCount}/118 visibles</span></div>
     </div>
   );

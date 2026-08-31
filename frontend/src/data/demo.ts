@@ -245,10 +245,18 @@ function blockFor(z: number, group: number | null): string {
   return 'd';
 }
 
+function metalClassFor(category: string): 'metal' | 'metalloid' | 'nonmetal' {
+  if (category.includes('metal')) return 'metal';
+  if (category === 'lanthanide' || category === 'actinide') return 'metal';
+  if (category === 'metalloid') return 'metalloid';
+  return 'nonmetal';
+}
+
 function createElement(seed: Seed, index: number): ElementRecord {
   const z = index + 1;
   const position = positionFor(z);
   const category = categoryFor(z, position.group);
+  const metalClass = metalClassFor(category);
   const specials = SPECIALS[z] ?? {};
   const defaultDensity = z < 3 ? 0.0002 : Number((0.9 + ((z * 37) % 185) / 10).toFixed(3));
   const defaultMelting = Number((220 + ((z * 97) % 1300)).toFixed(1));
@@ -267,6 +275,7 @@ function createElement(seed: Seed, index: number): ElementRecord {
     group: position.group,
     block: blockFor(z, position.group),
     category,
+    metalClass,
     electronConfiguration: `1s² … ${seed[0]} valence shell`,
     electronConfigurationCondensed: `[core] ${position.group ?? 'f-block'}`,
     valenceElectrons: position.group === null ? null : position.group > 12 ? position.group - 10 : position.group,

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { AlertCircle, ArrowUpRight, Atom, Beaker, ChevronRight, CircleHelp, Database, Download, FlaskConical, GitCompareArrows, Info, Layers3, Orbit, RefreshCw, Search } from 'lucide-react';
 import { Layout } from './components/Layout/Layout';
+import { CategoryFilterKey } from './components/PeriodicTable/CategoryLegend';
 import { PeriodicGrid } from './components/PeriodicTable/PeriodicGrid';
 import { HeatmapSelector } from './components/PeriodicTable/HeatmapSelector';
 import { TemperatureBar } from './components/PeriodicTable/TemperatureBar';
@@ -14,7 +15,7 @@ import { ExportModal } from './components/ExportDialog/ExportModal';
 import { DEMO_ELEMENTS, getDemoCompare, getDemoCrystal, getDemoElement, getDemoExport, getDemoOrbital, getDemoSpectrum, getDemoTrend } from './data/demo';
 import { ApiRequestError, compareElements as compareElementsApi, exportElements as exportElementsApi, getCrystal, getElement, getElements, getOrbital, getSpectrum, getTrend } from './services/api';
 import type { CompareResponse, CrystalResponse, ElementProperty, ElementRecord, ExportFormat, ExportResponse, OrbitalResponse, SpectrumResponse, TrendResponse } from './types/element';
-import { categoryLabel, elementProperty, formatTemperature, formatValue, phaseAtTemperature, phaseLabel, propertyLabel } from './utils/chemistry';
+import { categoryLabel, elementProperty, formatTemperature, formatValue, metalClassLabel, phaseAtTemperature, phaseLabel, propertyLabel } from './utils/chemistry';
 
 const SECTION_IDS = ['periodic-table', 'spectra', 'structure', 'comparison'];
 const DEFAULT_COMPARE = [6, 8, 26];
@@ -26,6 +27,7 @@ function App() {
   const [query, setQuery] = useState('');
   const [heatmapProperty, setHeatmapProperty] = useState<ElementProperty>('atomicMass');
   const [temperature, setTemperature] = useState(298);
+  const [categoryFilter, setCategoryFilter] = useState<CategoryFilterKey>('all');
   const [activeSection, setActiveSection] = useState('periodic-table');
   const [apiOnline, setApiOnline] = useState(false);
   const [isSyncing, setIsSyncing] = useState(true);
@@ -200,8 +202,8 @@ function App() {
       <section className="section-block table-section" id="periodic-table" aria-labelledby="table-title">
         <div className="section-header"><div><div className="section-kicker"><span>01</span> ELEMENTARY INDEX</div><h2 id="table-title">Tabla periódica</h2><p>Selecciona un elemento para abrir su ficha y activar los módulos analíticos.</p></div><div className="section-header-meta"><span className="data-badge"><Database size={14} />{sourceLabel}</span><span className="updated-label">Actualización <b>local</b></span></div></div>
         <div className="table-toolbar"><label className="search-control"><Search size={16} /><span className="sr-only">Buscar elemento</span><input type="search" placeholder="Buscar por símbolo, nombre o Z…" value={query} onChange={(event) => setQuery(event.target.value)} /><kbd>/</kbd></label><HeatmapSelector value={heatmapProperty} onChange={setHeatmapProperty} /><div className="toolbar-divider" /><TemperatureBar value={temperature} onChange={setTemperature} /></div>
-         <div className="focus-strip"><div className="focus-element"><span className="focus-z">Z {selectedElement.z}</span><strong>{selectedElement.symbol}</strong><div><span>{selectedElement.nameEs}</span><small>{categoryLabel(selectedElement.category)}</small></div></div><div className="focus-metrics"><span><small>Masa atómica</small><b>{formatValue(selectedElement.atomicMass, 3)} <em>u</em></b></span><span><small>Fase actual</small><b className={`phase-text phase-${phase.toLowerCase()}`}><i />{phaseLabel(phase)}</b></span><span><small>Temperatura</small><b>{formatTemperature(temperature)}</b></span></div><div className="focus-actions"><button className="outline-button" type="button" onClick={() => setDetailOpen(true)}>Abrir ficha <ArrowUpRight size={14} /></button><button className={`icon-button compare-action ${comparedZs.includes(selectedZ) ? 'is-selected' : ''}`} type="button" onClick={() => toggleComparison(selectedZ)} aria-label={comparedZs.includes(selectedZ) ? 'Quitar elemento del comparador' : 'Añadir elemento al comparador'} title={comparedZs.includes(selectedZ) ? 'Quitar del comparador' : 'Añadir al comparador'}><GitCompareArrows size={16} /></button></div></div>
-        <PeriodicGrid elements={elements} selectedZ={selectedZ} comparedZs={comparedZs} heatmapProperty={heatmapProperty} temperature={temperature} query={query} onSelect={selectElement} />
+         <div className="focus-strip"><div className="focus-element"><span className="focus-z">Z {selectedElement.z}</span><strong>{selectedElement.symbol}</strong><div><span>{selectedElement.nameEs}</span><small>{metalClassLabel(selectedElement.metalClass, selectedElement.category)} · {categoryLabel(selectedElement.category)}</small></div></div><div className="focus-metrics"><span><small>Masa atómica</small><b>{formatValue(selectedElement.atomicMass, 3)} <em>u</em></b></span><span><small>Fase actual</small><b className={`phase-text phase-${phase.toLowerCase()}`}><i />{phaseLabel(phase)}</b></span><span><small>Temperatura</small><b>{formatTemperature(temperature)}</b></span></div><div className="focus-actions"><button className="outline-button" type="button" onClick={() => setDetailOpen(true)}>Abrir ficha <ArrowUpRight size={14} /></button><button className={`icon-button compare-action ${comparedZs.includes(selectedZ) ? 'is-selected' : ''}`} type="button" onClick={() => toggleComparison(selectedZ)} aria-label={comparedZs.includes(selectedZ) ? 'Quitar elemento del comparador' : 'Añadir elemento al comparador'} title={comparedZs.includes(selectedZ) ? 'Quitar del comparador' : 'Añadir al comparador'}><GitCompareArrows size={16} /></button></div></div>
+        <PeriodicGrid elements={elements} selectedZ={selectedZ} comparedZs={comparedZs} heatmapProperty={heatmapProperty} temperature={temperature} query={query} categoryFilter={categoryFilter} onSelectCategory={setCategoryFilter} onSelect={selectElement} />
       </section>
 
       <section className="section-block analysis-section" id="spectra" aria-labelledby="spectra-title">

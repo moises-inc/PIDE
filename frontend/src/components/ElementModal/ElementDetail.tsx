@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Copy, Download, ExternalLink, Plus, X } from 'lucide-react';
 import type { ElementRecord } from '../../types/element';
-import { categoryLabel, formatTemperature, formatValue, phaseAtTemperature, phaseLabel } from '../../utils/chemistry';
+import { categoryLabel, formatTemperature, formatValue, metalClassLabel, phaseAtTemperature, phaseLabel } from '../../utils/chemistry';
 
 interface ElementDetailProps {
   element: ElementRecord | null;
@@ -56,7 +56,24 @@ export function ElementDetail({ element, temperature, isCompared, open, onClose,
       <section className="element-dialog" role="dialog" aria-modal="true" aria-labelledby="element-dialog-title">
          <header className="dialog-header"><div><span className="eyebrow">Ficha de elemento · Z {element.z}</span><h2 id="element-dialog-title"><b>{element.symbol}</b> {element.nameEs}</h2></div><button ref={closeButtonRef} className="icon-button" type="button" onClick={onClose} aria-label="Cerrar ficha"><X size={19} /></button></header>
         <div className="dialog-body">
-          <div className="element-hero"><div className={`hero-symbol category-${element.category?.replaceAll(' ', '-').replaceAll('_', '-') ?? 'unknown'}`}><span>{element.z}</span><strong>{element.symbol}</strong></div><div className="hero-copy"><span className="category-pill">{categoryLabel(element.category)}</span><p>{element.description}</p><div className="hero-tags"><span>Periodo {element.period ?? '—'}</span><span>Grupo {element.group ?? 'f-block'}</span><span>Bloque {element.block ?? '—'}</span></div></div></div>
+          <div className="element-hero">
+            <div className={`hero-symbol category-${element.category?.replaceAll(' ', '-').replaceAll('_', '-') ?? 'unknown'}`}>
+              <span>{element.z}</span>
+              <strong>{element.symbol}</strong>
+            </div>
+            <div className="hero-copy">
+              <div className="badge-group">
+                <span className={`metal-pill metal-${element.metalClass ?? 'unknown'}`}>{metalClassLabel(element.metalClass, element.category)}</span>
+                <span className="category-pill">{categoryLabel(element.category)}</span>
+              </div>
+              <p>{element.description}</p>
+              <div className="hero-tags">
+                <span>Periodo {element.period ?? '—'}</span>
+                <span>Grupo {element.group ?? 'f-block'}</span>
+                <span>Bloque {element.block ?? '—'}</span>
+              </div>
+            </div>
+          </div>
           <div className="phase-readout"><span className={`phase-dot phase-${phase.toLowerCase()}`} /><div><small>Estado simulado</small><strong>{phaseLabel(phase)} <em>a {formatTemperature(temperature)}</em></strong></div><div className="phase-boundaries"><span>Fusión <b>{formatValue(element.meltingPointK, 0)} K</b></span><span>Ebullición <b>{formatValue(element.boilingPointK, 0)} K</b></span></div></div>
           <div className="detail-section"><div className="section-heading"><span>Propiedades seleccionadas</span><small>snapshot local / API</small></div><div className="property-table">{values.map(([label, value, unit]) => <div className="property-row" key={label}><span>{label}</span><strong>{value}</strong><small>{unit}</small></div>)}</div></div>
           <div className="detail-columns"><div><div className="section-heading"><span>Configuración</span></div><p className="mono-value">{element.electronConfiguration ?? 'Sin dato'}</p><p className="condensed-value">{element.electronConfigurationCondensed ?? 'Sin dato'}</p></div><div><div className="section-heading"><span>Estados de oxidación</span></div><div className="oxidation-list">{element.oxidationStates.length > 0 ? element.oxidationStates.map((state) => <span key={state}>{state > 0 ? `+${state}` : state}</span>) : <small>Sin dato</small>}</div></div></div>

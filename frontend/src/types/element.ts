@@ -19,6 +19,7 @@ export interface ElementRecord {
   group: number | null;
   block: string | null;
   category: string | null;
+  metalClass: 'metal' | 'metalloid' | 'nonmetal' | null;
   electronConfiguration: string | null;
   electronConfigurationCondensed: string | null;
   valenceElectrons: number | null;
