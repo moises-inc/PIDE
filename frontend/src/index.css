@@ -2974,7 +2974,8 @@ button:disabled {
 }
 
 .progress-bar-ionic,
-.progress-bar-covalent {
+.progress-bar-covalent,
+.progress-bar-metallic {
   height: 100%;
   transition: width 260ms ease;
 }
@@ -2985,6 +2986,14 @@ button:disabled {
 
 .progress-bar-covalent {
   background: linear-gradient(90deg, rgba(34, 211, 238, 0.55), var(--cyan));
+}
+
+.progress-bar-metallic {
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.55), #c084fc);
+}
+
+.character-label.metallic {
+  color: #c084fc;
 }
 
 .character-row b {

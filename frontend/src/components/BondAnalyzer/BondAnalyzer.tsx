@@ -69,6 +69,8 @@ export function BondAnalyzer({
   const bondClass = `bond-type-${result.bondType.replaceAll('_', '-')}`;
   const selectedSymbol = selectedElement.symbol;
 
+  const isMetallic = result.bondType === 'metallic';
+
   return (
     <section className="section-block bonding-section" id="bonding" aria-labelledby="bonding-title">
       <div className="section-header compact">
@@ -141,12 +143,19 @@ export function BondAnalyzer({
               <b>{result.ionicCharacterPercent === null ? '—' : `${formatValue(result.ionicCharacterPercent, 1)} %`}</b>
             </div>
             <div className="character-row">
-              <span className="character-label covalent">Covalente</span>
-              <div className="progress-track"><div className="progress-bar-covalent" style={{ width: `${result.covalentCharacterPercent ?? 0}%` }} /></div>
+              <span className={`character-label ${isMetallic ? 'metallic' : 'covalent'}`}>{isMetallic ? 'Metálico (deslocalizado)' : 'Covalente'}</span>
+              <div className="progress-track"><div className={isMetallic ? 'progress-bar-metallic' : 'progress-bar-covalent'} style={{ width: `${result.covalentCharacterPercent ?? 0}%` }} /></div>
               <b>{result.covalentCharacterPercent === null ? '—' : `${formatValue(result.covalentCharacterPercent, 1)} %`}</b>
             </div>
           </div>
-          <div className="aside-note"><Info size={14} /><span>% iónico = (1 − e<sup>−(Δχ/2)²</sup>) × 100. Ambos porcentajes suman siempre 100.</span></div>
+          <div className="aside-note">
+            <Info size={14} />
+            <span>
+              {isMetallic
+                ? '% iónico = (1 − e⁻⁽Δχ/2⁾²) × 100. En enlaces metálicos, el porcentaje restante representa la deslocalización en el mar de electrones.'
+                : '% iónico = (1 − e⁻⁽Δχ/2⁾²) × 100. Ambos porcentajes suman siempre 100.'}
+            </span>
+          </div>
         </div>
 
         <div className="panel bond-card">
