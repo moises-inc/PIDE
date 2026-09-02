@@ -41,10 +41,14 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   }
   if (!response.ok) {
     const errorPayload = payload as { error?: { message?: string; code?: string } } | null;
+    let message = errorPayload?.error?.message;
+    if (!message || message.trim().toLowerCase() === 'not found' || response.status === 404) {
+      message = 'Recurso no disponible en la API local';
+    }
     throw new ApiRequestError(
-      errorPayload?.error?.message ?? `La API respondió con ${response.status}.`,
+      message,
       response.status,
-      errorPayload?.error?.code ?? 'HTTP_ERROR',
+      errorPayload?.error?.code ?? (response.status === 404 ? 'NOT_FOUND' : 'HTTP_ERROR'),
     );
   }
   return payload as T;

@@ -102,7 +102,7 @@ export function BondAnalyzer({
         </button>
       </div>
 
-      {error && apiOnline ? <div className="resource-note"><AlertCircle size={14} />{error} Se muestra el fixture local.</div> : null}
+      {error && apiOnline ? <div className="resource-note"><AlertCircle size={14} /><span>{error}. Se muestra el respaldo local.</span></div> : null}
 
       <div className="bond-layout">
         <div className="panel bond-card">
