@@ -134,6 +134,31 @@ export interface CompareResponse {
 
 export type ExportFormat = 'csv' | 'latex' | 'bibtex';
 
+export type BondType = 'metallic' | 'ionic' | 'covalent_polar' | 'covalent_nonpolar' | 'unknown';
+
+export type HydrogenBondRole = 'donor' | 'acceptor' | 'both' | 'none';
+
+export interface BondAnalysisResponse {
+  z1: number;
+  z2: number;
+  symbol1: string;
+  symbol2: string;
+  nameEs1: string;
+  nameEs2: string;
+  electronegativity1: number | null;
+  electronegativity2: number | null;
+  deltaElectronegativity: number | null;
+  bondType: BondType;
+  bondTypeEs: string;
+  ionicCharacterPercent: number | null;
+  covalentCharacterPercent: number | null;
+  hasHydrogenBondPotential: boolean;
+  hydrogenBondRole: HydrogenBondRole;
+  hydrogenBondExplanation: string;
+  partialCharges: Record<string, string>;
+  explanation: string;
+}
+
 export interface ExportResponse {
   format: ExportFormat;
   filename: string;

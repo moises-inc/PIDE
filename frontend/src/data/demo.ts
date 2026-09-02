@@ -1,4 +1,6 @@
 import type {
+  BondAnalysisResponse,
+  BondType,
   CellAtom,
   CompareResponse,
   CrystalResponse,
@@ -6,6 +8,7 @@ import type {
   ElementRecord,
   ExportFormat,
   ExportResponse,
+  HydrogenBondRole,
   OrbitalResponse,
   SpectralLine,
   SpectrumResponse,
@@ -164,6 +167,9 @@ const SPECIALS: Record<number, Partial<ElementRecord>> = {
     phase: 'Solid',
     uses: ['Electrodos', 'Materiales compuestos', 'Química orgánica'],
   },
+  7: {
+    electronegativityPauling: 3.04,
+  },
   8: {
     densityGcm3: 0.001429,
     meltingPointK: 54.36,
@@ -173,6 +179,33 @@ const SPECIALS: Record<number, Partial<ElementRecord>> = {
     covalentRadiusPm: 66,
     phase: 'Gas',
     uses: ['Respiración clínica', 'Metalurgia', 'Tratamiento de aguas'],
+  },
+  9: {
+    densityGcm3: 0.001696,
+    meltingPointK: 53.48,
+    boilingPointK: 85.03,
+    electronegativityPauling: 3.98,
+    firstIonizationEnergyEv: 17.423,
+    covalentRadiusPm: 57,
+    phase: 'Gas',
+  },
+  11: {
+    densityGcm3: 0.968,
+    meltingPointK: 370.944,
+    boilingPointK: 1156.09,
+    electronegativityPauling: 0.93,
+    firstIonizationEnergyEv: 5.139,
+    covalentRadiusPm: 166,
+    phase: 'Solid',
+  },
+  17: {
+    densityGcm3: 0.0032,
+    meltingPointK: 171.65,
+    boilingPointK: 239.11,
+    electronegativityPauling: 3.16,
+    firstIonizationEnergyEv: 12.968,
+    covalentRadiusPm: 102,
+    phase: 'Gas',
   },
   26: {
     densityGcm3: 7.874,
@@ -246,10 +279,9 @@ function blockFor(z: number, group: number | null): string {
 }
 
 function metalClassFor(category: string): 'metal' | 'metalloid' | 'nonmetal' {
-  if (category.includes('metal')) return 'metal';
-  if (category === 'lanthanide' || category === 'actinide') return 'metal';
   if (category === 'metalloid') return 'metalloid';
-  return 'nonmetal';
+  if (category === 'nonmetal' || category === 'halogen' || category === 'noble gas') return 'nonmetal';
+  return 'metal';
 }
 
 function createElement(seed: Seed, index: number): ElementRecord {
@@ -485,6 +517,110 @@ export function getDemoCompare(zs: number[], properties: string[] = ['atomicMass
     differences,
     correlations: { note: 'Demo correlations are computed locally when the API is unavailable.' },
     radar,
+  };
+}
+
+const BOND_TYPE_ES: Record<BondType, string> = {
+  metallic: 'Enlace metálico',
+  ionic: 'Enlace iónico',
+  covalent_polar: 'Enlace covalente polar',
+  covalent_nonpolar: 'Enlace covalente apolar',
+  unknown: 'Enlace indeterminado',
+};
+
+const HYDROGEN_BOND_PARTNERS = new Set([7, 8, 9]);
+const PAULING_POLAR_THRESHOLD = 0.4;
+const PAULING_IONIC_THRESHOLD = 1.7;
+
+function classifyBond(a: ElementRecord, b: ElementRecord, delta: number | null): BondType {
+  if (a.metalClass === 'metal' && b.metalClass === 'metal') return 'metallic';
+  if (delta === null) return 'unknown';
+  if (a.metalClass === 'nonmetal' && b.metalClass === 'nonmetal') {
+    return delta < PAULING_POLAR_THRESHOLD ? 'covalent_nonpolar' : 'covalent_polar';
+  }
+  if (delta >= PAULING_IONIC_THRESHOLD) return 'ionic';
+  return delta < PAULING_POLAR_THRESHOLD ? 'covalent_nonpolar' : 'covalent_polar';
+}
+
+function hydrogenBondFor(a: ElementRecord, b: ElementRecord): { has: boolean; role: HydrogenBondRole; explanation: string } {
+  const partners = [a.z, b.z].filter((z) => HYDROGEN_BOND_PARTNERS.has(z));
+  if ([a.z, b.z].includes(1) && partners.length > 0) {
+    const labels: Record<number, string> = { 7: 'Nitrógeno', 8: 'Oxígeno', 9: 'Flúor' };
+    const partnerZ = partners[0];
+    const partnerSymbol = a.z === partnerZ ? a.symbol : b.symbol;
+    return {
+      has: true,
+      role: 'both',
+      explanation: `El hidrógeno actúa como donante (δ⁺) y el ${labels[partnerZ]} (${partnerSymbol}) como aceptor mediante sus pares de electrones libres: el par cumple la regla N–O–F y puede formar puentes de hidrógeno.`,
+    };
+  }
+  return {
+    has: false,
+    role: 'none',
+    explanation: 'Solo el hidrógeno unido a Nitrógeno (Z=7), Oxígeno (Z=8) o Flúor (Z=9) genera puentes de hidrógeno. Este par no cumple la regla N–O–F, por lo que no presenta ese potencial.',
+  };
+}
+
+function explainBond(bondType: BondType, delta: number | null, a: ElementRecord, b: ElementRecord, enA: number | null, enB: number | null): string {
+  const more = enA !== null && enB !== null && enA !== enB ? (enA > enB ? a : b) : null;
+  if (bondType === 'metallic') {
+    return `${a.nameEs} y ${b.nameEs} son metales: comparten un mar de electrones deslocalizados que da lugar a un enlace metálico, sin transferencia neta de carga.`;
+  }
+  if (bondType === 'unknown') {
+    const missing = [...new Set([enA === null ? a.symbol : '', enB === null ? b.symbol : ''].filter(Boolean))].join(' y ');
+    return `No hay dato de electronegatividad de Pauling para ${missing}; la clasificación determinista no es posible.`;
+  }
+  if (bondType === 'ionic') {
+    return `La diferencia de electronegatividad Δχ = ${delta} supera el umbral de Pauling (1.7): ${more?.nameEs} (${more?.symbol}) atrae con fuerza la densidad electrónica y se forma un enlace iónico.`;
+  }
+  if (bondType === 'covalent_polar') {
+    if (a.metalClass === 'nonmetal' && b.metalClass === 'nonmetal' && (delta ?? 0) >= PAULING_IONIC_THRESHOLD) {
+      return `Aunque Δχ = ${delta} supera 1.7, ambos elementos son no metales: el par conserva carácter covalente polar con un fuerte dipolo hacia ${more?.nameEs} (${more?.symbol}), el caso límite clásico del enlace H–F.`;
+    }
+    return `La diferencia Δχ = ${delta} está entre 0.4 y 1.7: el par comparte electrones de forma desigual y aparece un dipolo permanente dirigido hacia ${more?.nameEs} (${more?.symbol}).`;
+  }
+  return `La diferencia Δχ = ${delta} es menor que 0.4: los electrones se comparten de manera casi simétrica y no aparece un dipolo neto apreciable.`;
+}
+
+export function getDemoBondAnalysis(z1: number, z2: number): BondAnalysisResponse {
+  const a = getDemoElement(z1);
+  const b = getDemoElement(z2);
+  const enA = a.electronegativityPauling;
+  const enB = b.electronegativityPauling;
+  const delta = enA === null || enB === null ? null : Number(Math.abs(enA - enB).toFixed(3));
+  const bondType = classifyBond(a, b, delta);
+  const ionicCharacterPercent = delta === null ? null : Number(((1 - Math.exp(-((delta / 2) ** 2))) * 100).toFixed(1));
+  const covalentCharacterPercent = ionicCharacterPercent === null ? null : Number((100 - ionicCharacterPercent).toFixed(1));
+  const hydrogenBond = hydrogenBondFor(a, b);
+  let partialCharges: Record<string, string> = {};
+  if (bondType !== 'metallic' && delta !== null) {
+    if (delta === 0) {
+      partialCharges = { [a.symbol]: 'delta0', [b.symbol]: 'delta0' };
+    } else if (enA !== null && enB !== null && enA !== enB) {
+      const more = enA > enB ? a : b;
+      const less = more === a ? b : a;
+      partialCharges = { [more.symbol]: 'delta-', [less.symbol]: 'delta+' };
+    }
+  }
+  return {
+    z1,
+    z2,
+    symbol1: a.symbol,
+    symbol2: b.symbol,
+    nameEs1: a.nameEs,
+    nameEs2: b.nameEs,
+    electronegativity1: enA,
+    electronegativity2: enB,
+    deltaElectronegativity: delta,
+    bondType,
+    bondTypeEs: BOND_TYPE_ES[bondType],
+    ionicCharacterPercent,
+    covalentCharacterPercent,
+    hasHydrogenBondPotential: hydrogenBond.has,
+    hydrogenBondRole: hydrogenBond.role,
+    hydrogenBondExplanation: hydrogenBond.explanation,
+    partialCharges,
+    explanation: explainBond(bondType, delta, a, b, enA, enB),
   };
 }
 

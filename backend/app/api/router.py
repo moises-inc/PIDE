@@ -1,9 +1,10 @@
 from fastapi import APIRouter
 
-from .routes import compare, crystals, elements, export, orbitals, spectra, trends
+from .routes import bonding, compare, crystals, elements, export, orbitals, spectra, trends
 
 router = APIRouter()
 router.include_router(elements.router)
+router.include_router(bonding.router)
 router.include_router(spectra.router)
 router.include_router(orbitals.router)
 router.include_router(crystals.router)

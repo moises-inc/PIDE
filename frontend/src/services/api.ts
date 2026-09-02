@@ -1,4 +1,5 @@
 import type {
+  BondAnalysisResponse,
   CompareResponse,
   CrystalResponse,
   ElementRecord,
@@ -78,6 +79,13 @@ export function getCrystal(z: number): Promise<CrystalResponse> {
 
 export function getTrend(property: string): Promise<TrendResponse> {
   return request<TrendResponse>(`/trends?property=${encodeURIComponent(property)}`);
+}
+
+export function analyzeBond(z1: number, z2: number): Promise<BondAnalysisResponse> {
+  return request<BondAnalysisResponse>('/bonding/analyze', {
+    method: 'POST',
+    body: JSON.stringify({ z1, z2 }),
+  });
 }
 
 export function compareElements(z: number[], properties: string[]): Promise<CompareResponse> {

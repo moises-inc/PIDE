@@ -12,6 +12,7 @@ interface LayoutProps {
 
 const NAV_ITEMS = [
   { id: 'periodic-table', label: 'Tabla periódica', detail: '118 registros' },
+  { id: 'bonding', label: 'Enlaces químicos', detail: 'Pauling · Δχ' },
   { id: 'spectra', label: 'Espectroscopía', detail: 'Líneas NIST' },
   { id: 'structure', label: 'Estructuras 3D', detail: 'Orbital + celda' },
   { id: 'comparison', label: 'Comparador', detail: 'Análisis multivariable' },

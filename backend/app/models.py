@@ -274,6 +274,32 @@ class CompareResponse(PideModel):
     radar: list[dict[str, Any]]
 
 
+class BondAnalysisRequest(PideModel):
+    z1: StrictInt = Field(ge=1, le=118)
+    z2: StrictInt = Field(ge=1, le=118)
+
+
+class BondAnalysisResponse(PideModel):
+    z1: StrictInt
+    z2: StrictInt
+    symbol1: str
+    symbol2: str
+    name_es1: str
+    name_es2: str
+    electronegativity1: float | None
+    electronegativity2: float | None
+    delta_electronegativity: float | None
+    bond_type: Literal["metallic", "ionic", "covalent_polar", "covalent_nonpolar", "unknown"]
+    bond_type_es: str
+    ionic_character_percent: float | None
+    covalent_character_percent: float | None
+    has_hydrogen_bond_potential: bool
+    hydrogen_bond_role: Literal["donor", "acceptor", "both", "none"]
+    hydrogen_bond_explanation: str
+    partial_charges: dict[str, str]
+    explanation: str
+
+
 class ExportRequest(PideModel):
     format: Literal["csv", "latex", "bibtex"]
     z: list[StrictInt] | None = Field(default=None, min_length=1, max_length=20)

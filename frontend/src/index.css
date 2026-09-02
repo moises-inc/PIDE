@@ -2667,6 +2667,425 @@ button:disabled {
   outline-offset: 2px;
 }
 
+.bond-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding: 11px;
+  background: var(--panel-soft);
+  border: 1px solid var(--line);
+}
+
+.bond-select {
+  flex: 0 1 auto;
+}
+
+.bond-select > span {
+  padding-left: 4px;
+  color: var(--faint);
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+}
+
+.bond-select select {
+  max-width: 215px;
+}
+
+.bond-shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.shortcut-chip {
+  padding: 6px 10px;
+  color: var(--muted);
+  background: #09090b;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  cursor: pointer;
+  transition: color 120ms ease, border-color 120ms ease;
+}
+
+.shortcut-chip:hover {
+  color: var(--text);
+  border-color: var(--line-bright);
+}
+
+.shortcut-chip.is-active {
+  color: var(--amber-bright);
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.55);
+}
+
+.bond-sync {
+  margin-left: auto;
+}
+
+.bond-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.bond-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.bond-verdict {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 17px 14px;
+}
+
+.bond-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 13px;
+  border: 1px solid var(--line-bright);
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.bond-type-badge svg {
+  flex: 0 0 auto;
+}
+
+.bond-type-metallic {
+  color: var(--violet);
+  background: rgba(192, 132, 252, 0.08);
+  border-color: rgba(192, 132, 252, 0.45);
+}
+
+.bond-type-ionic {
+  color: var(--amber-bright);
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.5);
+}
+
+.bond-type-covalent-polar {
+  color: var(--cyan-bright);
+  background: rgba(34, 211, 238, 0.08);
+  border-color: rgba(34, 211, 238, 0.45);
+}
+
+.bond-type-covalent-nonpolar {
+  color: var(--green);
+  background: rgba(52, 211, 153, 0.08);
+  border-color: rgba(52, 211, 153, 0.45);
+}
+
+.bond-type-unknown {
+  color: var(--muted);
+}
+
+.bond-pair {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.bond-pair > span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  color: var(--text);
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 22px;
+}
+
+.bond-pair > span small {
+  color: var(--faint);
+  font-size: 9px;
+}
+
+.bond-pair > svg {
+  color: var(--faint);
+}
+
+.bond-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  color: var(--muted);
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+}
+
+.bond-delta svg {
+  color: var(--amber);
+}
+
+.bond-delta strong {
+  color: var(--amber-bright);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.bond-explanation {
+  margin: 0;
+  padding: 0 17px 18px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.pauling-meter {
+  padding: 32px 26px 16px;
+}
+
+.pauling-track {
+  position: relative;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    rgba(52, 211, 153, 0.85) 0%,
+    rgba(52, 211, 153, 0.85) 12.1%,
+    rgba(34, 211, 238, 0.85) 12.1%,
+    rgba(34, 211, 238, 0.85) 51.5%,
+    rgba(245, 158, 11, 0.85) 51.5%,
+    rgba(245, 158, 11, 0.85) 100%
+  );
+}
+
+.pauling-zone {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  z-index: 1;
+  background: rgba(245, 158, 11, 0.16);
+  border: 1px dashed rgba(245, 158, 11, 0.75);
+}
+
+.pauling-threshold {
+  position: absolute;
+  top: -6px;
+  bottom: -6px;
+  z-index: 2;
+  border-left: 1px dashed var(--faint);
+}
+
+.pauling-marker {
+  position: absolute;
+  top: -9px;
+  z-index: 3;
+  transform: translateX(-50%);
+}
+
+.marker-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 3px 8px;
+  color: var(--text);
+  background: var(--panel-strong);
+  border: 1px solid var(--line-bright);
+  border-radius: 2px;
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.marker-chip small {
+  color: var(--faint);
+  font-size: 8px;
+}
+
+.pauling-scale {
+  position: relative;
+  height: 18px;
+  margin-top: 12px;
+}
+
+.pauling-scale span {
+  position: absolute;
+  color: var(--faint);
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+  transform: translateX(-50%);
+}
+
+.pauling-scale span:first-child {
+  left: 0;
+  transform: none;
+}
+
+.pauling-scale span:last-child {
+  left: 100%;
+  transform: translateX(-100%);
+}
+
+.pauling-scale .scale-polar {
+  left: 12.1%;
+  color: var(--green);
+}
+
+.pauling-scale .scale-ionic {
+  left: 51.5%;
+  color: var(--amber);
+}
+
+.character-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px 17px 18px;
+}
+
+.character-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.character-label {
+  flex: 0 0 86px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.character-label.ionic {
+  color: var(--amber-bright);
+}
+
+.character-label.covalent {
+  color: var(--cyan-bright);
+}
+
+.progress-track {
+  flex: 1;
+  height: 10px;
+  overflow: hidden;
+  background: #09090b;
+  border: 1px solid var(--line);
+  border-radius: 1px;
+}
+
+.progress-bar-ionic,
+.progress-bar-covalent {
+  height: 100%;
+  transition: width 260ms ease;
+}
+
+.progress-bar-ionic {
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.55), var(--amber));
+}
+
+.progress-bar-covalent {
+  background: linear-gradient(90deg, rgba(34, 211, 238, 0.55), var(--cyan));
+}
+
+.character-row b {
+  flex: 0 0 64px;
+  color: var(--text);
+  text-align: right;
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.hydrogen-bond-badge {
+  display: flex;
+  gap: 13px;
+  margin: 16px 17px 18px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+
+.hydrogen-bond-badge > svg {
+  flex: 0 0 auto;
+  color: var(--faint);
+}
+
+.hydrogen-bond-badge strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text);
+  font-size: 11px;
+}
+
+.hydrogen-bond-badge p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.hydrogen-bond-badge.is-active {
+  background: rgba(34, 211, 238, 0.06);
+  border-color: rgba(34, 211, 238, 0.5);
+  box-shadow: 0 0 26px rgba(34, 211, 238, 0.08);
+}
+
+.hydrogen-bond-badge.is-active > svg {
+  color: var(--cyan-bright);
+}
+
+.hydrogen-bond-badge.is-active strong {
+  color: var(--cyan-bright);
+}
+
+.charge-card {
+  grid-column: 1 / -1;
+}
+
+.charge-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 26px 17px 8px;
+}
+
+.charge-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 10px 18px;
+  color: var(--text);
+  background: var(--panel-strong);
+  border: 1px solid var(--line-bright);
+  border-radius: 2px;
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 20px;
+}
+
+.charge-chip b {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.charge-chip b.charge-neg {
+  color: var(--amber-bright);
+}
+
+.charge-chip b.charge-pos {
+  color: var(--cyan-bright);
+}
+
+.charge-chip b.charge-zero {
+  color: var(--faint);
+}
+
+.charge-arrow {
+  color: var(--faint);
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  letter-spacing: 3px;
+}
+
 .mobile-scrim {
   display: none;
 }
@@ -2735,6 +3154,18 @@ button:disabled {
   .comparison-layout,
   .analysis-grid {
     grid-template-columns: 1fr;
+  }
+
+  .bond-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .charge-card {
+    grid-column: auto;
+  }
+
+  .bond-sync {
+    margin-left: 0;
   }
 
   .spectral-aside {
