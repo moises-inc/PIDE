@@ -28,6 +28,8 @@ _ALIASES = {
     "TETRAGONAL_P": "primitive_tetragonal", "TETRAGONAL_I": "body_centered_tetragonal",
     "CUBIC": "FCC", "DIAMOND CUBIC": "FCC", "DIAMOND_CUBIC": "FCC", "ORTHORHOMBIC": "primitive_orthorhombic",
     "RHOMBOHEDRAL": "rhombohedral", "TETRAGONAL": "primitive_tetragonal",
+    "MONOCLINIC": "primitive_monoclinic", "PRIMITIVE_MONOCLINIC": "primitive_monoclinic",
+    "TRICLINIC": "primitive_triclinic", "PRIMITIVE_TRICLINIC": "primitive_triclinic",
 }
 
 
