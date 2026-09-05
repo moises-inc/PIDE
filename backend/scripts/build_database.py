@@ -15,12 +15,16 @@ try:
         APPEARANCE_ES,
         ATOMIC_RADIUS,
         BOILING_K,
+        COMMON_COMPOUNDS,
         COVALENT_RADIUS,
         DENSITY,
         DISCOVERERS,
         DISCOVERY_YEARS,
         ELECTRON_AFFINITY,
         ELECTRONEGATIVITY,
+        HYBRIDIZATIONS,
+        HYDROGEN_BONDING_DETAIL,
+        INTERMOLECULAR_FORCES,
         IONIZATION,
         ISOTOPE_OVERRIDES,
         LATTICE_SYSTEMS,
@@ -37,12 +41,16 @@ except ImportError:
         APPEARANCE_ES,
         ATOMIC_RADIUS,
         BOILING_K,
+        COMMON_COMPOUNDS,
         COVALENT_RADIUS,
         DENSITY,
         DISCOVERERS,
         DISCOVERY_YEARS,
         ELECTRON_AFFINITY,
         ELECTRONEGATIVITY,
+        HYBRIDIZATIONS,
+        HYDROGEN_BONDING_DETAIL,
+        INTERMOLECULAR_FORCES,
         IONIZATION,
         ISOTOPE_OVERRIDES,
         LATTICE_SYSTEMS,
@@ -300,7 +308,15 @@ def element_record(z: int) -> dict[str, Any]:
         phase = "liquid"
     else:
         phase = None
-    derived = ["electron_configuration", "lattice_system", "isotopes_count"]
+    derived = [
+        "electron_configuration",
+        "lattice_system",
+        "isotopes_count",
+        "common_compounds",
+        "hybridization",
+        "intermolecular_forces",
+        "hydrogen_bonding_detail",
+    ]
     return {
         "z": z,
         "atomic_number": z,
@@ -365,6 +381,10 @@ def element_record(z: int) -> dict[str, Any]:
         "critical_temperature_k": None,
         "critical_pressure_mpa": None,
         "appearance": APPEARANCE_ES.get(z),
+        "common_compounds": COMMON_COMPOUNDS.get(z, []),
+        "hybridization": HYBRIDIZATIONS.get(z),
+        "intermolecular_forces": INTERMOLECULAR_FORCES.get(z, []),
+        "hydrogen_bonding_detail": HYDROGEN_BONDING_DETAIL.get(z),
         "source": dict(SOURCE_METADATA),
         "derived_fields": derived,
     }

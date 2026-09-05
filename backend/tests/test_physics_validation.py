@@ -48,3 +48,16 @@ def test_element_source_provenance_is_present():
     source = ElementRegistry().require(8).source
     assert source["primary"] == "IUPAC"
     assert "NIST ASD" in source["secondary"]
+
+
+def test_element_backlog_chemical_data_is_complete():
+    elements = ElementRegistry().list_elements()
+    assert len(elements) == 118
+    for element in elements:
+        assert isinstance(element.common_compounds, list) and len(element.common_compounds) >= 1
+        assert isinstance(element.hybridization, str) and len(element.hybridization) > 0
+        assert isinstance(element.intermolecular_forces, list) and len(element.intermolecular_forces) >= 1
+        assert isinstance(element.hydrogen_bonding_detail, str) and len(element.hydrogen_bonding_detail) > 0
+        assert element.electron_configuration is not None
+        assert element.electron_configuration_condensed is not None
+

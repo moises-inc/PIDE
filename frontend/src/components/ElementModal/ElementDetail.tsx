@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Copy, Download, ExternalLink, Plus, X } from 'lucide-react';
+import { Copy, Download, Droplets, ExternalLink, Orbit, Plus, X } from 'lucide-react';
 import type { ElementRecord } from '../../types/element';
 import { categoryLabel, formatTemperature, formatValue, metalClassLabel, phaseAtTemperature, phaseLabel } from '../../utils/chemistry';
 
@@ -76,7 +76,86 @@ export function ElementDetail({ element, temperature, isCompared, open, onClose,
           </div>
           <div className="phase-readout"><span className={`phase-dot phase-${phase.toLowerCase()}`} /><div><small>Estado simulado</small><strong>{phaseLabel(phase)} <em>a {formatTemperature(temperature)}</em></strong></div><div className="phase-boundaries"><span>Fusión <b>{formatValue(element.meltingPointK, 0)} K</b></span><span>Ebullición <b>{formatValue(element.boilingPointK, 0)} K</b></span></div></div>
           <div className="detail-section"><div className="section-heading"><span>Propiedades seleccionadas</span><small>snapshot local / API</small></div><div className="property-table">{values.map(([label, value, unit]) => <div className="property-row" key={label}><span>{label}</span><strong>{value}</strong><small>{unit}</small></div>)}</div></div>
-          <div className="detail-columns"><div><div className="section-heading"><span>Configuración</span></div><p className="mono-value">{element.electronConfiguration ?? 'Sin dato'}</p><p className="condensed-value">{element.electronConfigurationCondensed ?? 'Sin dato'}</p></div><div><div className="section-heading"><span>Estados de oxidación</span></div><div className="oxidation-list">{element.oxidationStates.length > 0 ? element.oxidationStates.map((state) => <span key={state}>{state > 0 ? `+${state}` : state}</span>) : <small>Sin dato</small>}</div></div></div>
+          <div className="detail-columns">
+            <div>
+              <div className="section-heading"><span>Configuración electrónica</span></div>
+              <div className="config-block">
+                <div className="config-row">
+                  <span className="config-label">General (completa)</span>
+                  <p className="mono-value">{element.electronConfiguration ?? 'Sin dato'}</p>
+                </div>
+                <div className="config-row">
+                  <span className="config-label">Abreviada (gas noble)</span>
+                  <p className="condensed-value">{element.electronConfigurationCondensed ?? 'Sin dato'}</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div className="section-heading"><span>Estados de oxidación</span></div>
+              <div className="oxidation-list">
+                {element.oxidationStates.length > 0 ? (
+                  element.oxidationStates.map((state) => <span key={state}>{state > 0 ? `+${state}` : state}</span>)
+                ) : (
+                  <small>Sin dato</small>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div className="detail-section">
+            <div className="section-heading">
+              <span>Hibridación de orbitales</span>
+              <small>geometría / enlace</small>
+            </div>
+            <div className="hybridization-box">
+              <span className="hybridization-badge">
+                <Orbit size={13} style={{ marginRight: 6 }} />
+                {element.hybridization ?? 'Sin dato de hibridación'}
+              </span>
+            </div>
+          </div>
+
+          <div className="detail-section">
+            <div className="section-heading">
+              <span>Compuestos comunes representativos</span>
+              <small>fórmulas clave</small>
+            </div>
+            <div className="compounds-list">
+              {element.commonCompounds && element.commonCompounds.length > 0 ? (
+                element.commonCompounds.map((compound) => (
+                  <span className="compound-pill" key={compound}>{compound}</span>
+                ))
+              ) : (
+                <small>Sin compuestos registrados</small>
+              )}
+            </div>
+          </div>
+
+          <div className="detail-section">
+            <div className="section-heading">
+              <span>Fuerzas intermoleculares</span>
+              <small>interacciones en fase condensada</small>
+            </div>
+            <div className="forces-list">
+              {element.intermolecularForces && element.intermolecularForces.length > 0 ? (
+                element.intermolecularForces.map((force) => (
+                  <span className="force-pill" key={force}>{force}</span>
+                ))
+              ) : (
+                <small>Sin dato</small>
+              )}
+            </div>
+            {element.hydrogenBondingDetail && (
+              <div className="hbond-detail-box">
+                <div className="hbond-detail-header">
+                  <Droplets size={14} />
+                  <span>Detalle de Puentes de Hidrógeno (Regla N–O–F)</span>
+                </div>
+                <p>{element.hydrogenBondingDetail}</p>
+              </div>
+            )}
+          </div>
+
           <div className="detail-section"><div className="section-heading"><span>Usos y procedencia</span></div><div className="uses-list">{element.uses.slice(0, 4).map((use) => <span key={use}>{use}</span>)}</div><p className="provenance"><ExternalLink size={13} />{String(element.source.dataset ?? 'PIDE data')} · campos derivados visibles en API</p></div>
         </div>
          <footer className="dialog-footer"><button className={`primary-button ${isCompared ? 'is-active' : ''}`} type="button" onClick={onAddCompare} aria-pressed={isCompared}><Plus size={16} />{isCompared ? 'Quitar del comparador' : 'Añadir al comparador'}</button><button className="outline-button" type="button" onClick={onExport}><Download size={15} />Exportar</button><button className="icon-button" type="button" aria-label={copied ? 'Número atómico copiado' : 'Copiar número atómico'} title={copied ? 'Copiado' : 'Copiar número atómico'} onClick={() => void copyAtomicNumber()}><Copy size={16} /></button></footer>

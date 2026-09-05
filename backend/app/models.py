@@ -116,6 +116,10 @@ class Element(PideModel):
     critical_temperature_k: float | None = None
     critical_pressure_mpa: float | None = None
     appearance: str | None = None
+    common_compounds: list[str] = Field(default_factory=list)
+    hybridization: str | None = None
+    intermolecular_forces: list[str] = Field(default_factory=list)
+    hydrogen_bonding_detail: str | None = None
     source: dict[str, Any] = Field(default_factory=dict)
     derived_fields: list[str] = Field(default_factory=list)
 

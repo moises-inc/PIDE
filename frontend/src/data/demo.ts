@@ -347,8 +347,45 @@ function createElement(seed: Seed, index: number): ElementRecord {
     criticalTemperatureK: NOBLE_GASES.has(z) ? Number((4 + ((z * 3) % 80)).toFixed(2)) : null,
     criticalPressureMpa: NOBLE_GASES.has(z) ? Number((0.2 + ((z * 7) % 50) / 10).toFixed(2)) : null,
     appearance: category.includes('metal') ? 'Lustrous solid' : 'Colourless or characteristic solid',
+    commonCompounds: specials.commonCompounds ?? (
+      z === 1 ? ['H₂O', 'NH₃', 'CH₄', 'HCl'] :
+      z === 6 ? ['CO₂', 'CH₄', 'C₆H₁₂O₆', 'CaCO₃'] :
+      z === 7 ? ['NH₃', 'HNO₃', 'NO₂', 'NH₄NO₃'] :
+      z === 8 ? ['H₂O', 'CO₂', 'SO₂', 'Fe₂O₃'] :
+      z === 9 ? ['HF', 'NaF', 'CaF₂', 'SF₆'] :
+      z === 11 ? ['NaCl', 'NaOH', 'NaHCO₃'] :
+      z === 17 ? ['NaCl', 'HCl', 'NaClO'] :
+      z === 26 ? ['Fe₂O₃', 'FeCl₃', 'FeSO₄'] :
+      NOBLE_GASES.has(z) ? ['Sin compuestos ordinarios (Gas noble inerte)'] :
+      category.includes('metal') ? [`${seed[0]}Cl₂`, `${seed[0]}O`, `${seed[0]}SO₄`] :
+      [`${seed[0]}O₂`, `${seed[0]}H₄`]
+    ),
+    hybridization: specials.hybridization ?? (
+      z === 1 ? '1s (sin hibridar)' :
+      NOBLE_GASES.has(z) ? 'Sin hibridar (capa completa)' :
+      category.includes('metal') ? (category === 'transition metal' ? 'd²sp³ / sp³d² (complejos de coordinación)' : 'Sin hibridar (red metálica/iónica)') :
+      z === 6 ? 'sp³ (alcanos), sp² (alquenos), sp (alquinos)' :
+      z === 7 ? 'sp³ (piramidal, NH₃), sp² (iminas), sp (nitrilos)' :
+      z === 8 ? 'sp³ (angular, H₂O), sp² (carbonilos)' :
+      z === 9 ? 'sp³ (enlaces σ y pares libres)' :
+      'sp³ / orbitales p disponibles'
+    ),
+    intermolecularForces: specials.intermolecularForces ?? (
+      NOBLE_GASES.has(z) ? ['Fuerzas de London (Dispersión atómica pura)'] :
+      z === 1 || z === 7 || z === 8 || z === 9 ? ['Puente de Hidrógeno', 'Dipolo-Dipolo', 'Fuerzas de London'] :
+      category.includes('metal') ? ['Enlace Metálico (red cristalina)', 'Ion-Dipolo (en disolución)', 'Fuerzas de London'] :
+      ['Fuerzas de London (Dispersión)', 'Dipolo-Dipolo']
+    ),
+    hydrogenBondingDetail: specials.hydrogenBondingDetail ?? (
+      z === 1 ? 'Donador clave de puente de hidrógeno: El átomo de H adquiere carga parcial positiva cuando se une covalentemente a F, O o N.' :
+      z === 7 ? 'Aceptor y donador fundamental: Posee un par electrónico libre de alta densidad y electronegatividad (3.04).' :
+      z === 8 ? 'Aceptor y donador primordial: Gracias a su alta electronegatividad (3.44) y dos pares libres, forma redes tridimensionales de puentes de H.' :
+      z === 9 ? 'Aceptor y donador sumamente fuerte: Elemento más electronegativo (3.98), forma los enlaces H más enérgicos.' :
+      z === 6 ? 'No forma puentes de hidrógeno directos (enlace C–H de baja polaridad); actúa como esqueleto estructural.' :
+      'No aplica: No cumple las condiciones de la regla N–O–F para formar puentes de hidrógeno.'
+    ),
     source: { dataset: 'PIDE demo snapshot', provenance: 'Local UI fixture; replaceable by /api.' },
-    derivedFields: ['phase', 'electronConfigurationCondensed'],
+    derivedFields: ['phase', 'electronConfigurationCondensed', 'commonCompounds', 'hybridization', 'intermolecularForces', 'hydrogenBondingDetail'],
     ...specials,
   };
 }

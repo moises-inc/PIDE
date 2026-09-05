@@ -135,25 +135,44 @@ export function BondAnalyzer({
         </div>
 
         <div className="panel bond-card">
-          <div className="panel-heading"><span><span className="panel-number">C</span> Carácter del enlace</span><span className="panel-meta">fórmula de Pauling</span></div>
-          <div className="character-bars">
-            <div className="character-row">
-              <span className="character-label ionic">Iónico</span>
-              <div className="progress-track"><div className="progress-bar-ionic" style={{ width: `${result.ionicCharacterPercent ?? 0}%` }} /></div>
-              <b>{result.ionicCharacterPercent === null ? '—' : `${formatValue(result.ionicCharacterPercent, 1)} %`}</b>
-            </div>
-            <div className="character-row">
-              <span className={`character-label ${isMetallic ? 'metallic' : 'covalent'}`}>{isMetallic ? 'Metálico (deslocalizado)' : 'Covalente'}</span>
-              <div className="progress-track"><div className={isMetallic ? 'progress-bar-metallic' : 'progress-bar-covalent'} style={{ width: `${result.covalentCharacterPercent ?? 0}%` }} /></div>
-              <b>{result.covalentCharacterPercent === null ? '—' : `${formatValue(result.covalentCharacterPercent, 1)} %`}</b>
+          <div className="panel-heading"><span><span className="panel-number">C</span> Carácter del enlace</span><span className="panel-meta">criterio único Pauling</span></div>
+          <div className="predominant-bond-container">
+            <div className={`predominant-bond-badge ${bondClass}`}>
+              <Zap size={22} />
+              <div className="predominant-bond-info">
+                <span className="predominant-bond-eyebrow">Tipo Predominante</span>
+                <strong className="predominant-bond-title">
+                  {result.bondType === 'metallic' ? 'Enlace Metálico' :
+                   result.bondType === 'ionic' ? 'Enlace Iónico' :
+                   result.bondType === 'covalent_polar' ? 'Enlace Covalente Polar' :
+                   result.bondType === 'covalent_nonpolar' ? 'Enlace Covalente Apolar' : 'Enlace Indeterminado'}
+                </strong>
+                <span className="predominant-bond-threshold">
+                  {result.bondType === 'metallic'
+                    ? 'Criterio: Red metálica catiónica con electrones deslocalizados'
+                    : result.bondType === 'ionic'
+                    ? `Criterio: Δχ = ${formatValue(delta, 2)} ≥ 1.7 (Transferencia neta de carga)`
+                    : result.bondType === 'covalent_polar'
+                    ? `Criterio: 0.4 ≤ Δχ (${formatValue(delta, 2)}) < 1.7 (Dipolo permanente)`
+                    : result.bondType === 'covalent_nonpolar'
+                    ? `Criterio: Δχ = ${formatValue(delta, 2)} < 0.4 (Compartición simétrica)`
+                    : 'Criterio: Sin datos de electronegatividad'}
+                </span>
+              </div>
             </div>
           </div>
           <div className="aside-note">
             <Info size={14} />
             <span>
-              {isMetallic
-                ? '% iónico = (1 − e⁻⁽Δχ/2⁾²) × 100. En enlaces metálicos, el porcentaje restante representa la deslocalización en el mar de electrones.'
-                : '% iónico = (1 − e⁻⁽Δχ/2⁾²) × 100. Ambos porcentajes suman siempre 100.'}
+              {result.bondType === 'metallic'
+                ? 'Determinación exclusiva: La unión entre elementos metálicos forma un mar de electrones deslocalizados sin dipolos localizados.'
+                : result.bondType === 'ionic'
+                ? 'Determinación exclusiva: La diferencia de electronegatividad supera el umbral de 1.7, clasificando el enlace como predominantemente iónico.'
+                : result.bondType === 'covalent_polar'
+                ? 'Determinación exclusiva: La diferencia de electronegatividad se ubica entre 0.4 y 1.7, formando un enlace covalente con dipolo permanente.'
+                : result.bondType === 'covalent_nonpolar'
+                ? 'Determinación exclusiva: La diferencia de electronegatividad es inferior a 0.4, determinando una compartición casi equitativa de carga (covalente apolar).'
+                : 'Sin datos suficientes de electronegatividad de Pauling para determinar el carácter del enlace.'}
             </span>
           </div>
         </div>

@@ -59,6 +59,10 @@ export interface ElementRecord {
   criticalTemperatureK: number | null;
   criticalPressureMpa: number | null;
   appearance: string | null;
+  commonCompounds?: string[];
+  hybridization?: string | null;
+  intermolecularForces?: string[];
+  hydrogenBondingDetail?: string | null;
   source: Record<string, unknown>;
   derivedFields: string[];
 }
