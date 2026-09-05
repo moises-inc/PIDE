@@ -17,7 +17,7 @@ flowchart LR
     SEED["backend/scripts/build_database.py"] --> DATA["backend/data/\nelements.json\ncrystals.json\nisotopes.json\nspectra_nist.json.gz"]
     DATA --> REG["ElementRegistry\nlectura local y validación"]
     REG --> ROUTES["FastAPI\n/api routes"]
-    ENGINES["app/core\nregistry, spectroscopy,\norbitals, crystallography,\nthermodynamics, comparator"] --> ROUTES
+    ENGINES["app/core\nregistry, bonding, spectroscopy,\norbitals, crystallography,\nthermodynamics, comparator"] --> ROUTES
     ROUTES --> CLIENT["frontend/src/services/api.ts"]
     CLIENT --> UI["React 19\nSVG + Three.js"]
     FIXTURES["frontend/src/data/demo.ts\nfixture local"] --> UI
@@ -36,15 +36,15 @@ cuatro archivos una vez y construye índices por número atómico y símbolo.
 | Almacenamiento | `backend/data/` | Snapshot local de elementos, espectros, cristales e isótopos. |
 | Contratos | `backend/app/models.py` | Validación Pydantic, límites de entrada y serialización pública en `camelCase`. |
 | Registro | `backend/app/core/registry.py` | Carga, cobertura `Z=1..118`, filtros, tendencias y resolución de propiedades. |
-| Motores | `backend/app/core/*.py` | Cálculos puros o deterministas para espectros, orbitales, cristales, fases y comparaciones. |
+| Motores | `backend/app/core/*.py` | Cálculos puros o deterministas para enlaces químicos, espectros, orbitales, cristales, fases y comparaciones. |
 | API | `backend/app/main.py`, `backend/app/api/` | FastAPI, CORS local, rutas, OpenAPI y errores JSON estables. |
 | Cliente HTTP | `frontend/src/services/api.ts` | `fetch` contra `/api`, traducción de errores y tipos de respuesta. |
-| Presentación | `frontend/src/App.tsx`, `frontend/src/components/` | Tabla, ficha, espectros, modelos 3D, comparación, tendencias y exportación. |
+| Presentación | `frontend/src/App.tsx`, `frontend/src/components/` | Tabla, ficha, analizador de enlaces, espectros, modelos 3D, comparación, tendencias y exportación. |
 | Fachada Python | `backend/pide/core.py` | Acceso sin HTTP mediante `get_element`, `list_elements` y `compare`. |
 
 ## Ciclo de una petición
 
-1. FastAPI valida parámetros de ruta, query o cuerpo con tipos estrictos y
+1. FastAPI valida parámetros de ruta, query o cuerpo con tipos strictly y
    límites declarados en los routers y modelos.
 2. La ruta solicita el registro singleton mediante `get_registry()`; la
    primera llamada carga los archivos locales y comprueba que cada tabla tenga
@@ -59,7 +59,7 @@ cuatro archivos una vez y construye índices por número atómico y símbolo.
 
 ## Superficie HTTP
 
-Hay nueve rutas de aplicación, contando `/health`: una ruta de salud y ocho
+Hay diez rutas de aplicación, contando `/health`: una ruta de salud y nueve
 operaciones bajo `/api`. Las páginas `/docs`, `/redoc` y `/openapi.json` son
 las páginas de documentación que FastAPI genera por defecto, no operaciones
 científicas adicionales de PIDE.
@@ -69,6 +69,8 @@ científicas adicionales de PIDE.
 | `GET /health` | `app.main` | Estado, servicio y versión. |
 | `GET /api/elements` | `core.registry` | Lista filtrada y paginada de `Element`. |
 | `GET /api/elements/{z}` | `core.registry` | Un `Element` o error controlado. |
+| `POST /api/bonding/analyze` | `core.bonding` | Análisis de enlace (iónico, covalente, metálico, puente H). |
+| `GET /api/bonding/{z1}/{z2}` | `core.bonding` | Consulta de enlace entre $Z_1$ y $Z_2$. |
 | `GET /api/spectra/{z}` | `core.spectroscopy` | `SpectrumResponse` con líneas visibles. |
 | `GET /api/orbitals/{n}/{l}/{m}` | `core.orbitals` | Malla de probabilidad resumida y mesh. |
 | `GET /api/crystals/{z}` | `core.crystallography` | Celda calculada o indisponible explícita. |

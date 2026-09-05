@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "description": "React 19 frontend for the local Periodic Information and Data Explorer",
-  "author": "Moisés Amundarain Romero & PIDE Contributors",
+  "author": "Moisés Amundarain Romero, Gamaliel Cisternas Herrera, Diego Pavez Gallardo, Dra. Fabiola Acuña Sanhueza (Universidad San Sebastián)",
   "license": "MIT",
   "keywords": [
     "chemistry",

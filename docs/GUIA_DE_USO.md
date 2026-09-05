@@ -69,29 +69,22 @@ presentarse como resultados del backend ni como datos completos de NIST.
 
 ## 4. Recorrido de la interfaz
 
-El panel de navegación contiene cuatro módulos. En una pantalla estrecha, el
-botón de menú abre el panel; al seleccionar una sección, el panel se cierra y
-la página se desplaza hasta ella.
+El panel de navegación contiene cinco módulos principales (`01 Tabla periódica`, `02 Analizador de enlaces`, `03 Espectros`, `04 Modelos 3D`, `05 Comparación & Tendencias`). En una pantalla estrecha, el botón de menú abre el panel; al seleccionar una sección, el panel se cierra y la página se desplaza hasta ella.
 
 ### Tabla periódica
 
-1. Escribir un símbolo, nombre en inglés, nombre en español o número atómico
-   en el buscador.
-2. Elegir una propiedad en el selector de heatmap.
-3. Mover el control de temperatura para clasificar el estado como sólido,
-   líquido, gas o sin dato.
-4. Seleccionar una celda para abrir su ficha.
-5. Consultar el `f-block` inferior para lantánidos y actínidos.
+1. Escribir un símbolo, nombre en inglés, nombre en español o número atómico en el buscador.
+2. Filtrar por tipo elemental (Metales, Metaloides, No Metales) o por familias químicas (Alcalinos, Alcalinotérreos, Transición, Lantánidos, Actínidos, Halógenos, Gases Nobles) desde la leyenda interactiva.
+3. Elegir una propiedad en el selector de heatmap.
+4. Mover el control de temperatura para clasificar el estado como sólido, líquido, gas o sin dato.
+5. Seleccionar una celda para abrir su ficha.
+6. Consultar el `f-block` inferior para lantánidos y actínidos.
 
-El heatmap es una visualización relativa de los valores cargados. No sustituye
-una escala física y no rellena los `null`.
+El heatmap es una visualización relativa de los valores cargados. No sustituye una escala física y no rellena los `null`.
 
 ### Ficha del elemento
 
-La ficha muestra identidad, categoría, propiedades seleccionadas,
-configuración electrónica, estados de oxidación, usos y metadata de fuente.
-La fase se calcula con la temperatura seleccionada y los puntos almacenados.
-Un `null` se muestra como sin dato.
+La ficha muestra identidad, categoría, clasificación metálica, propiedades seleccionadas, configuración electrónica, estados de oxidación, usos y metadata de fuente. La fase se calcula con la temperatura seleccionada y los puntos almacenados. Un `null` se muestra como sin dato.
 
 Acciones disponibles:
 
@@ -100,14 +93,23 @@ Acciones disponibles:
 - Copiar el número atómico con el portapapeles del navegador.
 - Cerrar con el botón, el fondo o `Escape`.
 
-El comparador acepta de 2 a 8 elementos. La interfaz puede mantener cero o un
-elemento mientras preparas la siguiente selección; la petición de comparación
-solo se envía cuando hay al menos dos elementos.
+### Analizador de enlaces químicos (Sección 02)
+
+1. Seleccionar dos elementos de la tabla o de la lista desplegable ($Z_1$ y $Z_2$).
+2. Consultar las electronegatividades de Pauling ($\chi$) y la diferencia $\Delta\chi = |\chi_1 - \chi_2|$.
+3. Visualizar el **tipo de enlace único y dominante** determinado determinísticamente:
+   - **Metálico:** Formado entre dos metales ($Z_1$ y $Z_2$ son metales).
+   - **Covalente Apolar:** $\Delta\chi \le 0.4$ entre no metales/metaloides.
+   - **Covalente Polar:** $0.4 < \Delta\chi \le 1.7$ entre no metales/metaloides.
+   - **Iónico:** $\Delta\chi > 1.7$ o combinación metal + no metal de alta electronegatividad.
+4. Consultar el desglose cuantitativo según Hannay-Smyth ($P_{\text{iónico}} = 16|\Delta\chi| + 3.5(\Delta\chi)^2$) y el porcentaje covalente complementario.
+5. Verificar si la pareja cumple con el criterio de puentes de hidrógeno ($\text{N-H}, \text{O-H}, \text{F-H}$ con átomos aceptores $\text{N}, \text{O}, \text{F}$).
 
 ### Espectroscopía de emisión
 
 El gráfico visible cubre `380..780 nm`. Cada línea presenta una transición,
 intensidad relativa y color RGB de visualización. Al pasar el cursor se puede
+
 leer la longitud de onda, la transición y la intensidad; el lateral muestra
 las cinco primeras líneas.
 
@@ -208,7 +210,7 @@ python3 -m compileall -q backend/app backend/pide backend/scripts
 ```
 
 En la revisión de este workspace se observaron 118 registros en cada dataset,
-153 pruebas aprobadas, build de TypeScript/Vite correcto y ningún error de
+168 pruebas aprobadas, build de TypeScript/Vite correcto y ningún error de
 `compileall`.
 
 ## 8. Problemas frecuentes
@@ -223,7 +225,15 @@ En la revisión de este workspace se observaron 118 registros en cada dataset,
 | Un valor aparece como `null` o `—` | El snapshot no aporta ese campo; PIDE no lo extrapola. |
 | Falla el build tras cambiar dependencias | Ejecutar `npm --prefix frontend install` y repetir los checks. |
 
-## 9. Procedencia y referencias
+## 9. Créditos y Autores
+
+* **Autor Principal & Arquitecto de Software:** Moisés Amundarain Romero
+* **Co-Autores Científicos:** 
+  - **Gamaliel Cisternas Herrera** (Estudiante de Química y Farmacia USS)
+  - **Diego Pavez Gallardo** (Estudiante de Química y Farmacia USS)
+* **Profesora Guía & Líder Académica:** **Dra. Fabiola Acuña Sanhueza** (Docente de Química General USS)
+
+## 10. Procedencia y referencias
 
 El snapshot tiene metadata de registro con `IUPAC` como fuente primaria
 declarada y `CIAAW`, `NIST ASD` y `CRC Handbook` como fuentes secundarias
@@ -239,3 +249,4 @@ Antes de usar un valor fuera de exploración, leer
 - [NIST Atomic Spectra Database](https://www.nist.gov/pml/atomic-spectra-database)
 - [CRC Handbook, CHEMnetBASE](https://hbcp.chemnetbase.com/)
 - [NIDE, Andrés Sabogal](https://github.com/AndresSabogal00/NIDE)
+

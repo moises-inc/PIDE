@@ -5,8 +5,12 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "pide-backend"
 version = "0.1.0"
-description = "Deterministic offline backend for the Periodic Information and Data Explorer"
-authors = [{ name = "Moisés Amundarain Romero" }]
+authors = [
+  { name = "Moisés Amundarain Romero" },
+  { name = "Gamaliel Cisternas Herrera" },
+  { name = "Diego Pavez Gallardo" },
+  { name = "Dra. Fabiola Acuña Sanhueza" }
+]
 license = { text = "MIT" }
 keywords = ["chemistry", "periodic-table", "scientific-computing", "offline"]
 requires-python = ">=3.11"

@@ -24,9 +24,9 @@ versión actual es `0.1.0`.
 | Área | Implementación actual |
 |---|---|
 | Datos | Cuatro snapshots locales: elementos, espectros, cristales e isótopos; cada uno cubre `Z=1..118`. |
-| API | FastAPI con 9 rutas de aplicación: `/health` y 8 rutas bajo `/api`. |
+| API | FastAPI con 10 rutas de aplicación: `/health` y 9 rutas bajo `/api`. |
 | Frontend | React 19, TypeScript estricto, Vite, SVG accesible y Three.js. |
-| Motores | Registro en memoria, conversión de longitud de onda a RGB, modelo hidrogenoide, mallas de orbitales, celdas unitarias, fases y comparación estadística. |
+| Motores | Registro en memoria, analizador de enlaces químicos, conversión de longitud de onda a RGB, modelo hidrogenoide, mallas de orbitales, celdas unitarias, fases y comparación estadística. |
 | Exportación | CSV, LaTeX y BibTeX generados en memoria. |
 | Runtime | Sin red ni LLM en runtime. El frontend conserva fixtures locales cuando la API no está disponible. |
 
@@ -109,7 +109,7 @@ La verificación realizada para esta documentación produjo:
 | Check | Resultado observado |
 |---|---|
 | `build_database.py --check` | `crystals=118`, `elements=118`, `isotopes=118`, `spectra=118`. |
-| `python3 -m pytest backend/tests -q` | `153 passed`; una advertencia de deprecación de `httpx`/Starlette. |
+| `python3 -m pytest backend/tests -q` | `168 passed`; una advertencia de deprecación de `httpx`/Starlette. |
 | `npm --prefix frontend run build` | `tsc -b` y Vite completaron sin error. |
 | `compileall` | Sin salida de error. |
 
@@ -118,13 +118,15 @@ del alcance de esta tarea.
 
 ## API mínima
 
-Las nueve rutas de aplicación son:
+Las diez rutas de aplicación son:
 
 | Método | Ruta | Propósito |
 |---|---|---|
 | `GET` | `/health` | Estado del servicio. |
-| `GET` | `/api/elements` | Lista con filtros, búsqueda y paginación por offset. |
+| `GET` | `/api/elements` | Lista con filtros (`block`, `category`, `metal_class`), búsqueda y paginación. |
 | `GET` | `/api/elements/{z}` | Ficha de un elemento. |
+| `POST` | `/api/bonding/analyze` | Analizador de enlaces químicos (carácter iónico/covalente/metálico y puentes de H). |
+| `GET` | `/api/bonding/{z1}/{z2}` | Consulta rápida de enlace entre dos elementos por $Z_1$ y $Z_2$. |
 | `GET` | `/api/spectra/{z}` | Líneas visibles y colores RGB aproximados. |
 | `GET` | `/api/orbitals/{n}/{l}/{m}` | Malla de probabilidad e isosuperficie. |
 | `GET` | `/api/crystals/{z}` | Celda unitaria o respuesta explícita de indisponibilidad. |
@@ -136,7 +138,8 @@ Ejemplos ejecutables:
 
 ```bash
 curl -s http://127.0.0.1:8000/health
-curl -s 'http://127.0.0.1:8000/api/elements?q=iron&limit=5'
+curl -s 'http://127.0.0.1:8000/api/elements?q=iron&metal_class=metal&limit=5'
+curl -s -X POST http://127.0.0.1:8000/api/bonding/analyze -H 'Content-Type: application/json' -d '{"z1":1,"z2":8}'
 curl -s 'http://127.0.0.1:8000/api/spectra/1?max_lines=10'
 ```
 
@@ -181,7 +184,7 @@ cada campo. En particular:
   los demás registros usan una semilla local determinista. No se presenta como
   una copia completa de NIST ASD.
 - Las celdas se generan desde tipo de red y radio covalente. No son una tabla
-  cristalográfica experimental completa y sus enlaces se calculan solo entre
+  cristalgrafica experimental completa y sus enlaces se calculan solo entre
   átomos de la base dentro de la celda.
 - Un campo faltante se serializa como `null`. No se extrapola una medición
   ausente.
@@ -200,9 +203,18 @@ los pasos de compilación están en [`docs/data_pipeline.md`](docs/data_pipeline
 - [CRC Handbook of Chemistry and Physics, CHEMnetBASE](https://hbcp.chemnetbase.com/), secciones de propiedades elementales, espectroscopía y estructuras cristalinas.
 - [NIDE, Andrés Sabogal](https://github.com/AndresSabogal00/NIDE), repositorio inspirador atribuido explícitamente.
 
+## 🏛️ Créditos y Autores
+
+* **Autor Principal & Arquitecto de Software:** Moisés Amundarain Romero
+* **Co-Autores Científicos:** 
+  - **Gamaliel Cisternas Herrera** (Estudiante de Química y Farmacia USS)
+  - **Diego Pavez Gallardo** (Estudiante de Química y Farmacia USS)
+* **Profesora Guía & Líder Académica:** **Dra. Fabiola Acuña Sanhueza** (Docente de Química General USS)
+
 ## Licencia y Derechos de Autor
 
 PIDE es software libre distribuido bajo la licencia [GNU Affero General Public License v3.0 (AGPLv3)](LICENSE). Consulte el archivo [NOTICE](NOTICE) para ver las notas formales de atribución y derechos de autor, incluyendo la atribución histórica al proyecto inspirador [NIDE de Andrés Sabogal](https://github.com/AndresSabogal00/NIDE) (licenciado bajo MIT).
 
 El uso de la marca, nombre e identidad de PIDE y de la Universidad San Sebastián se rige por la política descrita en [TRADEMARK.md](TRADEMARK.md). Las dependencias y fuentes externas conservan sus respectivas licencias.
+
 

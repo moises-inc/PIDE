@@ -3,6 +3,20 @@ Periodic Information and Data Explorer (PIDE)
 Copyright (c) 2026 Moisés Amundarain Romero / Universidad San Sebastián (USS)
 ========================================================================
 
+------------------------------------------------------------------------
+CRÉDITOS Y AUTORES / CREDITS & AUTHORS
+------------------------------------------------------------------------
+
+- Autor Principal & Arquitecto de Software: Moisés Amundarain Romero
+- Co-Autores Científicos:
+    * Gamaliel Cisternas Herrera (Estudiante de Química y Farmacia USS)
+    * Diego Pavez Gallardo (Estudiante de Química y Farmacia USS)
+- Profesora Guía & Líder Académica: Dra. Fabiola Acuña Sanhueza (Docente de Química General USS)
+
+------------------------------------------------------------------------
+LICENCIA Y TÉRMINOS
+------------------------------------------------------------------------
+
 Este programa es software libre: puedes redistribuirlo y/o modificarlo
 bajo los términos de la Licencia Pública General Affero de GNU (GNU AGPLv3)
 tal como fue publicada por la Free Software Foundation, ya sea la versión 3
@@ -21,7 +35,8 @@ ATRIBUCIÓN HISTÓRICA Y RECONOCIMIENTO DE PROYECTO INSPIRADOR
 ------------------------------------------------------------------------
 
 PIDE es un proyecto independiente desarrollado por Moisés Amundarain Romero
-en el contexto académico de la Universidad San Sebastián (USS).
+y su equipo académico en el contexto de Vinculación con el Medio (VcM) de la
+Universidad San Sebastián (USS).
 
 El proyecto inspirador declarado formalmente es NIDE, creado por Andrés Sabogal:
   - Repositorio Oficial: https://github.com/AndresSabogal00/NIDE
@@ -29,7 +44,7 @@ El proyecto inspirador declarado formalmente es NIDE, creado por Andrés Sabogal
 
 NIDE es un explorador local de datos nucleares evaluados; PIDE aplica la filosofía
 de exploración reproducible y arquitectura offline-first a datos periódicos,
-cuánticos y cristalinos. 
+químicos, cuánticos y cristalinos. 
 
 De acuerdo con los términos de la licencia MIT original de NIDE, la inclusión
 de conceptos o derivados respeta y conserva plenamente el copyright original de
@@ -46,3 +61,4 @@ PIDE recopila y procesa datos públicos de las siguientes organizaciones:
   - CRC Handbook of Chemistry and Physics
 
 Dichas entidades conservan la autoría de las mediciones y datos experimentales.
+

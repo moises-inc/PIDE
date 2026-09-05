@@ -6,7 +6,7 @@ los routers actuales.
 
 **Base local:** `http://127.0.0.1:8000`
 
-La aplicación expone nueve rutas de aplicación: `/health` y ocho operaciones
+La aplicación expone diez rutas de aplicación: `/health` y nueve operaciones
 con prefijo `/api`. FastAPI también sirve `/docs`, `/redoc` y `/openapi.json`
 con su configuración predeterminada.
 
@@ -54,6 +54,7 @@ Devuelve una lista de `Element`. Los filtros se combinan con AND.
 | `group` | integer | `null` | `1..18`. |
 | `period` | integer | `null` | `1..7`. |
 | `category` | string | `null` | Categoría reconocida por el registro. |
+| `metal_class` | string | `null` | Clasificación elemental: `metal`, `metalloid` o `nonmetal`. |
 | `q` | string | `null` | Búsqueda sin distinguir mayúsculas en símbolo, nombre inglés o nombre español. |
 | `offset` | integer | `0` | `0..117`. |
 | `limit` | integer | `118` | `1..118`. |
@@ -62,7 +63,7 @@ Ejemplos:
 
 ```bash
 curl -s 'http://127.0.0.1:8000/api/elements?block=d&period=4&limit=10'
-curl -s 'http://127.0.0.1:8000/api/elements?q=iron'
+curl -s 'http://127.0.0.1:8000/api/elements?q=iron&metal_class=metal'
 curl -s 'http://127.0.0.1:8000/api/elements?category=noble_gas&offset=0&limit=7'
 ```
 
@@ -91,6 +92,52 @@ Los nombres siguientes son los alias públicos serializados por Pydantic:
 La mayoría de propiedades físicas pueden ser `null`. `source` es un diccionario
 de metadata a nivel de registro; `derivedFields` identifica campos derivados
 según el snapshot actual, no es una auditoría de cada cálculo.
+
+## Analizador de Enlaces Químicos
+
+### `POST /api/bonding/analyze`
+
+Calcula el tipo de enlace dominante entre dos elementos y la formación potencial de puentes de hidrógeno según la escala de electronegatividad de Pauling y el criterio de Hannay-Smyth.
+
+Cuerpo de petición:
+
+```json
+{
+  "z1": 1,
+  "z2": 8
+}
+```
+
+Respuesta `200` (`BondAnalysisResponse`):
+
+```json
+{
+  "z1": 1,
+  "z2": 8,
+  "symbol1": "H",
+  "symbol2": "O",
+  "nameEs1": "Hidrógeno",
+  "nameEs2": "Oxígeno",
+  "electronegativity1": 2.2,
+  "electronegativity2": 3.44,
+  "electronegativityDiff": 1.24,
+  "dominantType": "Covalente Polar",
+  "ionicPercent": 31.9,
+  "covalentPercent": 68.1,
+  "metallicPercent": 0.0,
+  "hydrogenBonding": {
+    "canForm": true,
+    "role": "Donador H-O / Aceptor O",
+    "details": "El par H-O cumple con la regla N-O-F para formar puentes de hidrógeno."
+  },
+  "explanation": "La diferencia de electronegatividad (1.24) indica un enlace Covalente Polar con 68.1% de carácter covalente."
+}
+```
+
+### `GET /api/bonding/{z1}/{z2}`
+
+Consulta por parámetros de ruta los elementos `z1` y `z2` (`1..118`). Retorna el mismo payload de `BondAnalysisResponse`.
+
 
 ## Tendencias
 

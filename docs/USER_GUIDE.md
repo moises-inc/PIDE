@@ -67,28 +67,22 @@ quoted as an API or NIST result.
 
 ## 4. Navigate the workspace
 
-The navigation rail contains four modules. On a narrow viewport, open it with
-the menu button; selecting an item closes the rail and scrolls to the section.
+The navigation rail contains five primary modules (`01 Periodic Table`, `02 Bond Analyzer`, `03 Spectroscopy`, `04 3D Models`, `05 Comparison & Trends`). On a narrow viewport, open it with the menu button; selecting an item closes the rail and scrolls to the section.
 
 ### Periodic table
 
-1. Use the search box for a symbol, English name, Spanish name, or atomic
-   number.
-2. Use the heatmap selector to color cells by one of the typed element
-   properties.
-3. Move the temperature control to classify each element as solid, liquid,
-   gas, or unavailable from the stored melting and boiling points.
-4. Select a cell to open its detail dialog.
-5. The `f-block` is shown below the main grid for lanthanides and actinides.
+1. Use the search box for a symbol, English name, Spanish name, or atomic number.
+2. Filter by elemental type (Metals, Metalloids, Nonmetals) or by chemical family (Alkali metals, Alkaline earth, Transition metals, Lanthanides, Actinides, Halogens, Noble gases) from the interactive legend.
+3. Use the heatmap selector to color cells by one of the typed element properties.
+4. Move the temperature control to classify each element as solid, liquid, gas, or unavailable from the stored melting and boiling points.
+5. Select a cell to open its detail dialog.
+6. The `f-block` is shown below the main grid for lanthanides and actinides.
 
-The heatmap is a relative display over the values currently loaded. It is not
-a physical scale and does not fill missing values.
+The heatmap is a relative display over the values currently loaded. It is not a physical scale and does not fill missing values.
 
 ### Element detail
 
-The detail dialog shows identity, category, selected properties, electron
-configuration, oxidation states, uses, and source metadata. The phase readout
-uses the selected temperature. `null` values are displayed as unavailable.
+The detail dialog shows identity, category, metal classification, selected properties, electron configuration, oxidation states, uses, and source metadata. The phase readout uses the selected temperature. `null` values are displayed as unavailable.
 
 Available actions:
 
@@ -97,8 +91,17 @@ Available actions:
 - Copy its atomic number using the browser clipboard API.
 - Close with the close button, backdrop, or `Escape`.
 
-The comparison selection accepts 2 to 8 elements for an API comparison. The UI
-can show an empty or one-element selection while it waits for another choice.
+### Chemical bond analyzer (Section 02)
+
+1. Select two elements from the table or dropdown selector ($Z_1$ and $Z_2$).
+2. Inspect Pauling electronegativities ($\chi$) and electronegativity difference $\Delta\chi = |\chi_1 - \chi_2|$.
+3. View the single, dominant bond type determined deterministically:
+   - **Metallic:** Formed between two metals ($Z_1$ and $Z_2$ are metals).
+   - **Non-polar Covalent:** $\Delta\chi \le 0.4$ between non-metals/metalloids.
+   - **Polar Covalent:** $0.4 < \Delta\chi \le 1.7$ between non-metals/metalloids.
+   - **Ionic:** $\Delta\chi > 1.7$ or metal + highly electronegative non-metal combination.
+4. View quantitative ionic character breakdown by Hannay-Smyth equation ($P_{\text{ionic}} = 16|\Delta\chi| + 3.5(\Delta\chi)^2$) and complementary covalent percentage.
+5. Verify whether the pair forms hydrogen bonding ($\text{N-H}, \text{O-H}, \text{F-H}$ with acceptor atoms $\text{N}, \text{O}, \text{F}$).
 
 ### Emission spectroscopy
 
@@ -106,6 +109,7 @@ The visible spectrum chart spans `380..780 nm`. Each vertical line shows a
 stored or generated transition, relative intensity, and an RGB display color.
 Hover the line to read its wavelength, transition, and intensity. The side
 panel lists the first five lines.
+
 
 The API can return records labeled `NIST ASD offline snapshot` or
 `deterministic local seed`, depending on the element. The latter is a local
@@ -205,7 +209,7 @@ npm --prefix frontend run build
 python3 -m compileall -q backend/app backend/pide backend/scripts
 ```
 
-The checked workspace reported 118 records in each dataset, 153 passing tests,
+The checked workspace reported 118 records in each dataset, 168 passing tests,
 a successful TypeScript/Vite build, and no `compileall` errors.
 
 ## 8. Troubleshooting
@@ -220,7 +224,15 @@ a successful TypeScript/Vite build, and no `compileall` errors.
 | Values appear as `null` or `—` | The snapshot does not provide that field; PIDE does not extrapolate it. |
 | Build fails after dependency changes | Reinstall with `npm --prefix frontend install` and rerun the documented checks. |
 
-## 9. Scientific limits and references
+## 9. Credits & Authors
+
+* **Lead Author & Software Architect:** Moisés Amundarain Romero
+* **Scientific Co-Authors:** 
+  - **Gamaliel Cisternas Herrera** (Pharmacy & Chemistry Student, USS)
+  - **Diego Pavez Gallardo** (Pharmacy & Chemistry Student, USS)
+* **Lead Advisor & Academic Lead:** **Dra. Fabiola Acuña Sanhueza** (General Chemistry Professor, USS)
+
+## 10. Scientific limits and references
 
 The data pipeline is an offline seed with record-level source metadata. It is
 not a live synchronization client. NIST-labeled spectral overrides are not a
@@ -232,6 +244,7 @@ using a value outside an exploratory context. External references:
 
 - [IUPAC periodic table](https://iupac.org/what-we-do/periodic-table-of-elements/)
 - [CIAAW standard atomic weights](https://ciaaw.org/atomic-weights.htm)
+
 - [NIST Atomic Spectra Database](https://www.nist.gov/pml/atomic-spectra-database)
 - [CRC Handbook, CHEMnetBASE](https://hbcp.chemnetbase.com/)
 - [NIDE by Andrés Sabogal](https://github.com/AndresSabogal00/NIDE)
