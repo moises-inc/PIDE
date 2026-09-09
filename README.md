@@ -210,7 +210,7 @@ los pasos de compilación están en [`docs/data_pipeline.md`](docs/data_pipeline
   - **Gamaliel Cisternas Herrera** (Estudiante de Química y Farmacia USS)
   - **Diego Pavez Gallardo** (Estudiante de Química y Farmacia USS)
 * **Profesora Guía & Líder Académica:** **Dra. Fabiola Acuña Sanhueza** (Docente de Química General USS)
-**Agradecimientos Especiales:** Un agradecimiento especial al Dr. Raúl Aguayo Burdiles por creer desde el principio en este proyecto.
+* **Agradecimientos Especiales:** Un agradecimiento especial al Dr. Raúl Aguayo Burdiles por creer desde el principio en este proyecto.
 
 ## Licencia y Derechos de Autor
 
