@@ -33,23 +33,38 @@ export function CrystalCanvas({ data, loading, error }: CrystalCanvasProps) {
     renderer.setClearColor('#08151a', 1);
     mount.appendChild(renderer.domElement);
 
-    scene.add(new THREE.HemisphereLight('#b4eef1', '#081014', 2));
-    const light = new THREE.PointLight('#eeb45c', 14, 24);
-    light.position.set(4, 5, 5);
+    scene.add(new THREE.HemisphereLight('#b4eef1', '#081014', 2.8));
+    const light = new THREE.PointLight('#eeb45c', 16, 30);
+    light.position.set(5, 6, 6);
     scene.add(light);
+    const fillLight = new THREE.PointLight('#42d5dd', 10, 25);
+    fillLight.position.set(-5, -4, -4);
+    scene.add(fillLight);
+    scene.add(new THREE.AmbientLight('#ffffff', 0.5));
 
     const cell = data.cell;
+    const a = cell.aAngstrom ?? cell.a_angstrom ?? 1;
+    const b = cell.bAngstrom ?? cell.b_angstrom ?? 1;
+    const c = cell.cAngstrom ?? cell.c_angstrom ?? 1;
+
     const group = new THREE.Group();
-    const scale = 2.45 / Math.max(cell.aAngstrom, cell.bAngstrom, cell.cAngstrom, 1);
-    const center = new THREE.Vector3(cell.aAngstrom / 2, cell.bAngstrom / 2, cell.cAngstrom / 2);
+    const maxDim = Math.max(a, b, c, 1);
+    const scale = 2.5 / maxDim;
+    const center = new THREE.Vector3(a / 2, b / 2, c / 2);
     const pointFor = (position: [number, number, number]) => new THREE.Vector3(position[0], position[1], position[2]).sub(center).multiplyScalar(scale);
 
-    const atomGeometry = new THREE.SphereGeometry(0.22, 20, 14);
+    const atomGeometry = new THREE.SphereGeometry(0.24, 24, 16);
     data.atoms.forEach((atom, index) => {
-      const material = new THREE.MeshStandardMaterial({ color: index === 0 ? '#f0b65e' : '#42d5dd', emissive: index === 0 ? '#8e5316' : '#0b6b75', emissiveIntensity: 0.55, roughness: 0.32 });
+      const material = new THREE.MeshStandardMaterial({
+        color: index === 0 ? '#f0b65e' : '#42d5dd',
+        emissive: index === 0 ? '#b45309' : '#0e7490',
+        emissiveIntensity: 0.65,
+        roughness: 0.28,
+        metalness: 0.25,
+      });
       const sphere = new THREE.Mesh(atomGeometry, material);
       sphere.position.copy(pointFor(atom.position));
-      sphere.scale.setScalar(index === 0 ? 1.08 : 0.82);
+      sphere.scale.setScalar(index === 0 ? 1.1 : 0.88);
       group.add(sphere);
     });
 
@@ -63,19 +78,19 @@ export function CrystalCanvas({ data, loading, error }: CrystalCanvasProps) {
     if (bondPositions.length > 0) {
       const bondGeometry = new THREE.BufferGeometry();
       bondGeometry.setAttribute('position', new THREE.Float32BufferAttribute(bondPositions, 3));
-      group.add(new THREE.LineSegments(bondGeometry, new THREE.LineBasicMaterial({ color: '#8aaeb1', transparent: true, opacity: 0.65 })));
+      group.add(new THREE.LineSegments(bondGeometry, new THREE.LineBasicMaterial({ color: '#67e8f9', transparent: true, opacity: 0.75 })));
     }
 
     const corners = [
-      [0, 0, 0], [cell.aAngstrom, 0, 0], [cell.aAngstrom, cell.bAngstrom, 0], [0, cell.bAngstrom, 0],
-      [0, 0, cell.cAngstrom], [cell.aAngstrom, 0, cell.cAngstrom], [cell.aAngstrom, cell.bAngstrom, cell.cAngstrom], [0, cell.bAngstrom, cell.cAngstrom],
+      [0, 0, 0], [a, 0, 0], [a, b, 0], [0, b, 0],
+      [0, 0, c], [a, 0, c], [a, b, c], [0, b, c],
     ].map((corner) => pointFor(corner as [number, number, number]));
     const edgePairs = [[0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [5, 6], [6, 7], [7, 4], [0, 4], [1, 5], [2, 6], [3, 7]];
     const cellPositions: number[] = [];
     edgePairs.forEach(([from, to]) => cellPositions.push(...corners[from].toArray(), ...corners[to].toArray()));
     const cellGeometry = new THREE.BufferGeometry();
     cellGeometry.setAttribute('position', new THREE.Float32BufferAttribute(cellPositions, 3));
-    group.add(new THREE.LineSegments(cellGeometry, new THREE.LineBasicMaterial({ color: '#42d5dd', transparent: true, opacity: 0.38 })));
+    group.add(new THREE.LineSegments(cellGeometry, new THREE.LineBasicMaterial({ color: '#38bdf8', transparent: true, opacity: 0.55 })));
     scene.add(group);
 
     const controls = new OrbitControls(camera, renderer.domElement);

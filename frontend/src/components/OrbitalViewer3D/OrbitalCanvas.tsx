@@ -23,7 +23,7 @@ export function OrbitalCanvas({ data, loading, error, label }: OrbitalCanvasProp
     const scene = new THREE.Scene();
     scene.background = new THREE.Color('#08151a');
     const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
-    camera.position.set(3.4, 2.8, 4.7);
+    camera.position.set(2.8, 2.2, 3.8);
     let renderer: THREE.WebGLRenderer;
     try {
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -35,12 +35,12 @@ export function OrbitalCanvas({ data, loading, error, label }: OrbitalCanvasProp
     renderer.setClearColor('#08151a', 1);
     mount.appendChild(renderer.domElement);
 
-    const ambient = new THREE.HemisphereLight('#9ceef2', '#081014', 2.2);
+    const ambient = new THREE.HemisphereLight('#9ceef2', '#081014', 2.5);
     scene.add(ambient);
-    const keyLight = new THREE.PointLight('#f3bb61', 12, 20);
+    const keyLight = new THREE.PointLight('#f3bb61', 14, 22);
     keyLight.position.set(3, 4, 4);
     scene.add(keyLight);
-    const fillLight = new THREE.PointLight('#42d8df', 8, 15);
+    const fillLight = new THREE.PointLight('#42d8df', 10, 18);
     fillLight.position.set(-4, -2, 2);
     scene.add(fillLight);
 
@@ -53,21 +53,21 @@ export function OrbitalCanvas({ data, loading, error, label }: OrbitalCanvasProp
     if (indices.length > 0) geometry.setIndex(indices);
     geometry.computeVertexNormals();
     const orbitalMaterial = new THREE.MeshStandardMaterial({
-      color: '#54e2e7',
-      emissive: '#0c7178',
-      emissiveIntensity: 0.5,
+      color: '#38bdf8',
+      emissive: '#0284c7',
+      emissiveIntensity: 0.55,
       transparent: true,
-      opacity: 0.65,
-      roughness: 0.3,
-      metalness: 0.12,
+      opacity: 0.72,
+      roughness: 0.25,
+      metalness: 0.15,
       side: THREE.DoubleSide,
     });
     if (positions.length > 0) orbitalGroup.add(new THREE.Mesh(geometry, orbitalMaterial));
     if (positions.length > 0 && indices.length > 0) {
       const edges = new THREE.EdgesGeometry(geometry, 25);
-      orbitalGroup.add(new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: '#b3fbf1', transparent: true, opacity: 0.18 })));
+      orbitalGroup.add(new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: '#7dd3fc', transparent: true, opacity: 0.25 })));
     }
-    const nucleus = new THREE.Mesh(new THREE.SphereGeometry(0.1, 18, 12), new THREE.MeshStandardMaterial({ color: '#f1b55b', emissive: '#925c18', emissiveIntensity: 0.8 }));
+    const nucleus = new THREE.Mesh(new THREE.SphereGeometry(0.12, 20, 14), new THREE.MeshStandardMaterial({ color: '#fbbf24', emissive: '#b45309', emissiveIntensity: 0.85 }));
     orbitalGroup.add(nucleus);
     scene.add(orbitalGroup);
 
@@ -78,8 +78,8 @@ export function OrbitalCanvas({ data, loading, error, label }: OrbitalCanvasProp
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.enablePan = false;
-    controls.minDistance = 2.6;
-    controls.maxDistance = 8;
+    controls.minDistance = 1.8;
+    controls.maxDistance = 10;
     controls.autoRotate = true;
     controls.autoRotateSpeed = 0.65;
 
@@ -112,10 +112,30 @@ export function OrbitalCanvas({ data, loading, error, label }: OrbitalCanvasProp
     };
   }, [data]);
 
+  const handleOpenMolBuilder = () => {
+    const host = typeof window !== 'undefined' && window.location.hostname ? window.location.hostname : '127.0.0.1';
+    window.open(`http://${host}:5174`, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <div className="three-stage orbital-stage" ref={mountRef}>
       <div className="three-hud"><span><Atom size={14} /> {label}</span><span className="hud-chip">|ψ|² / 90%</span></div>
       <div className="three-help"><MousePointer2 size={13} /> Arrastra para orbitar · rueda para zoom</div>
+      <button 
+        type="button" 
+        className="vcm-orbital-invite-banner" 
+        onClick={handleOpenMolBuilder} 
+        title="Abrir Taller Práctico VcM 3D MolBuilder en nueva pestaña"
+      >
+        <span className="vcm-invite-content">
+          <span className="vcm-invite-icon">🧪</span>
+          <span className="vcm-invite-text">
+            <strong>Taller Práctico VcM 3D MolBuilder</strong>
+            <small>¡Arma moléculas con kits físicos en el laboratorio escolar!</small>
+          </span>
+        </span>
+        <span className="vcm-invite-cta">Entrar ↗</span>
+      </button>
       {renderError ? <div className="three-state error"><AlertTriangle size={22} /><span>{renderError}</span></div> : loading ? <div className="three-state"><LoaderCircle className="spin" size={23} /><span>Generando isosuperficie…</span></div> : error && !data ? <div className="three-state error"><AlertTriangle size={22} /><span>{error}</span></div> : null}
     </div>
   );

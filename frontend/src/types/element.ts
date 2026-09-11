@@ -115,12 +115,18 @@ export interface CrystalResponse {
   lattice: string;
   latticeSystem: string;
   cell: {
-    aAngstrom: number;
-    bAngstrom: number;
-    cAngstrom: number;
-    alphaDeg: number;
-    betaDeg: number;
-    gammaDeg: number;
+    aAngstrom?: number;
+    bAngstrom?: number;
+    cAngstrom?: number;
+    a_angstrom?: number;
+    b_angstrom?: number;
+    c_angstrom?: number;
+    alphaDeg?: number;
+    betaDeg?: number;
+    gammaDeg?: number;
+    alpha_deg?: number;
+    beta_deg?: number;
+    gamma_deg?: number;
   };
   atoms: CellAtom[];
   bonds: Array<[number, number]>;

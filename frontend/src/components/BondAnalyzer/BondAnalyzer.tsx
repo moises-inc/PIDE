@@ -1,8 +1,98 @@
-import { AlertCircle, ArrowLeftRight, Droplets, Gauge, Info, Link2, RefreshCw, Zap } from 'lucide-react';
+import { AlertCircle, ArrowLeftRight, Droplets, Gauge, Info, Layers, Link2, RefreshCw, Zap } from 'lucide-react';
 import type { BondAnalysisResponse, ElementRecord } from '../../types/element';
 import { formatValue } from '../../utils/chemistry';
 
 const PAULING_MAX = 3.3;
+
+interface IntermolecularForce {
+  name: string;
+  category: string;
+  badgeClass: string;
+  statusText: string;
+  icon: 'droplets' | 'zap' | 'link2' | 'layers';
+  explanation: string;
+}
+
+function determineIntermolecularForces(
+  z1: number,
+  z2: number,
+  result: BondAnalysisResponse
+): IntermolecularForce[] {
+  const forces: IntermolecularForce[] = [];
+  const delta = result.deltaElectronegativity;
+
+  if (result.bondType === 'metallic') {
+    forces.push({
+      name: 'Mar de Electrones / Enlace Metálico',
+      category: 'Cohesión Metálica en Red',
+      badgeClass: 'imf-metallic',
+      statusText: 'Interacción Primaria de Red',
+      icon: 'layers',
+      explanation: `Los cationes metálicos de ${result.symbol1} y ${result.symbol2} comparten electrones de valencia totalmente deslocalizados en una red cristalina compacta de alta conductividad.`,
+    });
+    return forces;
+  }
+
+  if (result.bondType === 'ionic' || (delta !== null && delta >= 1.7)) {
+    forces.push({
+      name: 'Atracción Electrostática (Red Iónica)',
+      category: 'Fuerza Coulómbica Reticular',
+      badgeClass: 'imf-ionic',
+      statusText: 'Fuerza Dominante (500–4000 kJ/mol)',
+      icon: 'zap',
+      explanation: `Atracción electrostática omnidireccional no covalente entre iones de carga opuesta (${result.symbol1} y ${result.symbol2}) que estructuran una red cristalina tridimensional de gran estabilidad térmica.`,
+    });
+    return forces;
+  }
+
+  // Sistemas covalentes / moleculares
+  const isHydrogenBond =
+    result.hasHydrogenBondPotential ||
+    (z1 === 1 && [7, 8, 9].includes(z2)) ||
+    (z2 === 1 && [7, 8, 9].includes(z1));
+
+  if (isHydrogenBond) {
+    forces.push({
+      name: 'Puentes de Hidrógeno (Regla N–O–F)',
+      category: 'Interacción Dipolar Especial',
+      badgeClass: 'imf-hbond',
+      statusText: 'Activo · Regla N–O–F (10–40 kJ/mol)',
+      icon: 'droplets',
+      explanation:
+        'Interacción dipolo-dipolo extraordinariamente potente entre el átomo de hidrógeno parcialmente desapantallado (δ⁺) y los pares de electrones libres solitarios de nitrógeno, oxígeno o flúor (δ⁻).',
+    });
+  }
+
+  const isPolar =
+    result.bondType === 'covalent_polar' || (delta !== null && delta >= 0.4 && delta < 1.7);
+
+  if (isPolar) {
+    forces.push({
+      name: 'Atracción Dipolo-Dipolo (Keesom)',
+      category: 'Fuerza de van der Waals',
+      badgeClass: 'imf-dipole',
+      statusText: 'Activo · Dipolos Permanentes (2–10 kJ/mol)',
+      icon: 'zap',
+      explanation: `Alineación y atracción electrostática mutua entre los polos permanentes δ⁺ y δ⁻ de moléculas adyacentes inducida por la diferencia de electronegatividad Δχ = ${formatValue(delta, 2)}.`,
+    });
+  }
+
+  const isNonpolar =
+    result.bondType === 'covalent_nonpolar' || (delta !== null && delta < 0.4);
+
+  forces.push({
+    name: 'Fuerzas de Dispersión de London',
+    category: 'Dipolo Instantáneo – Inducido',
+    badgeClass: isNonpolar ? 'imf-london-dominant' : 'imf-london-universal',
+    statusText: isNonpolar ? 'Dominante en Apolar (0.05–4 kJ/mol)' : 'Universal Coadyuvante',
+    icon: 'link2',
+    explanation: isNonpolar
+      ? 'Fluctuaciones cuánticas instantáneas y transitorias en la densidad electrónica generan dipolos temporales inducidos. Es la principal fuerza cohesiva en moléculas apolares y gases nobles.'
+      : 'Presentes en toda especie química debido a la polarizabilidad de la nube electrónica; actúan sinérgicamente junto con las fuerzas dipolares permanentes.',
+  });
+
+  return forces;
+}
 
 const SHORTCUTS: Array<{ label: string; z1: number; z2: number }> = [
   { label: 'H₂O', z1: 1, z2: 8 },
@@ -201,6 +291,43 @@ export function BondAnalyzer({
               {result.bondType === 'metallic' ? 'En un enlace metálico no hay dipolo localizado: la densidad electrónica se deslocaliza en un mar compartido.' :
                 result.deltaElectronegativity === null ? 'Sin datos de electronegatividad no es posible asignar polarización parcial.' :
                   'El elemento más electronegativo concentra densidad (δ⁻) y el otro queda deficitario (δ⁺).'}
+            </span>
+          </div>
+        </div>
+
+        <div className="panel bond-card imf-panel">
+          <div className="panel-heading">
+            <span><span className="panel-number">F</span> Fuerzas intermoleculares en el compuesto/par</span>
+            <span className="panel-meta">{result.symbol1}–{result.symbol2} · interacciones en fase condensada</span>
+          </div>
+          <div className="imf-grid">
+            {determineIntermolecularForces(z1, z2, result).map((force) => (
+              <div className={`imf-card ${force.badgeClass}`} key={force.name}>
+                <div className="imf-card-header">
+                  <div className="imf-card-title">
+                    {force.icon === 'droplets' ? <Droplets size={17} /> :
+                     force.icon === 'zap' ? <Zap size={17} /> :
+                     force.icon === 'layers' ? <Layers size={17} /> :
+                     <Link2 size={17} />}
+                    <strong>{force.name}</strong>
+                  </div>
+                  <span className={`imf-badge ${force.badgeClass}`}>{force.statusText}</span>
+                </div>
+                <p className="imf-description">{force.explanation}</p>
+                <div className="imf-footer">
+                  <span className="imf-category">{force.category}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="aside-note">
+            <Info size={14} />
+            <span>
+              {result.bondType === 'metallic'
+                ? 'En enlaces metálicos, la cohesión omnidireccional del mar de electrones prevalece sobre interacciones intermoleculares dispersivas.'
+                : result.bondType === 'ionic'
+                ? 'En sólidos iónicos cristalinos, las fuerzas reticulares coulóbicas superan ampliamente a las atracciones de van der Waals.'
+                : 'En sustancias covalentes moleculares, las fuerzas intermoleculares determinan propiedades físicas clave como volatilidad, viscosidad y estados de agregación.'}
             </span>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Copy, Download, Droplets, ExternalLink, Orbit, Plus, X } from 'lucide-react';
+import { Copy, Download, ExternalLink, Orbit, Plus, X } from 'lucide-react';
 import type { ElementRecord } from '../../types/element';
 import { categoryLabel, formatTemperature, formatValue, metalClassLabel, phaseAtTemperature, phaseLabel } from '../../utils/chemistry';
 
@@ -78,15 +78,18 @@ export function ElementDetail({ element, temperature, isCompared, open, onClose,
           <div className="detail-section"><div className="section-heading"><span>Propiedades seleccionadas</span><small>snapshot local / API</small></div><div className="property-table">{values.map(([label, value, unit]) => <div className="property-row" key={label}><span>{label}</span><strong>{value}</strong><small>{unit}</small></div>)}</div></div>
           <div className="detail-columns">
             <div>
-              <div className="section-heading"><span>Configuración electrónica</span></div>
+              <div className="section-heading"><span>Configuración electrónica</span><small>gas noble / completa</small></div>
               <div className="config-block">
+                <div className="config-row config-row-condensed">
+                  <div className="config-label-group">
+                    <span className="config-label config-label-highlight">Abreviada (gas noble)</span>
+                    <span className="config-highlight-tag">Destacada</span>
+                  </div>
+                  <p className="condensed-value">{element.electronConfigurationCondensed ?? 'Sin dato'}</p>
+                </div>
                 <div className="config-row">
                   <span className="config-label">General (completa)</span>
                   <p className="mono-value">{element.electronConfiguration ?? 'Sin dato'}</p>
-                </div>
-                <div className="config-row">
-                  <span className="config-label">Abreviada (gas noble)</span>
-                  <p className="condensed-value">{element.electronConfigurationCondensed ?? 'Sin dato'}</p>
                 </div>
               </div>
             </div>
@@ -129,31 +132,6 @@ export function ElementDetail({ element, temperature, isCompared, open, onClose,
                 <small>Sin compuestos registrados</small>
               )}
             </div>
-          </div>
-
-          <div className="detail-section">
-            <div className="section-heading">
-              <span>Fuerzas intermoleculares</span>
-              <small>interacciones en fase condensada</small>
-            </div>
-            <div className="forces-list">
-              {element.intermolecularForces && element.intermolecularForces.length > 0 ? (
-                element.intermolecularForces.map((force) => (
-                  <span className="force-pill" key={force}>{force}</span>
-                ))
-              ) : (
-                <small>Sin dato</small>
-              )}
-            </div>
-            {element.hydrogenBondingDetail && (
-              <div className="hbond-detail-box">
-                <div className="hbond-detail-header">
-                  <Droplets size={14} />
-                  <span>Detalle de Puentes de Hidrógeno (Regla N–O–F)</span>
-                </div>
-                <p>{element.hydrogenBondingDetail}</p>
-              </div>
-            )}
           </div>
 
           <div className="detail-section"><div className="section-heading"><span>Usos y procedencia</span></div><div className="uses-list">{element.uses.slice(0, 4).map((use) => <span key={use}>{use}</span>)}</div><p className="provenance"><ExternalLink size={13} />{String(element.source.dataset ?? 'PIDE data')} · campos derivados visibles en API</p></div>

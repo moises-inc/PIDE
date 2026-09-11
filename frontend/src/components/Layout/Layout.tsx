@@ -27,6 +27,11 @@ export function Layout({ children, activeSection, onNavigate, onExport, apiOnlin
     setMobileOpen(false);
   };
 
+  const handleOpenMolBuilder = () => {
+    const host = typeof window !== 'undefined' && window.location.hostname ? window.location.hostname : '127.0.0.1';
+    window.open(`http://${host}:5174`, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <div className={`app-frame ${railCollapsed ? 'rail-collapsed' : ''}`}>
       <div className={`mobile-scrim ${mobileOpen ? 'is-visible' : ''}`} onClick={() => setMobileOpen(false)} aria-hidden="true" />
@@ -60,6 +65,22 @@ export function Layout({ children, activeSection, onNavigate, onExport, apiOnlin
               <span className="nav-copy"><strong>{item.label}</strong><small>{item.detail}</small></span>
             </button>
           ))}
+
+          <div className="vcm-molbuilder-wrap">
+            <button
+              className="vcm-molbuilder-nav-item"
+              type="button"
+              onClick={handleOpenMolBuilder}
+              aria-label="Taller VcM 3D MolBuilder"
+              title="Abrir Taller VcM 3D MolBuilder en nueva pestaña (puerto 5174)"
+            >
+              <span className="vcm-nav-icon">🧪</span>
+              <span className="nav-copy">
+                <strong className="vcm-nav-title">Taller VcM 3D MolBuilder</strong>
+                <small className="vcm-nav-desc">Armado Molecular 3D ↗</small>
+              </span>
+            </button>
+          </div>
         </nav>
 
         <div className="rail-spacer" />
