@@ -23,10 +23,10 @@ function standaloneDemoFallback(): Plugin {
           } catch {
             // Backend offline: responder HTTP 503 silenciosamente sin logs en rojo
           }
-          res.statusCode = 503;
-          res.setHeader('Content-Type', 'application/json');
-          res.end(JSON.stringify({ offline: true, message: 'Modo Demo Activo (Backend offline)' }));
-          return;
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({ offline: true, demo: true, message: 'PIDE Modo Demo Activo (Backend local snapshot)' }));
+            return;
         }
         next();
       });
