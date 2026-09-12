@@ -71,7 +71,7 @@ function App() {
     setIsSyncing(true);
     getElements()
       .then((payload) => {
-        if (!active || payload.length === 0) return;
+        if (!active || !Array.isArray(payload) || payload.length === 0) return;
         setElements(payload);
         setApiOnline(true);
         setGlobalNotice('');
@@ -102,61 +102,81 @@ function App() {
     setSpectrumLoading(true);
     setSpectrumError(null);
     setSpectrum(getDemoSpectrum(selectedZ));
+    if (!apiOnline) {
+      setSpectrumLoading(false);
+      return;
+    }
     const fallbackMessage = 'No se pudo cargar el espectro desde la API.';
     getSpectrum(selectedZ)
       .then((payload) => { if (active) setSpectrum(payload); })
       .catch((error: unknown) => { if (active) setSpectrumError(error instanceof ApiRequestError ? error.message : fallbackMessage); })
       .finally(() => { if (active) setSpectrumLoading(false); });
     return () => { active = false; };
-  }, [selectedZ]);
+  }, [selectedZ, apiOnline]);
 
   useEffect(() => {
     let active = true;
     setBondLoading(true);
     setBondError(null);
     setBond(getDemoBondAnalysis(bondZ1, bondZ2));
+    if (!apiOnline) {
+      setBondLoading(false);
+      return;
+    }
     analyzeBondApi(bondZ1, bondZ2)
       .then((payload) => { if (active) setBond(payload); })
       .catch((error: unknown) => { if (active) setBondError(error instanceof ApiRequestError ? error.message : 'No se pudo analizar el enlace.'); })
       .finally(() => { if (active) setBondLoading(false); });
     return () => { active = false; };
-  }, [bondZ1, bondZ2]);
+  }, [bondZ1, bondZ2, apiOnline]);
 
   useEffect(() => {
     let active = true;
     setCrystalLoading(true);
     setCrystalError(null);
     setCrystal(getDemoCrystal(selectedZ));
+    if (!apiOnline) {
+      setCrystalLoading(false);
+      return;
+    }
     getCrystal(selectedZ)
       .then((payload) => { if (active) setCrystal(payload); })
       .catch((error: unknown) => { if (active) setCrystalError(error instanceof ApiRequestError ? error.message : 'No se pudo cargar la celda cristalina.'); })
       .finally(() => { if (active) setCrystalLoading(false); });
     return () => { active = false; };
-  }, [selectedZ]);
+  }, [selectedZ, apiOnline]);
 
   useEffect(() => {
     let active = true;
     setOrbitalLoading(true);
     setOrbitalError(null);
     setOrbital(getDemoOrbital(orbitalN, orbitalL, orbitalM));
+    if (!apiOnline) {
+      setOrbitalLoading(false);
+      return;
+    }
     getOrbital(orbitalN, orbitalL, orbitalM, selectedZ)
       .then((payload) => { if (active) setOrbital(payload); })
       .catch((error: unknown) => { if (active) setOrbitalError(error instanceof ApiRequestError ? error.message : 'No se pudo calcular el orbital.'); })
       .finally(() => { if (active) setOrbitalLoading(false); });
     return () => { active = false; };
-  }, [orbitalL, orbitalM, orbitalN, selectedZ]);
+  }, [orbitalL, orbitalM, orbitalN, selectedZ, apiOnline]);
 
   useEffect(() => {
     let active = true;
     setTrendLoading(true);
     setTrendError(null);
     setTrend(getDemoTrend(trendProperty));
+    if (!apiOnline) {
+      setTrendLoading(false);
+      return;
+    }
     getTrend(trendProperty)
       .then((payload) => { if (active) setTrend(payload); })
       .catch((error: unknown) => { if (active) setTrendError(error instanceof ApiRequestError ? error.message : 'No se pudo cargar la tendencia.'); })
       .finally(() => { if (active) setTrendLoading(false); });
     return () => { active = false; };
-  }, [trendProperty]);
+  }, [trendProperty, apiOnline]);
 
   useEffect(() => {
     let active = true;
@@ -167,12 +187,16 @@ function App() {
     setComparisonLoading(true);
     setComparisonError(null);
     setComparison(getDemoCompare(comparedZs));
+    if (!apiOnline) {
+      setComparisonLoading(false);
+      return;
+    }
     compareElementsApi(comparedZs, ['atomicMass', 'densityGcm3', 'meltingPointK'])
       .then((payload) => { if (active) setComparison(payload); })
       .catch((error: unknown) => { if (active) setComparisonError(error instanceof ApiRequestError ? error.message : 'No se pudo actualizar la comparación.'); })
       .finally(() => { if (active) setComparisonLoading(false); });
     return () => { active = false; };
-  }, [comparedZs]);
+  }, [comparedZs, apiOnline]);
 
   const selectElement = (z: number) => {
     setSelectedZ(z);

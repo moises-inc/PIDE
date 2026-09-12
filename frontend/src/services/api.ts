@@ -54,14 +54,18 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   return payload as T;
 }
 
-export function getElements(query?: { q?: string; block?: string; period?: number; group?: number }): Promise<ElementRecord[]> {
+export async function getElements(query?: { q?: string; block?: string; period?: number; group?: number }): Promise<ElementRecord[]> {
   const params = new URLSearchParams();
   if (query?.q) params.set('q', query.q);
   if (query?.block) params.set('block', query.block);
   if (query?.period) params.set('period', String(query.period));
   if (query?.group) params.set('group', String(query.group));
   const suffix = params.toString() ? `?${params.toString()}` : '';
-  return request<ElementRecord[]>(`/elements${suffix}`);
+  const payload = await request<ElementRecord[]>(`/elements${suffix}`);
+  if (!Array.isArray(payload)) {
+    throw new ApiRequestError('Payload de elementos no es un arreglo válido', 0, 'INVALID_PAYLOAD');
+  }
+  return payload;
 }
 
 export function getElement(z: number): Promise<ElementRecord> {

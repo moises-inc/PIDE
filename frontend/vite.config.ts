@@ -21,12 +21,16 @@ function standaloneDemoFallback(): Plugin {
               return;
             }
           } catch {
-            // Backend offline: responder HTTP 503 silenciosamente sin logs en rojo
+            // Backend offline: responder HTTP 200 silenciosamente en modo offline sin generar alertas rojas en consola
           }
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({ offline: true, demo: true, message: 'PIDE Modo Demo Activo (Backend local snapshot)' }));
-            return;
+          res.statusCode = 200;
+          res.setHeader('Content-Type', 'application/json');
+          if (url.startsWith('/api/elements')) {
+            res.end(JSON.stringify([]));
+          } else {
+            res.end(JSON.stringify({ offline: true, demo: true, message: 'Modo offline activo' }));
+          }
+          return;
         }
         next();
       });
