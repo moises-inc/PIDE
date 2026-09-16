@@ -47,7 +47,7 @@ function App() {
   const [crystal, setCrystal] = useState<CrystalResponse>(() => getDemoCrystal(26));
   const [crystalLoading, setCrystalLoading] = useState(false);
   const [crystalError, setCrystalError] = useState<string | null>(null);
-  const [orbital, setOrbital] = useState<OrbitalResponse>(() => getDemoOrbital(3, 2, 0));
+  const [orbital, setOrbital] = useState<OrbitalResponse>(() => getDemoOrbital(3, 2, 0, 26));
   const [orbitalLoading, setOrbitalLoading] = useState(false);
   const [orbitalError, setOrbitalError] = useState<string | null>(null);
   const [orbitalN, setOrbitalN] = useState(3);
@@ -150,7 +150,7 @@ function App() {
     let active = true;
     setOrbitalLoading(true);
     setOrbitalError(null);
-    setOrbital(getDemoOrbital(orbitalN, orbitalL, orbitalM));
+    setOrbital(getDemoOrbital(orbitalN, orbitalL, orbitalM, selectedZ));
     if (!apiOnline) {
       setOrbitalLoading(false);
       return;

@@ -425,29 +425,57 @@ export function getDemoSpectrum(z: number): SpectrumResponse {
   };
 }
 
-function orbitalShape(n: number, l: number, m: number, theta: number, phi: number): number {
-  if (l === 0) return 1;
-  if (l === 1) return m === 0 ? Math.cos(theta) : Math.sin(theta) * Math.cos(phi * Math.max(1, Math.abs(m)));
-  return Math.sin(theta) ** l * Math.cos(l * theta + m * phi);
+function sphericalHarmonicReal(l: number, m: number, theta: number, phi: number): number {
+  const absM = Math.abs(m);
+  const cosT = Math.cos(theta);
+  const sinT = Math.sin(theta);
+  
+  let val = 0;
+  if (l === 0) {
+    val = 1.0;
+  } else if (l === 1) {
+    if (absM === 0) val = cosT;
+    else val = sinT * (m > 0 ? Math.cos(phi) : Math.sin(phi));
+  } else if (l === 2) {
+    if (m === 0) val = 0.5 * (3 * cosT * cosT - 1);
+    else if (absM === 1) val = 3 * sinT * cosT * (m > 0 ? Math.cos(phi) : Math.sin(phi));
+    else if (absM === 2) val = 3 * sinT * sinT * (m > 0 ? Math.cos(2 * phi) : Math.sin(2 * phi));
+  } else if (l === 3) {
+    if (m === 0) val = 0.5 * (5 * cosT * cosT * cosT - 3 * cosT);
+    else if (absM === 1) val = 1.5 * sinT * (5 * cosT * cosT - 1) * (m > 0 ? Math.cos(phi) : Math.sin(phi));
+    else if (absM === 2) val = 15 * sinT * sinT * cosT * (m > 0 ? Math.cos(2 * phi) : Math.sin(2 * phi));
+    else if (absM === 3) val = 15 * sinT * sinT * sinT * (m > 0 ? Math.cos(3 * phi) : Math.sin(3 * phi));
+  } else {
+    val = (sinT ** l) * Math.cos(l * theta + m * phi);
+  }
+  return val;
 }
 
-export function getDemoOrbital(n: number, l: number, m: number): OrbitalResponse {
-  const rings = 18;
-  const segments = 36;
+export function getDemoOrbital(n: number, l: number, m: number, z: number = 26): OrbitalResponse {
+  const safeZ = Math.max(1, Math.min(118, z));
+  const rings = 24;
+  const segments = 48;
   const vertices: Array<[number, number, number]> = [];
   const faces: Array<[number, number, number]> = [];
 
+  const radialScale = (n * n) / Math.sqrt(safeZ);
+  
   for (let ring = 0; ring <= rings; ring += 1) {
     const theta = (ring / rings) * Math.PI;
     for (let segment = 0; segment <= segments; segment += 1) {
       const phi = (segment / segments) * Math.PI * 2;
-      const amplitude = orbitalShape(n, l, m, theta, phi);
-      const radialNode = 0.72 + 0.28 * Math.cos((n - l) * theta) ** 2;
-      const radius = 0.42 + Math.abs(amplitude) * (1.15 + 0.24 * radialNode);
+      const Ylm = sphericalHarmonicReal(l, m, theta, phi);
+      const absY = Math.abs(Ylm);
+      
+      const k = n - l - 1;
+      const radialFactor = k > 0 ? (0.7 + 0.3 * Math.cos(k * theta * 2) ** 2) : 1.0;
+      
+      const r = 0.35 + absY * (1.1 + 0.25 * radialFactor) * (0.8 + 0.2 * Math.log10(radialScale + 1));
+      
       vertices.push([
-        radius * Math.sin(theta) * Math.cos(phi),
-        radius * Math.cos(theta),
-        radius * Math.sin(theta) * Math.sin(phi),
+        r * Math.sin(theta) * Math.cos(phi),
+        r * Math.cos(theta),
+        r * Math.sin(theta) * Math.sin(phi),
       ]);
     }
   }
@@ -467,39 +495,113 @@ export function getDemoOrbital(n: number, l: number, m: number): OrbitalResponse
     probability: null,
     maxProbability: 1,
     normalization: 1,
-    metadata: { n, l, m, atomicNumber: 26, isoFraction: 0.9, source: 'demo' },
+    metadata: { n, l, m, atomicNumber: safeZ, isoFraction: 0.9, source: 'demo' },
   };
 }
 
-function crystalFractions(lattice: string): Array<[number, number, number]> {
-  if (lattice === 'BCC') return [[0, 0, 0], [0.5, 0.5, 0.5]];
-  if (lattice === 'FCC') return [[0, 0, 0], [0, 0.5, 0.5], [0.5, 0, 0.5], [0.5, 0.5, 0]];
-  if (lattice === 'HCP') return [[0, 0, 0], [0.5, 0.5, 0], [0.5, 0.166, 0.5], [0, 0.666, 0.5]];
-  return [[0, 0, 0]];
+function crystalFractionsFor(lattice: string): Array<[number, number, number]> {
+  if (lattice === 'BCC') {
+    return [
+      [0, 0, 0],
+      [0.5, 0.5, 0.5],
+    ];
+  }
+  if (lattice === 'FCC') {
+    return [
+      [0, 0, 0],
+      [0, 0.5, 0.5],
+      [0.5, 0, 0.5],
+      [0.5, 0.5, 0],
+    ];
+  }
+  if (lattice === 'HCP') {
+    return [
+      [0, 0, 0],
+      [0.333, 0.667, 0.5],
+      [0.667, 0.333, 0.5],
+      [0.5, 0.5, 0],
+    ];
+  }
+  if (lattice === 'Diamond') {
+    return [
+      [0, 0, 0],
+      [0, 0.5, 0.5],
+      [0.5, 0, 0.5],
+      [0.5, 0.5, 0],
+      [0.25, 0.25, 0.25],
+      [0.25, 0.75, 0.75],
+      [0.75, 0.25, 0.75],
+      [0.75, 0.75, 0.25],
+    ];
+  }
+  return [
+    [0, 0, 0],
+    [1, 0, 0],
+    [0, 1, 0],
+    [0, 0, 1],
+  ];
 }
 
 export function getDemoCrystal(z: number): CrystalResponse {
   const element = getDemoElement(z);
-  const lattice = element.crystalStructure === 'FCC' ? 'FCC' : element.crystalStructure === 'BCC' ? 'BCC' : z % 5 === 0 ? 'HCP' : 'BCC';
-  const cell = { aAngstrom: 3.58 + (z % 4) * 0.18, bAngstrom: 3.58 + (z % 4) * 0.18, cAngstrom: 3.58 + (z % 4) * 0.18, alphaDeg: 90, betaDeg: 90, gammaDeg: 90 };
-  const fractions = crystalFractions(lattice);
+  const lattice = element.crystalStructure === 'FCC' ? 'FCC' :
+                  element.crystalStructure === 'BCC' ? 'BCC' :
+                  element.crystalStructure === 'HCP' ? 'HCP' :
+                  (element.category && element.category.includes('metal')) ? (z % 2 === 0 ? 'FCC' : 'BCC') :
+                  (z === 6 || z === 14 || z === 32) ? 'Diamond' : 'BCC';
+
+  const radiusPm = element.covalentRadiusPm ?? element.atomicRadiusPm ?? 120;
+  const radiusAng = radiusPm / 100.0;
+  
+  let a = 3.6;
+  let b = 3.6;
+  let c = 3.6;
+
+  if (lattice === 'BCC') {
+    a = b = c = Number(((4 * radiusAng) / Math.sqrt(3)).toFixed(2));
+  } else if (lattice === 'FCC' || lattice === 'Diamond') {
+    a = b = c = Number((2 * Math.sqrt(2) * radiusAng).toFixed(2));
+  } else if (lattice === 'HCP') {
+    a = b = Number((2 * radiusAng).toFixed(2));
+    c = Number((a * 1.633).toFixed(2));
+  } else {
+    a = b = c = Number((2 * radiusAng).toFixed(2));
+  }
+
+  const cell = { aAngstrom: a, bAngstrom: b, cAngstrom: c, alphaDeg: 90, betaDeg: 90, gammaDeg: 90 };
+  const fractions = crystalFractionsFor(lattice);
   const atoms: CellAtom[] = fractions.map((fractional, index) => ({
     index,
     fractional,
-    position: [fractional[0] * cell.aAngstrom, fractional[1] * cell.bAngstrom, fractional[2] * cell.cAngstrom],
+    position: [
+      Number((fractional[0] * cell.aAngstrom).toFixed(3)),
+      Number((fractional[1] * cell.bAngstrom).toFixed(3)),
+      Number((fractional[2] * cell.cAngstrom).toFixed(3)),
+    ],
   }));
+
   const bonds: Array<[number, number]> = [];
-  for (let index = 1; index < atoms.length; index += 1) bonds.push([0, index]);
+  const cutoff = 1.15 * Math.min(a, b, c);
+  for (let i = 0; i < atoms.length; i += 1) {
+    for (let j = i + 1; j < atoms.length; j += 1) {
+      const pos1 = atoms[i].position;
+      const pos2 = atoms[j].position;
+      const dist = Math.sqrt((pos1[0] - pos2[0]) ** 2 + (pos1[1] - pos2[1]) ** 2 + (pos1[2] - pos2[2]) ** 2);
+      if (dist > 0.1 && dist <= cutoff) {
+        bonds.push([i, j]);
+      }
+    }
+  }
 
   return {
     z,
     symbol: element.symbol,
     lattice,
-    latticeSystem: 'cubic',
+    latticeSystem: lattice === 'HCP' ? 'hexagonal' : 'cubic',
     cell,
     atoms,
     bonds,
-    metadata: { source: 'demo', available: true, prototype: `${lattice} demo cell` },
+    metadata: { source: 'demo', available: true, prototype: `${lattice} cell (${element.symbol})` },
   };
 }
 

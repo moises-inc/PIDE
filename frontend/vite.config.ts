@@ -39,6 +39,7 @@ function standaloneDemoFallback(): Plugin {
 }
 
 export default defineConfig({
+  base: './',
   plugins: [react(), standaloneDemoFallback()],
   server: {
     port: 5173,
