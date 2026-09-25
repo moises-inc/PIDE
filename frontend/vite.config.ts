@@ -10,18 +10,41 @@ function standaloneDemoFallback(): Plugin {
         if (url.startsWith('/api') || url.startsWith('/health')) {
           try {
             const controller = new AbortController();
-            const timer = setTimeout(() => controller.abort(), 120);
-            const resp = await fetch(`http://127.0.0.1:8000${url}`, { signal: controller.signal });
+            const timer = setTimeout(() => controller.abort(), 3000);
+
+            let body: Buffer | undefined = undefined;
+            if (['POST', 'PUT', 'PATCH'].includes(req.method || '')) {
+              const chunks: Uint8Array[] = [];
+              for await (const chunk of req) {
+                chunks.push(chunk);
+              }
+              body = Buffer.concat(chunks);
+            }
+
+            const headers: Record<string, string> = {};
+            if (req.headers['content-type']) {
+              headers['content-type'] = req.headers['content-type'];
+            }
+            if (req.headers['accept']) {
+              headers['accept'] = req.headers['accept'];
+            }
+
+            const resp = await fetch(`http://127.0.0.1:8000${url}`, {
+              method: req.method || 'GET',
+              headers,
+              body,
+              signal: controller.signal,
+            });
             clearTimeout(timer);
             if (resp.ok) {
-              const body = await resp.arrayBuffer();
+              const respBody = await resp.arrayBuffer();
               res.statusCode = resp.status;
-              resp.headers.forEach((val, key) => res.setHeader(key, val));
-              res.end(new Uint8Array(body));
+              resp.headers.forEach((val: string, key: string) => res.setHeader(key, val));
+              res.end(new Uint8Array(respBody));
               return;
             }
           } catch {
-            // Backend offline: responder HTTP 200 silenciosamente en modo offline sin generar alertas rojas en consola
+            // Backend offline: responder HTTP 200 silenciosamente en modo offline sin alertas en consola
           }
           res.statusCode = 200;
           res.setHeader('Content-Type', 'application/json');
@@ -55,6 +78,3 @@ export default defineConfig({
     },
   },
 });
-
-
-

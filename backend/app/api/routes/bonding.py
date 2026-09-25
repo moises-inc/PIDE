@@ -1,6 +1,8 @@
 from __future__ import annotations
 
-from fastapi import APIRouter
+from typing import Annotated
+
+from fastapi import APIRouter, Query
 
 from ...core.bonding import analyze_bond
 from ...core.registry import get_registry
@@ -16,9 +18,16 @@ def _run(z1: int, z2: int) -> BondAnalysisResponse:
 
 
 @router.post("/bonding/analyze", response_model=BondAnalysisResponse)
-def analyze(request: BondAnalysisRequest) -> BondAnalysisResponse:
+@router.get("/bonding/analyze", response_model=BondAnalysisResponse)
+def analyze(
+    request: BondAnalysisRequest | None = None,
+    z1: Annotated[int | None, Query(ge=1, le=118)] = None,
+    z2: Annotated[int | None, Query(ge=1, le=118)] = None,
+) -> BondAnalysisResponse:
+    target_z1 = request.z1 if request and request.z1 else (z1 or 1)
+    target_z2 = request.z2 if request and request.z2 else (z2 or 8)
     try:
-        return _run(request.z1, request.z2)
+        return _run(target_z1, target_z2)
     except (ValueError, TypeError) as exc:
         raise PideValidationError(str(exc)) from exc
 
