@@ -63,6 +63,7 @@ def create_app() -> FastAPI:
         return JSONResponse(status_code=500, content=_error_body("INTERNAL_ERROR", "An unexpected backend error occurred"))
 
     @application.get("/health", tags=["system"])
+    @application.get("/api/health", tags=["system"])
     async def health() -> dict[str, str]:
         return {"status": "ok", "service": "pide", "version": APP_VERSION}
 

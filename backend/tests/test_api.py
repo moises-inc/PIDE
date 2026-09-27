@@ -13,6 +13,10 @@ def test_health_endpoint_is_local_and_structured():
     assert response.json()["status"] == "ok"
     assert response.json()["service"] == "pide"
 
+    response_api = client.get("/api/health")
+    assert response_api.status_code == 200
+    assert response_api.json()["status"] == "ok"
+
 
 def test_openapi_is_available():
     response = client.get("/openapi.json")
