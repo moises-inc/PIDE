@@ -15,6 +15,8 @@ export function OrbitalCanvas({ data, loading, error, label }: OrbitalCanvasProp
   const mountRef = useRef<HTMLDivElement>(null);
   const [renderError, setRenderError] = useState<string | null>(null);
 
+  const isPointCloud = Boolean(data && data.vertices.length > 0 && data.faces.length === 0);
+
   useEffect(() => {
     const mount = mountRef.current;
     if (!mount || !data) return undefined;
@@ -50,33 +52,65 @@ export function OrbitalCanvas({ data, loading, error, label }: OrbitalCanvasProp
     const indices = data.faces.filter((face) => face.every((index) => index < sourceVertices.length)).flatMap((face) => face);
     const geometry = new THREE.BufferGeometry();
     if (positions.length > 0) geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    if (indices.length > 0) geometry.setIndex(indices);
-    geometry.computeVertexNormals();
-    const orbitalMaterial = new THREE.MeshStandardMaterial({
-      color: '#38bdf8',
-      emissive: '#0284c7',
-      emissiveIntensity: 0.55,
-      transparent: true,
-      opacity: 0.72,
-      roughness: 0.25,
-      metalness: 0.15,
-      side: THREE.DoubleSide,
-    });
-    if (positions.length > 0) orbitalGroup.add(new THREE.Mesh(geometry, orbitalMaterial));
-    if (positions.length > 0 && indices.length > 0) {
-      const edges = new THREE.EdgesGeometry(geometry, 25);
-      orbitalGroup.add(new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: '#7dd3fc', transparent: true, opacity: 0.25 })));
+
+    let orbitalMaterial: THREE.Material | null = null;
+    let edgeGeometry: THREE.BufferGeometry | null = null;
+    let edgeMaterial: THREE.Material | null = null;
+
+    if (positions.length > 0) {
+      if (indices.length > 0) {
+        geometry.setIndex(indices);
+        geometry.computeVertexNormals();
+        const meshMaterial = new THREE.MeshStandardMaterial({
+          color: '#38bdf8',
+          emissive: '#0284c7',
+          emissiveIntensity: 0.55,
+          transparent: true,
+          opacity: 0.72,
+          roughness: 0.25,
+          metalness: 0.15,
+          side: THREE.DoubleSide,
+        });
+        orbitalMaterial = meshMaterial;
+        orbitalGroup.add(new THREE.Mesh(geometry, meshMaterial));
+
+        edgeGeometry = new THREE.EdgesGeometry(geometry, 25);
+        edgeMaterial = new THREE.LineBasicMaterial({ color: '#7dd3fc', transparent: true, opacity: 0.25 });
+        orbitalGroup.add(new THREE.LineSegments(edgeGeometry, edgeMaterial));
+      } else {
+        // Defensive handling: when faces are 0 but vertices exist, render a glowing point cloud
+        const pointsMaterial = new THREE.PointsMaterial({
+          color: '#38bdf8',
+          size: 0.06,
+          transparent: true,
+          opacity: 0.85,
+          blending: THREE.AdditiveBlending,
+          depthWrite: false,
+        });
+        orbitalMaterial = pointsMaterial;
+        orbitalGroup.add(new THREE.Points(geometry, pointsMaterial));
+      }
     }
-    const nucleus = new THREE.Mesh(new THREE.SphereGeometry(0.12, 20, 14), new THREE.MeshStandardMaterial({ color: '#fbbf24', emissive: '#b45309', emissiveIntensity: 0.85 }));
+
+    const nucleusGeometry = new THREE.SphereGeometry(0.12, 20, 14);
+    const nucleusMaterial = new THREE.MeshStandardMaterial({
+      color: '#fbbf24',
+      emissive: '#b45309',
+      emissiveIntensity: 0.85,
+    });
+    const nucleus = new THREE.Mesh(nucleusGeometry, nucleusMaterial);
     orbitalGroup.add(nucleus);
     scene.add(orbitalGroup);
 
     const axes = new THREE.AxesHelper(1.8);
-    (axes.material as THREE.Material).transparent = true;
-    (axes.material as THREE.Material).opacity = 0.24;
+    const axesMaterial = axes.material as THREE.Material;
+    axesMaterial.transparent = true;
+    axesMaterial.opacity = 0.24;
     scene.add(axes);
+
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
     controls.enablePan = false;
     controls.minDistance = 1.8;
     controls.maxDistance = 10;
@@ -106,9 +140,17 @@ export function OrbitalCanvas({ data, loading, error, label }: OrbitalCanvasProp
       observer.disconnect();
       controls.dispose();
       geometry.dispose();
-      orbitalMaterial.dispose();
+      orbitalMaterial?.dispose();
+      edgeGeometry?.dispose();
+      edgeMaterial?.dispose();
+      nucleusGeometry.dispose();
+      nucleusMaterial.dispose();
+      axes.geometry.dispose();
+      axesMaterial.dispose();
       renderer.dispose();
-      mount.removeChild(renderer.domElement);
+      if (mount.contains(renderer.domElement)) {
+        mount.removeChild(renderer.domElement);
+      }
     };
   }, [data]);
 
@@ -119,8 +161,33 @@ export function OrbitalCanvas({ data, loading, error, label }: OrbitalCanvasProp
 
   return (
     <div className="three-stage orbital-stage" ref={mountRef}>
-      <div className="three-hud"><span><Atom size={14} /> {label}</span><span className="hud-chip">|ψ|² / 90%</span></div>
+      <div className="three-hud">
+        <span><Atom size={14} /> {label}</span>
+        <span className="hud-chip">{isPointCloud ? 'Nube de puntos |ψ|²' : '|ψ|² / 90%'}</span>
+      </div>
       <div className="three-help"><MousePointer2 size={13} /> Arrastra para orbitar · rueda para zoom</div>
+      {isPointCloud && (
+        <div
+          style={{
+            position: 'absolute',
+            left: '14px',
+            bottom: '13px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            color: '#38bdf8',
+            fontSize: '9.5px',
+            background: 'rgba(8, 21, 26, 0.85)',
+            padding: '3px 8px',
+            borderRadius: '3px',
+            border: '1px solid rgba(56, 189, 248, 0.35)',
+            pointerEvents: 'none',
+          }}
+        >
+          <Atom size={12} />
+          <span>Modo probabilístico: renderizando nube de puntos</span>
+        </div>
+      )}
       <button 
         type="button" 
         className="vcm-orbital-invite-banner" 
@@ -136,7 +203,13 @@ export function OrbitalCanvas({ data, loading, error, label }: OrbitalCanvasProp
         </span>
         <span className="vcm-invite-cta">Entrar ↗</span>
       </button>
-      {renderError ? <div className="three-state error"><AlertTriangle size={22} /><span>{renderError}</span></div> : loading ? <div className="three-state"><LoaderCircle className="spin" size={23} /><span>Generando isosuperficie…</span></div> : error && !data ? <div className="three-state error"><AlertTriangle size={22} /><span>{error}</span></div> : null}
+      {renderError ? (
+        <div className="three-state error"><AlertTriangle size={22} /><span>{renderError}</span></div>
+      ) : loading ? (
+        <div className="three-state"><LoaderCircle className="spin" size={23} /><span>Generando isosuperficie…</span></div>
+      ) : error ? (
+        <div className="three-state error"><AlertTriangle size={22} /><span>{error}</span></div>
+      ) : null}
     </div>
   );
 }

@@ -147,11 +147,134 @@ def generate_probability_grid(n: int, l: int, m: int, atomic_number: int = 1, gr
 def _fallback_surface(probability: Any, extent_bohr: float, spacing: float, iso_level: float) -> tuple[Any, Any]:
     module = _require_numpy()
     threshold = max(iso_level, float(module.quantile(probability, 0.90)))
-    indexes = module.argwhere(probability >= threshold)
-    if len(indexes) > 5000:
-        indexes = indexes[:: max(1, len(indexes) // 5000)]
-    vertices = indexes.astype(float) * spacing - extent_bohr
-    return vertices, module.empty((0, 3), dtype=int)
+    mask = probability >= threshold
+
+    if not module.any(mask):
+        # Fallback bounding octahedron around origin if mask is completely empty
+        vertices = module.array(
+            [
+                [0.0, 0.0, 1.0],
+                [1.0, 0.0, 0.0],
+                [0.0, 1.0, 0.0],
+                [-1.0, 0.0, 0.0],
+                [0.0, -1.0, 0.0],
+                [0.0, 0.0, -1.0],
+            ],
+            dtype=float,
+        ) * spacing
+        faces = module.array(
+            [
+                [0, 1, 2],
+                [0, 2, 3],
+                [0, 3, 4],
+                [0, 4, 1],
+                [5, 2, 1],
+                [5, 3, 2],
+                [5, 4, 3],
+                [5, 1, 4],
+            ],
+            dtype=int,
+        )
+        return vertices, faces
+
+    padded = module.pad(mask, 1, mode="constant", constant_values=False)
+    fx_p = padded[1:-1, 1:-1, 1:-1] & ~padded[2:, 1:-1, 1:-1]
+    fx_m = padded[1:-1, 1:-1, 1:-1] & ~padded[:-2, 1:-1, 1:-1]
+    fy_p = padded[1:-1, 1:-1, 1:-1] & ~padded[1:-1, 2:, 1:-1]
+    fy_m = padded[1:-1, 1:-1, 1:-1] & ~padded[1:-1, :-2, 1:-1]
+    fz_p = padded[1:-1, 1:-1, 1:-1] & ~padded[1:-1, 1:-1, 2:]
+    fz_m = padded[1:-1, 1:-1, 1:-1] & ~padded[1:-1, 1:-1, :-2]
+
+    ni, nj, nk = mask.shape
+    corner_shape = (ni + 1, nj + 1, nk + 1)
+    c_stride_i = corner_shape[1] * corner_shape[2]
+    c_stride_j = corner_shape[2]
+
+    def corner_idx(i: Any, j: Any, k: Any) -> Any:
+        return i * c_stride_i + j * c_stride_j + k
+
+    faces_list = []
+
+    # +x face: (i+1, j, k), (i+1, j+1, k), (i+1, j+1, k+1), (i+1, j, k+1)
+    idx = module.argwhere(fx_p)
+    if len(idx):
+        i, j, k = idx[:, 0], idx[:, 1], idx[:, 2]
+        c0, c1, c2, c3 = corner_idx(i + 1, j, k), corner_idx(i + 1, j + 1, k), corner_idx(i + 1, j + 1, k + 1), corner_idx(i + 1, j, k + 1)
+        faces_list.extend([module.stack([c0, c1, c2], axis=1), module.stack([c0, c2, c3], axis=1)])
+
+    # -x face: (i, j, k), (i, j, k+1), (i, j+1, k+1), (i, j+1, k)
+    idx = module.argwhere(fx_m)
+    if len(idx):
+        i, j, k = idx[:, 0], idx[:, 1], idx[:, 2]
+        c0, c1, c2, c3 = corner_idx(i, j, k), corner_idx(i, j, k + 1), corner_idx(i, j + 1, k + 1), corner_idx(i, j + 1, k)
+        faces_list.extend([module.stack([c0, c1, c2], axis=1), module.stack([c0, c2, c3], axis=1)])
+
+    # +y face: (i, j+1, k), (i, j+1, k+1), (i+1, j+1, k+1), (i+1, j+1, k)
+    idx = module.argwhere(fy_p)
+    if len(idx):
+        i, j, k = idx[:, 0], idx[:, 1], idx[:, 2]
+        c0, c1, c2, c3 = corner_idx(i, j + 1, k), corner_idx(i, j + 1, k + 1), corner_idx(i + 1, j + 1, k + 1), corner_idx(i + 1, j + 1, k)
+        faces_list.extend([module.stack([c0, c1, c2], axis=1), module.stack([c0, c2, c3], axis=1)])
+
+    # -y face: (i, j, k), (i+1, j, k), (i+1, j, k+1), (i, j, k+1)
+    idx = module.argwhere(fy_m)
+    if len(idx):
+        i, j, k = idx[:, 0], idx[:, 1], idx[:, 2]
+        c0, c1, c2, c3 = corner_idx(i, j, k), corner_idx(i + 1, j, k), corner_idx(i + 1, j, k + 1), corner_idx(i, j, k + 1)
+        faces_list.extend([module.stack([c0, c1, c2], axis=1), module.stack([c0, c2, c3], axis=1)])
+
+    # +z face: (i, j, k+1), (i+1, j, k+1), (i+1, j+1, k+1), (i, j+1, k+1)
+    idx = module.argwhere(fz_p)
+    if len(idx):
+        i, j, k = idx[:, 0], idx[:, 1], idx[:, 2]
+        c0, c1, c2, c3 = corner_idx(i, j, k + 1), corner_idx(i + 1, j, k + 1), corner_idx(i + 1, j + 1, k + 1), corner_idx(i, j + 1, k + 1)
+        faces_list.extend([module.stack([c0, c1, c2], axis=1), module.stack([c0, c2, c3], axis=1)])
+
+    # -z face: (i, j, k), (i, j+1, k), (i+1, j+1, k), (i+1, j, k)
+    idx = module.argwhere(fz_m)
+    if len(idx):
+        i, j, k = idx[:, 0], idx[:, 1], idx[:, 2]
+        c0, c1, c2, c3 = corner_idx(i, j, k), corner_idx(i, j + 1, k), corner_idx(i + 1, j + 1, k), corner_idx(i + 1, j, k)
+        faces_list.extend([module.stack([c0, c1, c2], axis=1), module.stack([c0, c2, c3], axis=1)])
+
+    if not faces_list:
+        vertices = module.array(
+            [
+                [0.0, 0.0, 1.0],
+                [1.0, 0.0, 0.0],
+                [0.0, 1.0, 0.0],
+                [-1.0, 0.0, 0.0],
+                [0.0, -1.0, 0.0],
+                [0.0, 0.0, -1.0],
+            ],
+            dtype=float,
+        ) * spacing
+        faces = module.array(
+            [
+                [0, 1, 2],
+                [0, 2, 3],
+                [0, 3, 4],
+                [0, 4, 1],
+                [5, 2, 1],
+                [5, 3, 2],
+                [5, 4, 3],
+                [5, 1, 4],
+            ],
+            dtype=int,
+        )
+        return vertices, faces
+
+    all_faces = module.vstack(faces_list)
+    used_corners, inverse = module.unique(all_faces, return_inverse=True)
+    compact_faces = inverse.reshape(-1, 3).astype(int)
+
+    ci = used_corners // c_stride_i
+    rem = used_corners % c_stride_i
+    cj = rem // c_stride_j
+    ck = rem % c_stride_j
+
+    corner_coords = module.stack([ci, cj, ck], axis=1).astype(float) * spacing - extent_bohr - spacing / 2.0
+    return corner_coords, compact_faces
 
 
 def generate_orbital(
@@ -175,17 +298,19 @@ def generate_orbital(
     maximum = float(module.max(probability))
     iso_level = maximum * (1.0 - float(iso_fraction))
     vertices = faces = None
-    method = "points-fallback"
+    method = "voxel-fallback"
     if marching_cubes is not None and maximum > 0 and float(module.min(probability)) <= iso_level <= maximum:
         try:
             raw_vertices, raw_faces, _, _ = marching_cubes(probability, level=iso_level, spacing=(spacing, spacing, spacing))
-            vertices = raw_vertices - (grid_size - 1) * spacing / 2.0
-            faces = raw_faces.astype(int)
-            method = "marching-cubes"
+            if len(raw_faces) > 0:
+                vertices = raw_vertices - (grid_size - 1) * spacing / 2.0
+                faces = raw_faces.astype(int)
+                method = "marching-cubes"
         except (RuntimeError, ValueError):
             vertices = faces = None
-    if vertices is None or faces is None:
+    if vertices is None or faces is None or len(faces) == 0:
         vertices, faces = _fallback_surface(probability, (grid_size - 1) * spacing / 2.0, spacing, iso_level)
+        method = "voxel-fallback"
     vertex_list = [tuple(float(component) for component in vertex) for vertex in vertices]
     face_list = [tuple(int(component) for component in face) for face in faces]
     extent = (grid_size - 1) * spacing / 2.0

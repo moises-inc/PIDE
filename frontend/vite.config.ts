@@ -12,13 +12,20 @@ function standaloneDemoFallback(): Plugin {
             const controller = new AbortController();
             const timer = setTimeout(() => controller.abort(), 3000);
 
-            let body: Buffer | undefined = undefined;
+            let body: Uint8Array | undefined = undefined;
             if (['POST', 'PUT', 'PATCH'].includes(req.method || '')) {
               const chunks: Uint8Array[] = [];
               for await (const chunk of req) {
-                chunks.push(chunk);
+                chunks.push(chunk as Uint8Array);
               }
-              body = Buffer.concat(chunks);
+              const totalLength = chunks.reduce((acc, c) => acc + c.length, 0);
+              const merged = new Uint8Array(totalLength);
+              let offset = 0;
+              for (const chunk of chunks) {
+                merged.set(chunk, offset);
+                offset += chunk.length;
+              }
+              body = merged;
             }
 
             const headers: Record<string, string> = {};
@@ -32,7 +39,7 @@ function standaloneDemoFallback(): Plugin {
             const resp = await fetch(`http://127.0.0.1:8000${url}`, {
               method: req.method || 'GET',
               headers,
-              body,
+              body: body as any,
               signal: controller.signal,
             });
             clearTimeout(timer);

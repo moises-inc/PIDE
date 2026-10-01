@@ -39,9 +39,9 @@ def test_orbital_mesh_is_finite_and_bounded():
     faces = np.asarray(result["faces"])
     assert vertices.ndim == 2 and vertices.shape[1] == 3
     assert np.all(np.isfinite(vertices))
-    if len(faces):
-        assert faces.min() >= 0
-        assert faces.max() < len(vertices)
+    assert len(faces) > 0
+    assert faces.min() >= 0
+    assert faces.max() < len(vertices)
 
 
 def test_orbital_generation_is_deterministic():
@@ -68,3 +68,30 @@ def test_orbital_metadata_preserves_quantum_numbers(quantum_numbers):
 def test_atomic_number_changes_wavefunction_metadata():
     result = generate_orbital(1, 0, 0, atomic_number=8, grid_size=11)
     assert result["metadata"]["atomic_number"] == 8
+
+
+def test_fallback_surface_when_marching_cubes_unavailable(monkeypatch):
+    import backend.app.core.orbitals as orb_module
+
+    monkeypatch.setattr(orb_module, "marching_cubes", None)
+    result = orb_module.generate_orbital(2, 1, 0, grid_size=15)
+    vertices = np.asarray(result["vertices"])
+    faces = np.asarray(result["faces"])
+    assert len(vertices) > 0
+    assert len(faces) > 0
+    assert np.all(np.isfinite(vertices))
+    assert faces.min() >= 0
+    assert faces.max() < len(vertices)
+    assert result["metadata"]["mesh_method"] == "voxel-fallback"
+
+
+def test_fallback_surface_handles_zero_probability():
+    from backend.app.core.orbitals import _fallback_surface
+
+    prob = np.zeros((10, 10, 10), dtype=float)
+    vertices, faces = _fallback_surface(prob, extent_bohr=5.0, spacing=0.5, iso_level=0.1)
+    assert len(vertices) == 6
+    assert len(faces) == 8
+    assert faces.min() >= 0
+    assert faces.max() < 6
+
