@@ -33,3 +33,8 @@ scratch/
 *~
 .DS_Store
 Thumbs.db
+
+# Cloudflare Tunnel binaries and session info
+bin/
+frontend/public/tunnel_info.json
+frontend/dist/tunnel_info.json
